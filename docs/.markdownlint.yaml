@@ -1,0 +1,8 @@
+# Allow certain punctuation at the end of headings
+MD026:
+    # These are the characters that count as punctuation. Note that '?' and '!' are
+    # not mentioned, so they do _not_ count as punctuation, so they are allowed.
+    punctuation: ".,;:"
+
+# Allow inline HTML (mostly to allow <a> tags on headings).
+MD033: false

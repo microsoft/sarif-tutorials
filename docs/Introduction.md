@@ -1,30 +1,5 @@
 # Introduction
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## <a name="what-is-sarif"></a>What is SARIF?
 
 ## <a name="why-sarif">Why SARIF?
