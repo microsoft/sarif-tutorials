@@ -9,7 +9,7 @@ For this reason -- and because the format is defined in a 220-plus page specific
 
 These tutorials aim to present SARIF in a more approachable way.
 We'll start with some background:
-Why do we need SARIF? Where did it come from? What can it do?.
+Why do we need SARIF? Where did it come from? What can it do?
 Then we'll dive into the format, exploring the most basic concepts first, then moving on to more advanced concepts.
 
 The advanced concepts usually apply to only a subset of SARIF producers and consumers,

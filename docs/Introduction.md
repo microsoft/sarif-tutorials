@@ -5,7 +5,7 @@
 SARIF, the Static Analysis Results Interchange Format, is a standard, JSON-based format for the output of
 <a href="Glossary.md#static-analysis-tool">_static analysis tools_</a>.
 It is an approved [OASIS](https://www.oasis-open.org/)
-[Committee Specification](https://www.oasis-open.org/news/announcements/static-analysis-results-interchange-format-sarif-v2-1-0-from-the-sarif-tc-is-an-a),<sup><a href="note-1">1</a></sup>
+[Committee Specification](https://www.oasis-open.org/news/announcements/static-analysis-results-interchange-format-sarif-v2-1-0-from-the-sarif-tc-is-an-a),<sup><a href="#note-1">1</a></sup>
 and is on the way to becoming a full OASIS specification.
 
 SARIF is a rich format intended to meet the needs of sophisticated tools,
@@ -16,7 +16,7 @@ doesn't directly represent.
 
 ## <a id="tools"></a>About static analysis tools
 
-Static analysis tools look for issues by examining a program without executing it.<sup><a href="note-2">2</a></sup>
+Static analysis tools look for issues by examining a program without executing it.<sup><a href="#note-2">2</a></sup>
 We often refer to a static analysis tool simply as a "tool."
 
 We can classify tools according to the language they analyze and kinds of issues they detect.
@@ -39,11 +39,11 @@ most of them targeted at a particular class of issues in a particular programmin
 
 Historically, every static analysis tool has defined its own output format.
 These formats are frequently based on standard file formats such as XML or JSON,
-but beyond that, they have little in common -- or, at least, not enough to make it feasible
+but beyond that, they have little in common &mdash; or at least, not enough to make it feasible
 for automated systems to consume all the different formats that exist.
 
 This matters because engineering teams, especially large ones, can use dozens of tools.
-If each tool has its own output format, this leads to all sorts of problems:
+The multiplicity of output formats leads to all sorts of problems:
 
 - Users have to learn to read each tool's output format.
 - There is no common way to view and interact with the tool outputs in the user's development environment
@@ -62,9 +62,18 @@ viewers, bug filers, metrics calculators, _etc._.
 ## <a id="dont-panic"></a>Don't panic!
 
 As we said earlier, SARIF is a large, powerful format that addresses the needs of sophisticated tools of many kinds.
-But your tool (if you're a tool author) probably needs to support only a small subset of the information that SARIF can represent.
+
+But if you're a tool author, your tool probably needs to produced only a small subset of the information that SARIF can represent.
 The goal of this tutorial is to help you quickly to understand the features of SARIF that everyone needs,
 and to find the more advanced features that make sense for your tool.
+
+Even if you're writing a SARIF viewer (say, an Eclipse plugin),
+which ideally would be able to visualize everything in a SARIF file,
+you don't have to do it all at once.
+You can start with a viewer that just displays the basics,
+and move on to displaying the more advanced features as your customers require.
+The trick is to know what the basics _are_.
+That's where these tutorials come in.
 
 ## <a id="plan"></a>The plan for these tutorials
 
