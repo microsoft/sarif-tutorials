@@ -23,6 +23,34 @@ They represent my personal interpretation and explanation of the standard.
 
 I've just started writing these tutorials. I'll remove this notice when I think there's enough information to be useful.
 
+## Table of contents
+
+- [Introduction](docs/introduction.md)
+  - [What is SARIF?](docs/introduction.md#what-is-sarif)
+  - [Why SARIF?](docs/introduction.md#why-sarif)
+  - [A simple example](docs/introduction.md#simple-example)
+  - [Don't panic!](docs/introduction.md#dont-panic)
+  - [The plan for these tutorials](docs/introduction.md#plan)
+  - [Resources](docs/introduction.md#resources)
+- The basics
+  - Logs, runs, and results
+  - Messages
+  - Physical and logical locations
+  - Artifacts
+- Beyond the basics
+  - Property bags
+  - Invocations
+  - Notifications
+  - Taxonomies
+  - Code flows
+  - More about messages
+- Advanced topics
+  - External property files
+  - Internal external property files
+  - Tool extensions
+- Appendices
+  - The history of SARIF
+
 ## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
