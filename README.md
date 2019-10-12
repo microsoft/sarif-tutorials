@@ -25,13 +25,13 @@ I've just started writing these tutorials. I'll remove this notice when I think 
 
 ## Table of contents
 
-- [Introduction](docs/introduction.md)
-  - [What is SARIF?](docs/introduction.md#what-is-sarif)
-  - [Why SARIF?](docs/introduction.md#why-sarif)
-  - [A simple example](docs/introduction.md#simple-example)
-  - [Don't panic!](docs/introduction.md#dont-panic)
-  - [The plan for these tutorials](docs/introduction.md#plan)
-  - [Resources](docs/introduction.md#resources)
+- [Introduction](docs/Introduction.md)
+  - [What is SARIF?](docs/Introduction.md#what-is-sarif)
+  - [Why SARIF?](docs/Introduction.md#why-sarif)
+  - [A simple example](docs/Introduction.md#simple-example)
+  - [Don't panic!](docs/Introduction.md#dont-panic)
+  - [The plan for these tutorials](docs/Introduction.md#plan)
+  - [Resources](docs/Introduction.md#resources)
 - The basics
   - Logs, runs, and results
   - Messages
