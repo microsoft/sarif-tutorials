@@ -16,7 +16,8 @@ doesn't directly represent.
 
 ## <a id="tools"></a>About static analysis tools
 
-Static analysis tools look for issues by examining a program without executing it.<sup><a href="#note-2">2</a></sup>
+Static analysis tools look for <a href="Glossary.md#issue">_issues_</a>
+by examining a program without executing it.<sup><a href="#note-2">2</a></sup>
 We often refer to a static analysis tool simply as a "tool."
 
 We can classify tools according to the language they analyze and kinds of issues they detect.
