@@ -1,3 +1,6 @@
+MD013:
+    line_length: 120
+
 # Allow certain punctuation at the end of headings
 MD026:
     # These are the characters that count as punctuation. Note that '?' and '!' are

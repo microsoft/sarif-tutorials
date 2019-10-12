@@ -7,14 +7,20 @@ It is a powerful and sophisticated format suited to the needs of a wide variety 
 For this reason -- and because the format is defined in a 220-plus page specification written in formal language!
 -- it can be hard to learn SARIF and to figure out what parts of it you need to use.
 
-These tutorials aim to present SARIF in a more approachable way. We'll start with some background (Why do we need SARIF? Where did it come from? What can it do?), explore the most basic concepts first, and then explore more advanced concepts.
+These tutorials aim to present SARIF in a more approachable way.
+We'll start with some background:
+Why do we need SARIF? Where did it come from? What can it do?.
+Then we'll dive into the format, exploring the most basic concepts first, then moving on to more advanced concepts.
 
-The more advanced concepts usually apply to only a subset of SARIF producers and consumers, so you don't to read everything. Just read the introductory material, then pick and choose the additional topics that interest you.
+The advanced concepts usually apply to only a subset of SARIF producers and consumers,
+so you don't to read everything.
+Just read the introductory material, then pick and choose the additional topics that interest you.
 
 ## Disclaimer
 
 The [SARIF specification](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/)
-is a [Committee Specification](https://www.oasis-open.org/news/announcements/static-analysis-results-interchange-format-sarif-v2-1-0-from-the-sarif-tc-is-an-a) from [OASIS](https://www.oasis-open.org/).
+is a [Committee Specification](https://www.oasis-open.org/news/announcements/static-analysis-results-interchange-format-sarif-v2-1-0-from-the-sarif-tc-is-an-a)
+from [OASIS](https://www.oasis-open.org/).
 But despite the fact that I'm the co-Editor (with Michael Fanning) and primary wordsmith of the specification,
 these tutorials are _not_ an OASIS work product or endorsed by OASIS in any way.
 They represent my personal interpretation and explanation of the standard.
@@ -27,6 +33,7 @@ I've just started writing these tutorials. I'll remove this notice when I think 
 
 - [Introduction](docs/Introduction.md)
   - [What is SARIF?](docs/Introduction.md#what-is-sarif)
+  - [About static analysis tools](docs/Introduction.md#tools)
   - [Why SARIF?](docs/Introduction.md#why-sarif)
   - [A simple example](docs/Introduction.md#simple-example)
   - [Don't panic!](docs/Introduction.md#dont-panic)
@@ -45,9 +52,9 @@ I've just started writing these tutorials. I'll remove this notice when I think 
   - Code flows
   - More about messages
 - Advanced topics
-  - External property files
-  - Internal external property files
   - Tool extensions
+  - Handling large files
+  - Result matching
 - Appendices
   - The history of SARIF
 
