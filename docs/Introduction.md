@@ -78,7 +78,7 @@ If we run ESLint with the SARIF formatter:
 .\node_modules\.bin\eslint --format sarif simple-example.js --output-file simple-example.sarif
 ```
 
-... we get<sup><a href="#note-3">3</a></sup>:
+... we get:
 
 ```json
 {
@@ -107,7 +107,7 @@ If we run ESLint with the SARIF formatter:
       "artifacts": [
         {
           "location": {
-            "uri": "simple-example.js"
+            "uri": "file:///C:/dev/sarif/sarif-tutorials/samples/introduction-simple-example/simple-example.js"
           }
         }
       ],
@@ -121,7 +121,7 @@ If we run ESLint with the SARIF formatter:
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "simple-example.js",
+                  "uri": "file:///C:/dev/sarif/sarif-tutorials/samples/introduction-simple-example/simple-example.js",
                   "index": 0
                 },
                 "region": {
@@ -198,10 +198,3 @@ but not yet by OASIS as a whole.
 is called a <a href="Glossary.md#dynamic-analysis-tool">_dynamic analysis tool_</a>.
 SARIF does not claim to represent the output of dynamic analysis tools,
 but there are dynamic analysis tools that have adopted it successfully. YMMV.
-
-<a id="note-3">3.</a> Almost. In preparing this tutorial I discovered two bugs in the ESLint SARIF formatter:
-
-- [#1698](https://github.com/microsoft/sarif-sdk/issues/1698): "ESLint: file paths must be expressed as valid URIs"
-- [#1699](https://github.com/microsoft/sarif-sdk/issues/1699): "ESLint: ruleIndex is not a valid property of reportingDescriptor."
-
-The example in this tutorial is hand-edited to correct those bugs and become valid SARIF.
