@@ -23,8 +23,8 @@ We often refer to a static analysis tool simply as a "tool."
 We can classify tools according to the language they analyze and kinds of issues they detect.
 For example:
 
-- A security analyzer detects logic errors that might cause security vulnerabilities.
-- An accessibility checker detects user interface constructs that are not accessible to people with
+- A security analyzer detects errors that might cause security vulnerabilities.
+- An accessibility checker detects user interface constructs that might not be accessible to people with
 limited sight or motor impairments.
 - A geopolitical checker detects terms or images that might be politically or culturally sensitive
 in certain countries or cultures.
