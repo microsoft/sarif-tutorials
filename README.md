@@ -36,9 +36,7 @@ I've just started writing these tutorials. I'll remove this notice when I think 
   - [About static analysis tools](docs/Introduction.md#tools)
   - [Why SARIF?](docs/Introduction.md#why-sarif)
   - [A simple example](docs/Introduction.md#simple-example)
-  - [Don't panic!](docs/Introduction.md#dont-panic)
   - [The plan for these tutorials](docs/Introduction.md#plan)
-  - [Resources](docs/Introduction.md#resources)
 - The basics
   - Logs, runs, and results
   - Messages
@@ -57,6 +55,7 @@ I've just started writing these tutorials. I'll remove this notice when I think 
   - Result matching
 - Appendices
   - The history of SARIF
+  - Resources
 
 ## Contributing
 

@@ -162,9 +162,12 @@ There are also many things we don't understand yet:
 
 We'll learn later that the answer to most of these questions is "to support more advanced scenarios".
 
-## <a id="dont-panic"></a>Don't panic!
+## <a id="plan"></a>The plan for these tutorials
 
-As we said earlier, SARIF is a large, powerful format that addresses the needs of sophisticated tools of many kinds.
+Now that we have a little background, let's dive into the format.
+We'll explore the basic concepts first, then move on to more advanced concepts.
+
+As I've said, SARIF is a large, powerful format that addresses the needs of sophisticated tools of many kinds.
 
 But if you're a tool author, your tool probably needs to produced only a small subset of the information that SARIF can represent.
 (In fact, many of the properties in the simple example above are optional, but I wanted to show you the output of
@@ -180,9 +183,11 @@ and move on to displaying the more advanced features as your customers require.
 The trick is to know what the basics _are_.
 That's where these tutorials come in.
 
-## <a id="plan"></a>The plan for these tutorials
+In short, you don't need to know everything about SARIF.
+Just read the introductory material, then pick and choose the additional topics that matter to you
+and the tools you need to write, or the log files you need to read.
 
-## <a id="resources"></a>Resources
+Good luck, and I hope SARIF makes your experience with static analysis tools better and more productive!
 
 ## Notes
 
