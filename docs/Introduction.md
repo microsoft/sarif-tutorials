@@ -20,7 +20,7 @@ Static analysis tools look for <a href="Glossary.md#issue">_issues_</a>
 by examining a program without executing it.<sup><a href="#note-2">2</a></sup>
 We often refer to a static analysis tool simply as a "tool."
 
-We can classify tools according to the language they analyze and kinds of issues they detect.
+We can classify tools according to the language they analyze and the kinds of issues they detect.
 For example:
 
 - A security analyzer detects errors that might cause security vulnerabilities.
@@ -53,7 +53,7 @@ The multiplicity of output formats leads to many problems:
 Azure Dev Ops.
 - There is no common way to generate metrics (for example, how many bugs exist in each program component).
 
-This is where SARIF comes in.
+That's where SARIF comes in.
 By providing a common tool output format, SARIF reduces the learning burden on users,
 and makes it possible to create common tooling for all tools:
 viewers, bug filers, metrics calculators, _etc._.
