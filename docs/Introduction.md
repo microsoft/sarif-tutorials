@@ -87,4 +87,5 @@ but not yet by OASIS as a whole.
 
 <a id="note-2">2.</a> A tool that looks for issues in a program by observing the program's execution
 is called a <a href="Glossary.md#dynamic-analysis-tool">_dynamic analysis tool_</a>.
-
+SARIF does not claim to represent the output of dynamic analysis tools,
+but there are dynamic analysis tools that have adopted it successfully. YMMV.
