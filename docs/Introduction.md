@@ -44,7 +44,7 @@ but beyond that, they have little in common &mdash; or at least, not enough to m
 for automated systems to consume all the different formats that exist.
 
 This matters because engineering teams, especially large ones, can use dozens of tools.
-The multiplicity of output formats leads to all sorts of problems:
+The multiplicity of output formats leads to many problems:
 
 - Users have to learn to read each tool's output format.
 - There is no common way to view and interact with the tool outputs in the user's development environment
@@ -60,11 +60,115 @@ viewers, bug filers, metrics calculators, _etc._.
 
 ## <a id="simple-example"></a>A simple example
 
+Here's a simple example to give you the flavor of SARIF.
+
+ESLint is a linter for ECMAScript (a.k.a JavaScript) that accepts "formatter" plugins so it can produce
+output in a variety of formats.
+The [ESLint SARIF formatter](https://www.npmjs.com/package/eslint.formatter.sarif) plugin produces the SARIF format.
+
+Consider this simple JavaScript file:
+
+```javascript
+var x = 42
+```
+
+If we run ESLint with the SARIF formatter:
+
+```shell
+.\node_modules\.bin\eslint --format sarif simple-example.js --output-file simple-example.sarif
+```
+
+... we get<sup><a href="#note-3">3</a></sup>:
+
+```json
+{
+  "version": "2.1.0",
+  "$schema": "http://json.schemastore.org/sarif-2.1.0-rtm.4",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "ESLint",
+          "informationUri": "https://eslint.org",
+          "rules": [
+            {
+              "id": "no-unused-vars",
+              "shortDescription": {
+                "text": "disallow unused variables"
+              },
+              "helpUri": "https://eslint.org/docs/rules/no-unused-vars",
+              "properties": {
+                "category": "Variables"
+              }
+            }
+          ]
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "simple-example.js"
+          }
+        }
+      ],
+      "results": [
+        {
+          "level": "error",
+          "message": {
+            "text": "'x' is assigned a value but never used."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "simple-example.js",
+                  "index": 0
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 5
+                }
+              }
+            }
+          ],
+          "ruleId": "no-unused-vars",
+          "ruleIndex": 0
+        }
+      ]
+    }
+  ]
+}
+```
+
+Without knowing any more about SARIF, we can see that:
+
+- The log file was produced by the tool ESLint.
+- The tool scanned the file `simple-example.js`.
+- The scan produced a single result: a violation of the rule `no-unused-vars` at line 1, column 5.
+
+Looking more closely, we can see that SARIF can provide additional information about the tool
+(the `informationUri` property) and about the analysis rules it defines (the `rules` array,
+including a `helpUri` property for each rule).
+
+There are also many things we don't understand yet:
+
+- What do the properties `index` and `ruleIndex` mean?
+- What is an "artifact"? Isn't it just a file? Why not call it that?
+- Why are there so many levels of nesting? For example:
+  - Why do we have `tool.driver` instead of just `tool`?
+  - Why do we have `message.text` instead of just `message`?
+  - Why do we have `location.physicalLocation` instead of just `location`?
+  - For that matter, why is `locations` an array?
+
+We'll learn later that the answer to most of these questions is "to support more advanced scenarios".
+
 ## <a id="dont-panic"></a>Don't panic!
 
 As we said earlier, SARIF is a large, powerful format that addresses the needs of sophisticated tools of many kinds.
 
 But if you're a tool author, your tool probably needs to produced only a small subset of the information that SARIF can represent.
+(In fact, many of the properties in the simple example above are optional, but I wanted to show you the output of
+an actual tool.)
 The goal of this tutorial is to help you quickly to understand the features of SARIF that everyone needs,
 and to find the more advanced features that make sense for your tool.
 
@@ -89,3 +193,10 @@ but not yet by OASIS as a whole.
 is called a <a href="Glossary.md#dynamic-analysis-tool">_dynamic analysis tool_</a>.
 SARIF does not claim to represent the output of dynamic analysis tools,
 but there are dynamic analysis tools that have adopted it successfully. YMMV.
+
+<a id="note-3">3.</a> Almost. In preparing this tutorial I discovered two bugs in the ESLint SARIF formatter:
+
+- [#1698](https://github.com/microsoft/sarif-sdk/issues/1698): "ESLint: file paths must be expressed as valid URIs"
+- [#1699](https://github.com/microsoft/sarif-sdk/issues/1699): "ESLint: ruleIndex is not a valid property of reportingDescriptor."
+
+The example in this tutorial is hand-edited to correct those bugs and become valid SARIF.
