@@ -80,15 +80,15 @@ If the tool didn't detect any problems, the log file might look like this:
 
 ## Notes
 
-<a id="#note-1"></a>1. In future, SARIF might support other serializations of its underlying object model.
+<a id="note-1"></a>1. In future, SARIF might support other serializations of its underlying object model.
 See [§3.1](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012376).
 
-<a id="#note-2"></a>2. In rare cases, `runs` can be empty or even `null`.
+<a id="note-2"></a>2. In rare cases, `runs` can be empty or even `null`.
 See [§3.13.4: runs property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012438)
 for more information.
 
-<a id="#note-3"></a>3. There's also an advanced scenario where multiple runs can share data stored at the log level,
+<a id="note-3"></a>3. There's also an advanced scenario where multiple runs can share data stored at the log level,
 reducing the total size of the payload. See [§3.13.5 inlineExternalProperties property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012439)
 for an example.
 
-<a id="#note-4"></a>4. See [§3.18.3, extensions property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012488).
+<a id="note-4"></a>4. See [§3.18.3, extensions property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012488).
