@@ -19,7 +19,7 @@ Just read the introductory material, then pick and choose the additional topics 
 ## Sample files
 
 You can find the sample files displayed in the tutorials under the `samples` directory.
-They are all valid SARIF file unless I say otherwise.
+They are all valid SARIF files unless I say otherwise.
 
 ## Links to the specification
 
@@ -30,6 +30,11 @@ and they point into the
 [HTML version](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html) of the spec.
 There are also PDF and .docx versions in the [SARIF 2.1.0 CS01](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/)
 (Committee Specification 1) folder on the OASIS web site.
+
+The specification is definitive (and if we want to get really technical, the .docx version of the specification is
+definitive, but let's assume there are no bugs in the PDF or HTML converters).
+If it seems like something in these tutorials disagrees with the spec,
+let me know and I'll either fix the tutorials or make sure that a bug is filed against the spec.
 
 ## Disclaimer
 
