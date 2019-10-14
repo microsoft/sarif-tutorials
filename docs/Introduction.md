@@ -107,7 +107,7 @@ If we run ESLint with the SARIF formatter:
       "artifacts": [
         {
           "location": {
-            "uri": "file:///C:/dev/sarif/sarif-tutorials/samples/introduction-simple-example/simple-example.js"
+            "uri": "file:///C:/dev/sarif/sarif-tutorials/samples/Introduction/simple-example.js"
           }
         }
       ],
@@ -121,7 +121,7 @@ If we run ESLint with the SARIF formatter:
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file:///C:/dev/sarif/sarif-tutorials/samples/introduction-simple-example/simple-example.js",
+                  "uri": "file:///C:/dev/sarif/sarif-tutorials/samples/Introduction/simple-example.js",
                   "index": 0
                 },
                 "region": {
