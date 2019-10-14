@@ -37,11 +37,11 @@ I've just started writing these tutorials. I'll remove this notice when I think 
   - [Why SARIF?](docs/Introduction.md#why-sarif)
   - [A simple example](docs/Introduction.md#simple-example)
   - [The plan for these tutorials](docs/Introduction.md#plan)
-- The basics
-  - Logs, runs, and results
-  - Messages
-  - Physical and logical locations
-  - Artifacts
+- [The basics](docs/Basics.md)
+  - [Logs, runs, and results](docs/Basics.md#logs-runs-results)
+  - [Messages](docs/Basics.md#messages)
+  - [Locations, physical and logical](docs/Basics.md#locations)
+  - [Artifacts](docs/Basics.md#artifacts)
 - Beyond the basics
   - Property bags
   - Invocations
