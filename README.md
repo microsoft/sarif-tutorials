@@ -16,6 +16,17 @@ The advanced concepts usually apply to only a subset of SARIF producers and cons
 so you don't to read everything.
 Just read the introductory material, then pick and choose the additional topics that interest you.
 
+## Links to the specification
+
+At times, after providing a simple explanation of a feature,
+the tutorials will link to a numbered section of the specification for more detailed information
+or descriptions of advanced scenarios.
+These links look like this: [§3.13: sarifLog object](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012434)
+and they point into the
+[HTML version](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html) of the spec.
+There are also PDF and .docx versions in the [SARIF 2.1.0 CS01](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/)
+(Committee Specification 1) folder on the OASIS web site.
+
 ## Disclaimer
 
 The [SARIF specification](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/)
