@@ -16,10 +16,14 @@ The advanced concepts usually apply to only a subset of SARIF producers and cons
 so you don't to read everything.
 Just read the introductory material, then pick and choose the additional topics that interest you.
 
+## Sample files
+
+You can find the sample files displayed in the tutorials under the `samples` directory.
+They are all valid SARIF file unless I say otherwise.
+
 ## Links to the specification
 
-At times, after providing a simple explanation of a feature,
-the tutorials will link to a numbered section of the specification for more detailed information
+At times, the tutorials link to a section of the SARIF specification for more detailed information
 or descriptions of advanced scenarios.
 These links look like this: [§3.13: sarifLog object](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012434)
 and they point into the
