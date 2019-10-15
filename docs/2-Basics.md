@@ -1,6 +1,6 @@
 # The Basics
 
-## <a id="logs-runs-results"></a>Logs, runs, and results
+## <a id="logs-runs"></a>Logs and runs
 
 A SARIF log is a JSON file.<sup><a href="#note-1">1</a></sup>
 It has a required `version` property that must be `"2.1.0"`.
@@ -47,6 +47,8 @@ The sub-property `tool.driver` describes the tool's "primary executable".
 Usually, that's enough, but some tools support plugins &mdash; for example,
 code libraries that define additional analysis rules.
 SARIF defines the optional `tool.extensions` property to represent plugins.<sup><a href="#note-4">4</a></sup>
+
+## <a id="results"></a>Results
 
 The primary purpose of a run is to hold a set of "results".
 A result is an observation about the code.

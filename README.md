@@ -51,17 +51,18 @@ I've just started writing these tutorials. I'll remove this notice when I think 
 
 ## Table of contents
 
-- [Introduction](docs/Introduction.md)
-  - [What is SARIF?](docs/Introduction.md#what-is-sarif)
-  - [About static analysis tools](docs/Introduction.md#tools)
-  - [Why SARIF?](docs/Introduction.md#why-sarif)
-  - [A simple example](docs/Introduction.md#simple-example)
-  - [The plan for these tutorials](docs/Introduction.md#plan)
-- [The basics](docs/Basics.md)
-  - [Logs, runs, and results](docs/Basics.md#logs-runs-results)
-  - [Messages](docs/Basics.md#messages)
-  - [Locations, physical and logical](docs/Basics.md#locations)
-  - [Artifacts](docs/Basics.md#artifacts)
+- [Introduction](docs/1-Introduction.md)
+  - [What is SARIF?](docs/1-Introduction.md#what-is-sarif)
+  - [About static analysis tools](docs/1-Introduction.md#tools)
+  - [Why SARIF?](docs/1-Introduction.md#why-sarif)
+  - [A simple example](docs/1-Introduction.md#simple-example)
+  - [The plan for these tutorials](docs/1-Introduction.md#plan)
+- [The basics](docs/2-Basics.md)
+  - [Logs and runs](docs/2-Basics.md#logs-runs)
+  - [Results](docs/2-Basics.md#results)
+  - [Messages](docs/2-Basics.md#messages)
+  - [Locations, physical and logical](docs/2-Basics.md#locations)
+  - [Artifacts](docs/2-Basics.md#artifacts)
 - Beyond the basics
   - Property bags
   - Invocations
