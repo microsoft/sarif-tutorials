@@ -48,13 +48,6 @@ Usually, that's enough, but some tools support plugins &mdash; for example,
 code libraries that define additional analysis rules.
 SARIF defines the optional `tool.extensions` property to represent plugins.<sup><a href="#note-4">4</a></sup>
 
-## <a id="results"></a>Results
-
-The primary purpose of a run is to hold a set of "results".
-A result is an observation about the code.
-For most tools, the results represent "issues" &mdash; conditions that might detract from the quality of the code.
-But some results might be purely informational.
-
 If the tool didn't detect any problems, the log file might look like this:
 
 ```json
@@ -74,11 +67,91 @@ If the tool didn't detect any problems, the log file might look like this:
 }
 ```
 
+## <a id="results"></a>Results
+
+The primary purpose of a run is to hold a set of "results".
+A result is an observation about the code.
+For most tools, the results represent "issues" &mdash; conditions that might detract from the quality of the code.
+But some results might be purely informational.
+
+```json
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.4.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "CodeScanner"
+        }
+      },
+      "results": [
+        {
+          "ruleId": "no-unused-vars",
+          "level": "error",
+          "message": {
+            "text": "'x' is assigned a value but never used."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/dev/sarif/sarif-tutorials/samples/Introduction/simple-example.js",
+                  "index": 0
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 5
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+The most commonly used properties of a result are:
+
+- An identifier for the rule that was violated.
+- The severity of the violation.
+- A message describing the violation.
+- The location of the violation.
+
+There are many other properties used in advanced scenarios, which we'll cover in future tutorials.
+
+## <a id=rule-id></a>Rule identifier
+
+Most tools provide a "code" for each rule, for example `CA1304`, the Roslyn analyzer code
+for the rule "Specify CultureInfo".
+The SARIF property `result.ruleId`<sup><a href="#note-5">5</a></sup> holds this code.
+
+```json
+{
+  "ruleId": "CA1304"
+}
+```
+
+The spec explains why `result.ruleId` should be a "stable, opaque" identifier.
+It shouldn't change over time so that build scripts that disable a particular rule never break.
+It should be opaque (as opposed to being a human-readable string) for ease of web lookup
+and to avoid language difficulties.
+
+Not all tools provide such an identifier.
+For example, ESLint uses human-readable rule identifiers such as `"no-unused-vars"`.
+These tools should do the best they can to populate `result.ruleId`.
+
+## <a id=severity></a>Severity
+
 ## <a id="messages"></a>Messages
 
 ## <a id="locations"></a>Locations, physical and logical
 
 ## <a id="artifacts"></a>Artifacts
+
+## <a id=rule-metadata></a>Rule metadata
 
 ## Notes
 
@@ -94,3 +167,6 @@ reducing the total size of the payload. See [§3.13.5 inlineExternalProperties p
 for an example.
 
 <a id="note-4"></a>4. See [§3.18.3, extensions property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012488).
+
+<a id="note-5"></a>5. We use the notation _objectName_._propertyName_, so `result.ruleId` denotes the `ruleId` property
+of the SARIF `result` object.

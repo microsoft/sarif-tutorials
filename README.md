@@ -60,9 +60,12 @@ I've just started writing these tutorials. I'll remove this notice when I think 
 - [The basics](docs/2-Basics.md)
   - [Logs and runs](docs/2-Basics.md#logs-runs)
   - [Results](docs/2-Basics.md#results)
-  - [Messages](docs/2-Basics.md#messages)
+  - [Rule identifier](docs/2-Basics.md#rule-id)
+  - [Severity](docs/2-Basics.md#rule-id)
+  - [Messages](docs/2-Basics.md#severity)
   - [Locations, physical and logical](docs/2-Basics.md#locations)
   - [Artifacts](docs/2-Basics.md#artifacts)
+  - [Rule metadata](2-Basics.md#rule-metadata)
 - Beyond the basics
   - Property bags
   - Invocations
