@@ -204,7 +204,37 @@ because it takes into account certain advanced scenarios<sup><a href="#note-7">7
 For that reason, you are IMO better off just specifying it explicitly in each result,
 as in the example above.
 
-## <a id="locations"></a>Locations, physical and logical
+## <a id="locations"></a>Locations
+
+### The `locations` array
+
+A SARIF `result` almost always contains a `locations` property whose value is an array of `location` objects,
+and that array almost always contains exactly one element:
+
+```json
+{
+  "ruleId": "CA1304",
+  "level": "warning",
+  "locations": [
+    {
+      ...
+    }
+  ]
+}
+```
+
+`result.locations` is optional because a location doesn't always sense.
+For example, if a tool tells you that your C# program _doesn't have_ a `Main` entry point, what location
+should it mention?
+
+`result.locations` is an array because sometimes you have to make changes in more than one place to fix a problem.
+Suppose a style checker tells you that your C# class name doesn't start with a capital letter,
+and suppose your class is made up of a set of `partial` classes.
+You can't change the name in just one place: your code won't compile.
+You have to change every occurrence, and that's why the `result` points you at all the occurrences.
+(Of course IDEs can help you with this.)
+
+### Physical and logical locations
 
 ## <a id="artifacts"></a>Artifacts
 
@@ -237,5 +267,8 @@ and
 [§3.27.10, level property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012604)
 and
 [§3.27.9, kind property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012603).
+
+<a id="note-8"></a>8. 
+
 
 [Table of contents](../README.md#contents)
