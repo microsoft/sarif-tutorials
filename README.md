@@ -58,6 +58,7 @@ I've just started writing these tutorials. I'll remove this notice when I think 
   - [A simple example](docs/1-Introduction.md#simple-example)
   - [The plan for these tutorials](docs/1-Introduction.md#plan)
 - [The basics](docs/2-Basics.md)
+  - [The log file and the object model](docs/2-Basics.md#log-file-and-om)
   - [Logs and runs](docs/2-Basics.md#logs-runs)
   - [Results](docs/2-Basics.md#results)
   - [Rule identifier](docs/2-Basics.md#rule-id)

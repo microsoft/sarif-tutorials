@@ -2,10 +2,28 @@
 
 # The Basics
 
-## <a id="logs-runs"></a>Logs and runs
+## <a id="log-file-and-om"></a>The log file and the object model
 
 A SARIF log is a JSON file.<sup><a href="#note-1">1</a></sup>
-It has a required `version` property that must be `"2.1.0"`.
+The SARIF spec defines an _object model_ to describe the contents of this file,
+and the top-level object -- the object that represents the log file as a whole --
+is the `sarifLog` object.
+
+To work with the contents of a log file in your program,
+you need a set of classes that correspond to the elements of the SARIF object model.
+The SARIF spec doesn't standardize the _bindings_ between its object model and any particular programming language.
+Today, there are bindings for .NET (available in the [SARIF SDK](https://www.nuget.org/packages/Sarif.Sdk/) NuGet package)
+and Python (available in the [`sarif-om`](https://pypi.org/project/sarif-om/) npm module)
+
+When we discuss the SARIF format, we usually speak in terms of its object model;
+for example, we might talk about the required properties of the `result` object,
+or about various places where the `message` object is used.
+So if we tell you that a particular property in the JSON file is a `message` object,
+you know what its sub-structure looks like without having to say anything more.
+
+## <a id="logs-runs"></a>Logs and runs
+
+The `sarifLog` object has a required `version` property that must be `"2.1.0"`.
 `version` should come first (even though JSON is insensitive to property order)
 so SARIF consumers such as viewers can "sniff" the version.
 
@@ -117,12 +135,27 @@ But some results might be purely informational.
 
 The most commonly used properties of a result are:
 
+- A message describing the violation.
 - An identifier for the rule that was violated.
 - The severity of the violation.
-- A message describing the violation.
 - The location of the violation.
 
 There are many other properties used in advanced scenarios, which we'll cover in future tutorials.
+
+## <a id="messages"></a>Messages
+
+The only required property of a `result` object is the `message` property.
+
+SARIF messages are more than just strings: they are represented by a separate object, the `message` object.
+In the simplest case, which we'll show here, a `message` object contains a simple text string, like this:
+
+```json
+{
+  "message": {
+    "text": "'x' is assigned a value but never used."
+  }
+}
+```
 
 ## <a id=rule-id></a>Rule identifier
 
@@ -167,8 +200,6 @@ But the complete algorithm for determining the default is complicated
 because it takes into account certain advanced scenarios<sup><a href="#note-7">7</a></sup>.
 For that reason, you are IMO better off just specifying it explicitly in each result,
 as in the example above.
-
-## <a id="messages"></a>Messages
 
 ## <a id="locations"></a>Locations, physical and logical
 
