@@ -236,6 +236,46 @@ You have to change every occurrence, and that's why the `result` points you at a
 
 ### <a id="phys-log-loc"></a>Physical and logical locations
 
+SARIF supports two kinds of locations: physical and logical.
+A _physical location_ describes a location with respect to some programming artifact,
+for example, a range of lines in a source file or a byte range in an executable file.
+A _logical location_ describes a location by name, without reference to a programming artifact,
+for example the name of a method within a class within a namespace.
+
+SARIF supports logical locations for two reasons:
+
+1. Most important, binary analysis tools don't always have physical location information available
+(although they might, for example, if they have access to a symbols file).
+These tools have no choice but to report (for example) a method name;
+they can't tell you what file the method was defined in.
+
+2. Even if physical location is available, it can be helpful for a tool to tell you that the problem
+on line 42 is inside function `f()`.
+
+The most common case is for a tool to report a physical location (rather than a logical location),
+and to specify the location by line and column number rather (rather than as a byte range):
+
+```json
+{
+  "locations": [
+    {
+      "physicalLocation": {
+        "artifactLocation": {
+          "uri": "io/kb.c"
+        },
+        "region": {
+          "startLine": 42,
+          "startColumn": 9
+        }
+      }
+    }
+  ]
+}
+```
+
+A `physicalLocation` object almost always contains an `artifactLocation` property,<sup><a href="#note-8">8</a></sup>
+and it can also contain a `region` property.
+
 ## <a id="artifacts"></a>Artifacts
 
 ## <a id=rule-metadata></a>Rule metadata
@@ -267,5 +307,15 @@ and
 [§3.27.10, level property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012604)
 and
 [§3.27.9, kind property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012603).
+
+<a id="note-8"></a>8. `physicalLocation.artifactLocation` isn't required because SARIF also allows you to
+specify a location by its address (see
+[§3.29.6, address property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012640) and
+[§3.32, address object](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012661)).
+This supports binary analysis tools.
+It also supports tools that examine memory contents.
+This isn't something a static analysis tool would do,
+but as I mentioned earlier, SARIF actually has some level of support for dynamic analysis tools,
+although the spec never makes that claim.
 
 [Table of contents](../README.md#contents)
