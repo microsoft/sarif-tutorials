@@ -169,7 +169,7 @@ We'll explore the basic concepts first, then move on to more advanced concepts.
 
 As I've said, SARIF is a large, powerful format that addresses the needs of sophisticated tools of many kinds.
 
-But if you're a tool author, your tool probably needs to produced only a small subset of the information that SARIF can represent.
+But if you're a tool author, your tool probably needs to produce only a small subset of the information that SARIF can represent.
 (In fact, many of the properties in the simple example above are optional, but I wanted to show you the output of
 an actual tool.)
 The goal of this tutorial is to help you quickly to understand the features of SARIF that everyone needs,
