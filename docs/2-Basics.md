@@ -143,7 +143,28 @@ Not all tools provide such an identifier.
 For example, ESLint uses human-readable rule identifiers such as `"no-unused-vars"`.
 These tools should do the best they can to populate `result.ruleId`.
 
-## <a id=severity></a>Severity
+## <a id=level></a>Level
+
+The `result.level` property says how serious the result is. It usually has one of three values:
+
+- "error": A serious problem
+- "warning": A problem
+- "note": A minor problem or an opportunity to improve the code
+
+```json
+{
+  "ruleId": "CA1304",
+  "level": "warning"
+}
+```
+
+There are advanced scenarios where `result.level` has the value `"None"`, but we won't discuss them here.<sup><a href="#note-6">6</a></sup>
+
+In the simplest case, `result.level` defaults to `"warning"`.
+But the complete algorithm for determining the default is complicated
+because it takes into account certain advanced scenarios<sup><a href="#note-7">7</a></sup>.
+For that reason, you are IMO better off just specifying it explicitly in each result,
+as in the example above.
 
 ## <a id="messages"></a>Messages
 
@@ -170,3 +191,13 @@ for an example.
 
 <a id="note-5"></a>5. We use the notation _objectName_._propertyName_, so `result.ruleId` denotes the `ruleId` property
 of the SARIF `result` object.
+
+<a id="note-6"></a>6. For more information, see
+[§3.27.10, level property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012604)
+and
+[§3.27.9, kind property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012603).
+
+<a id="note-7"></a>7. Again, see
+[§3.27.10, level property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012604)
+and
+[§3.27.9, kind property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012603).
