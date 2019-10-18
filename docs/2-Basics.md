@@ -292,7 +292,8 @@ A simple logical location looks like this:
 }
 ```
 
-Note that `location.logicalLocations` is an array. As usual, this is to support an advanced scenario.
+Note that `location.logicalLocations` is an array.
+As usual, this is to support an advanced scenario.<sup><a href="#note-9">9</a></sup>
 
 ## <a id="artifacts"></a>Artifacts
 
