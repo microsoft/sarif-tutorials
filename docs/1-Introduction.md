@@ -1,3 +1,5 @@
+[Table of contents](../README.md#contents)
+
 # Introduction
 
 ## <a id="what-is-sarif"></a>What is SARIF?
@@ -198,3 +200,5 @@ but not yet by OASIS as a whole.
 is called a <a href="Glossary.md#dynamic-analysis-tool">_dynamic analysis tool_</a>.
 SARIF does not claim to represent the output of dynamic analysis tools,
 but there are dynamic analysis tools that have adopted it successfully. YMMV.
+
+[Table of contents](../README.md#contents)

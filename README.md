@@ -49,7 +49,7 @@ They represent my personal interpretation and explanation of the standard.
 
 I've just started writing these tutorials. I'll remove this notice when I think there's enough information to be useful.
 
-## Table of contents
+## <a id="contents"></a>Table of contents
 
 - [Introduction](docs/1-Introduction.md)
   - [What is SARIF?](docs/1-Introduction.md#what-is-sarif)

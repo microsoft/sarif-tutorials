@@ -9,3 +9,6 @@ MD026:
 
 # Allow inline HTML (mostly to allow <a> tags on headings).
 MD033: false
+
+# Don't complain about the file not starting with a heading, because we put a TOC link at the top of each page.
+MD041: false

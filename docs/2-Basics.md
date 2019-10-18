@@ -1,3 +1,5 @@
+[Table of contents](../README.md#contents)
+
 # The Basics
 
 ## <a id="logs-runs"></a>Logs and runs
@@ -201,3 +203,5 @@ and
 [§3.27.10, level property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012604)
 and
 [§3.27.9, kind property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012603).
+
+[Table of contents](../README.md#contents)
