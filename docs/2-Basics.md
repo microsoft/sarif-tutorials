@@ -276,6 +276,24 @@ and to specify the location by line and column number rather (rather than as a b
 A `physicalLocation` object almost always contains an `artifactLocation` property,<sup><a href="#note-8">8</a></sup>
 and it can also contain a `region` property.
 
+A simple logical location looks like this:
+
+```json
+{
+  "locations": [
+    {
+      "logicalLocations": [
+        {
+          "fullyQualifiedName": "NamespaceN.ClassC.MethodM"
+        }
+      ]
+    }
+  ]
+}
+```
+
+Note that `location.logicalLocations` is an array. As usual, this is to support an advanced scenario.
+
 ## <a id="artifacts"></a>Artifacts
 
 ## <a id=rule-metadata></a>Rule metadata
@@ -317,5 +335,8 @@ It also supports tools that examine memory contents.
 This isn't something a static analysis tool would do,
 but as I mentioned earlier, SARIF actually has some level of support for dynamic analysis tools,
 although the spec never makes that claim.
+
+<a id="note-9"></a>9. For more information, see
+[§3.29.6, logicalLocations property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012630)
 
 [Table of contents](../README.md#contents)
