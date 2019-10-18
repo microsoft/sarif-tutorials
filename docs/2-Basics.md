@@ -13,11 +13,14 @@ To work with the contents of a log file in your program,
 you need a set of classes that correspond to the elements of the SARIF object model.
 The SARIF spec doesn't standardize the _bindings_ between its object model and any particular programming language.
 Today, there are bindings for .NET (available in the [SARIF SDK](https://www.nuget.org/packages/Sarif.Sdk/) NuGet package)
-and Python (available in the [`sarif-om`](https://pypi.org/project/sarif-om/) npm module)
+and Python (available in the [`sarif-om`](https://pypi.org/project/sarif-om/) Python module).
+Each language binding conforms to normal language conventions.
+So, for example, the `sarifLog` SARIF object is represented by the C# class `SarifLog` in the SARIF SDK,
+and by the Python class `sarif_log` in the `sarif-om` Python module.
 
 When we discuss the SARIF format, we usually speak in terms of its object model;
 for example, we might talk about the required properties of the `result` object,
-or about various places where the `message` object is used.
+or about various places where `message` objects are used.
 So if we tell you that a particular property in the JSON file is a `message` object,
 you know what its sub-structure looks like without having to say anything more.
 
