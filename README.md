@@ -64,7 +64,9 @@ I've just started writing these tutorials. I'll remove this notice when I think 
   - [Rule identifier](docs/2-Basics.md#rule-id)
   - [Level](docs/2-Basics.md#level)
   - [Messages](docs/2-Basics.md#messages)
-  - [Locations, physical and logical](docs/2-Basics.md#locations)
+  - [Locations](docs/2-Basics.md#locations)
+    - [The `locations` array](docs/2-Basics.md#loc-array)
+    - [Physical and logical locations](docs/2-Basics.md#phys-logloc)
   - [Artifacts](docs/2-Basics.md#artifacts)
   - [Rule metadata](2-Basics.md#rule-metadata)
 - Beyond the basics

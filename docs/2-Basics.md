@@ -206,7 +206,7 @@ as in the example above.
 
 ## <a id="locations"></a>Locations
 
-### The `locations` array
+### <a id="loc-array"></a>The `locations` array
 
 A SARIF `result` almost always contains a `locations` property whose value is an array of `location` objects,
 and that array almost always contains exactly one element:
@@ -234,7 +234,7 @@ You can't change the name in just one place: your code won't compile.
 You have to change every occurrence, and that's why the `result` points you at all the occurrences.
 (Of course IDEs can help you with this.)
 
-### Physical and logical locations
+### <a id="phys-log-loc"></a>Physical and logical locations
 
 ## <a id="artifacts"></a>Artifacts
 
@@ -267,8 +267,5 @@ and
 [§3.27.10, level property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012604)
 and
 [§3.27.9, kind property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012603).
-
-<a id="note-8"></a>8. 
-
 
 [Table of contents](../README.md#contents)
