@@ -297,6 +297,58 @@ As usual, this is to support an advanced scenario.<sup><a href="#note-9">9</a></
 
 ## <a id="artifacts"></a>Artifacts
 
+An _artifact_ is anything you create in the course of programming, such as a source file or a web page.
+In SARIF, every artifact must be URL-addressable.
+That means, for example, that if you want to write a static database analyzer that produces SARIF,
+then you need a way to express the locations of the things that you analyze -- tables, rows, indicies, and so on --
+as URLs.
+
+As we said earlier, almost every result specifies a location, and those locations are often physical locations
+which in turn contain `artifactLocation` objects:
+
+```json
+{
+  "locations": [
+    {
+      "physicalLocation": {
+        "artifactLocation": {
+          "uri": "io/kb.c"
+        },
+        ...
+      }
+    }
+  ]
+}
+```
+
+At this point, all you know about the artifact is its location.
+But SARIF lets you provide more information about each artifact by using the `run.artifacts` property,
+whose value is an array of `artifact` objects:
+
+```json
+{
+  "runs": [
+    {
+      "artifacts": [
+        {
+          "location": {
+            "uri": "io/kb.c"
+          },
+          "length": 3444,
+          "sourceLanguage": "c",
+          "hashes": {
+            "sha-256": "b13ce2678a8807ba0765ab94a0ecd394f869bc81"
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+`length` is measured in bytes.
+The SARIF spec suggests values for the `sourceLanguage` property for many programming languages.<sup><a href="#note-10">10</a></sup>
+
 ## <a id="rule-metadata"></a>Rule metadata
 
 ## Notes
@@ -338,6 +390,9 @@ but as I mentioned earlier, SARIF actually has some level of support for dynamic
 although the spec never makes that claim.
 
 <a id="note-9"></a>9. For more information, see
-[§3.29.6, logicalLocations property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012630)
+[§3.29.6, logicalLocations property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012630).
+
+<a id="note-10"></a>10. See
+[Appendix J. (Informative) Sample sourceLanguage values](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012903).
 
 [Table of contents](../README.md#contents)
