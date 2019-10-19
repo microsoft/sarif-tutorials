@@ -90,6 +90,59 @@ If the tool didn't detect any problems, the log file might look like this:
 }
 ```
 
+## <a id="property-bags"></a>Property bags
+
+Before we go any further, let's address an issue that almost every tool vendor cares about:
+What do I do if my tool produces information that the SARIF specification doesn't mention?
+
+The answer is that every object in the SARIF object model &mdash; from logs to runs to results to locations
+to messages, without exception &mdash; defines a property named `properties`.
+The spec calls a property named `properties` a _property bag_.
+
+A property bag is a set of name/value pairs &mdash; a JSON object, in SARIF's JSON serialization &mdash;
+with any name and any value.
+The values can be integers, Booleans, arrays, nested objects &mdash; anything at all.
+If you can't find an element of your tool's data in the SARIF specification, the property bag is your friend.
+
+For example, the [Fortify](https://www.microfocus.com/en-us/products/application-security-testing/overview)
+tool from [MicroFocus](https://www.microfocus.com/) assesses the "confidence" of each result &mdash;
+the likelihood that the result is a "true positive."
+It looks like this:
+
+```json
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.4.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "CodeScanner"
+        }
+      },
+      "results": [
+        {
+          ...
+          "properties": {
+            "Confidence": 5.0
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+Having said all that, it's important that you do your best to use the properties that SARIF defines
+(we call them _first class properties_) rather than using the property bag.
+Generic SARIF tooling &mdash; tooling that is not aware of the details of any particular tool &mdash;
+will at best be able to display property bag properties.
+It won't be able to extract any meaning from them.
+
+There's a balancing act here, because it's also problematic to populate SARIF's first class properties
+with information that doesn't match their semantics.
+Each tool vendor needs to make the call on a property by property basis.
+
 ## <a id="results"></a>Results
 
 The primary purpose of a run is to hold a set of _results_.
