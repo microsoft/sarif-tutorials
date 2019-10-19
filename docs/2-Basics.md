@@ -303,6 +303,8 @@ That means, for example, that if you want to write a static database analyzer th
 then you need a way to express the locations of the things that you analyze -- tables, rows, indices, and so on --
 as URLs.
 
+### <a id="defining-artifacts"></a> Defining artifacts
+
 As we said earlier, almost every result specifies a location, and those locations are often physical locations
 which in turn contain `artifactLocation` objects:
 

@@ -68,6 +68,8 @@ I've just started writing these tutorials. I'll remove this notice when I think 
     - [The `locations` array](docs/2-Basics.md#loc-array)
     - [Physical and logical locations](docs/2-Basics.md#phys-log-loc)
   - [Artifacts](docs/2-Basics.md#artifacts)
+    - [Defining artifacts](docs/2-Basics.md#defining-artifacts)
+    - [Linking results to artifacts](docs/2-Basics.md#linking-artifacts)
   - [Rule metadata](docs/2-Basics.md#rule-metadata)
 - Beyond the basics
   - Property bags
