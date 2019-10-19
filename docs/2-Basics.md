@@ -297,7 +297,7 @@ As usual, this is to support an advanced scenario.<sup><a href="#note-9">9</a></
 
 ## <a id="artifacts"></a>Artifacts
 
-## <a id="rule-metadata></a>Rule metadata
+## <a id="rule-metadata"></a>Rule metadata
 
 ## Notes
 
