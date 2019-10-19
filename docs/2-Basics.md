@@ -94,7 +94,7 @@ If the tool didn't detect any problems, the log file might look like this:
 
 The primary purpose of a run is to hold a set of "results".
 A result is an observation about the code.
-For most tools, the results represent "issues" &mdash; conditions that might detract from the quality of the code.
+For most tools, the results represent _issues_ &mdash; conditions that might detract from the quality of the code.
 But some results might be purely informational.
 
 ```json
@@ -144,6 +144,17 @@ The most commonly used properties of a result are:
 - The location of the violation.
 
 There are many other properties used in advanced scenarios, which we'll cover in future tutorials.
+
+When you open a SARIF file in a typical SARIF viewer, the viewer will display the list of results.
+For example, the
+[Microsoft SARIF Viewer VSIX for Visual Studio](https://marketplace.visualstudio.com/items?itemName=WDGIS.MicrosoftSarifViewer)
+displays the results in Visual Studio's Error List window.
+If [physical location information](#phys-log-loc) is available,
+then when the user selects one of the results (in Visual Studio, by double-clicking it),
+the viewer will navigate to the result's location
+by opening the file specified by `physicalLocation.artifactLocation.uri` (`simple-example.js` in the example above).
+The viewer will typically scroll the portion of the file specified by `physicalLocation.region` (line 1 in the example)
+into view, and highlight it.
 
 ## <a id="messages"></a>Messages
 
@@ -379,6 +390,8 @@ which allows people to view the results in context even if they're not enlisted 
   ]
 }
 ```
+
+Of course that requires tooling that can extract the source file contents from the log file and display them.
 
 ### <a id="linking-artifacts"></a> Linking results to artifacts
 
