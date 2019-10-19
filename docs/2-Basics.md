@@ -380,7 +380,7 @@ which allows people to view the results in context even if they're not enlisted 
 }
 ```
 
-### <a id="linking-artificats"></a> Linking results to artifacts
+### <a id="linking-artifacts"></a> Linking results to artifacts
 
 ## <a id="rule-metadata"></a>Rule metadata
 
