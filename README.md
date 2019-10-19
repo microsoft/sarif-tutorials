@@ -69,21 +69,22 @@ I've just started writing these tutorials. I'll remove this notice when I think 
     - [Physical and logical locations](docs/2-Basics.md#phys-log-loc)
   - [Artifacts](docs/2-Basics.md#artifacts)
     - [Defining artifacts](docs/2-Basics.md#defining-artifacts)
-    - [Linking results to artifacts](docs/2-Basics.md#linking-artifacts)
-  - [Rule metadata](docs/2-Basics.md#rule-metadata)
-- Beyond the basics
-  - Property bags
-  - Invocations
-  - Notifications
-  - Taxonomies
-  - Code flows
-  - More about messages
+    - [Linking results to artifacts (TODO)](docs/2-Basics.md#linking-artifacts)
+  - [Rule metadata (TODO)](docs/2-Basics.md#rule-metadata)
+  - [Property bags (TODO)](docs/2-Basics.md#property-bags)
+- [Beyond the basics](docs/3-Beyond-basics.md)
+  - [More about messages (TODO)](docs/3-Beyond-basics.md#more-about-messages)
+  - [Invocations (TODO)](docs/3-Beyond-basics.md#invocations)
+  - [Notifications (TODO)](docs/3-Beyond-basics.md#notifications)
+  - [Taxonomies (TODO)](docs/3-Beyond-basics.md#taxonomies)
+  - [Code flows (TODO)](docs/3-Beyond-basics.md#code-flows)
 - Advanced topics
-  - Tool extensions
-  - Handling large files
-  - Result matching
+  - Tool extensions (TODO)
+  - Translations (TODO)
+  - Handling large files (TODO)
+  - Result matching (TODO)
 - Appendices
-  - The history of SARIF
+  - The history of SARIF (TODO)
   - [Resources](5.2-Resources.md)
 
 ## Contributing

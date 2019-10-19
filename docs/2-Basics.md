@@ -92,10 +92,10 @@ If the tool didn't detect any problems, the log file might look like this:
 
 ## <a id="results"></a>Results
 
-The primary purpose of a run is to hold a set of "results".
+The primary purpose of a run is to hold a set of _results_.
 A result is an observation about the code.
-For most tools, the results represent _issues_ &mdash; conditions that might detract from the quality of the code.
-But some results might be purely informational.
+For most tools, the results represent _issues_ &mdash; conditions that might detract from the quality of the code &mdash;
+but some results might be purely informational.
 
 ```json
 {
@@ -170,6 +170,8 @@ In the simplest case, which we'll show here, a `message` object contains a simpl
   }
 }
 ```
+
+We'll say much [more about messages](../Beyond-basics.md#more-about-messages) later.
 
 ## <a id=rule-id></a>Rule identifier
 
