@@ -70,7 +70,7 @@ I've just started writing these tutorials. I'll remove this notice when I think 
     - [Physical and logical locations](docs/2-Basics.md#phys-log-loc)
   - [Artifacts](docs/2-Basics.md#artifacts)
     - [Defining artifacts](docs/2-Basics.md#defining-artifacts)
-    - [Linking results to artifacts (TODO)](docs/2-Basics.md#linking-artifacts)
+    - [Linking results to artifacts](docs/2-Basics.md#linking-artifacts)
   - [Rule metadata (TODO)](docs/2-Basics.md#rule-metadata)
 - [Beyond the basics](docs/3-Beyond-basics.md)
   - [More about messages (TODO)](docs/3-Beyond-basics.md#more-about-messages)
