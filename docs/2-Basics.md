@@ -209,7 +209,7 @@ by opening the file specified by `physicalLocation.artifactLocation.uri` (`simpl
 The viewer will typically scroll the portion of the file specified by `physicalLocation.region` (line 1 in the example)
 into view, and highlight it.
 
-## <a id="messages"></a>Messages
+### <a id="messages"></a>Messages
 
 The only required property of a `result` object is the `message` property.
 
@@ -226,7 +226,7 @@ In the simplest case, which we'll show here, a `message` object contains a simpl
 
 We'll say much [more about messages](../3-Beyond-basics.md#more-about-messages) later.
 
-## <a id=rule-id></a>Rule identifier
+### <a id=rule-id></a>Rule identifier
 
 Most tools provide a "code" for each rule, for example `CA1304`, the Roslyn analyzer code
 for the rule "Specify CultureInfo".
@@ -247,7 +247,7 @@ Not all tools provide such an identifier.
 For example, ESLint uses human-readable rule identifiers such as `"no-unused-vars"`.
 These tools should do the best they can to populate `result.ruleId`.
 
-## <a id=level></a>Level
+### <a id=level></a>Level
 
 The `result.level` property says how serious the result is. It usually has one of three values:
 
@@ -270,9 +270,9 @@ because it takes into account certain advanced scenarios<sup><a href="#note-7">7
 For that reason, you are IMO better off just specifying it explicitly in each result,
 as in the example above.
 
-## <a id="locations"></a>Locations
+### <a id="locations"></a>Locations
 
-### <a id="loc-array"></a>The `locations` array
+#### <a id="loc-array"></a>The `locations` array
 
 A SARIF `result` almost always contains a `locations` property whose value is an array of `location` objects,
 and that array almost always contains exactly one element:
@@ -300,7 +300,7 @@ You can't change the name in just one place: your code won't compile.
 You have to change every occurrence, and that's why the `result` points you at all the occurrences.
 (Of course IDEs can help you with this.)
 
-### <a id="phys-log-loc"></a>Physical and logical locations
+#### <a id="phys-log-loc"></a>Physical and logical locations
 
 SARIF supports two kinds of locations: physical and logical.
 A _physical location_ describes a location with respect to some programming artifact,
