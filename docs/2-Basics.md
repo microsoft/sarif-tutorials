@@ -224,7 +224,7 @@ In the simplest case, which we'll show here, a `message` object contains a simpl
 }
 ```
 
-We'll say much [more about messages](../3-Beyond-basics.md#more-about-messages) later.
+We'll say much [more about messages](3-Beyond-basics.md#more-about-messages) later.
 
 ### <a id=rule-id></a>Rule identifier
 
