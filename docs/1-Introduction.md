@@ -64,7 +64,7 @@ viewers, bug filers, metrics calculators, _etc._.
 
 Here's a simple example to give you the flavor of SARIF.
 
-ESLint is a linter for ECMAScript (a.k.a JavaScript) that accepts "formatter" plugins so it can produce
+ESLint is a linter for ECMAScript (a.k.a. JavaScript) that accepts "formatter" plugins so it can produce
 output in a variety of formats.
 The [ESLint SARIF formatter](https://www.npmjs.com/package/eslint.formatter.sarif) plugin produces the SARIF format.
 

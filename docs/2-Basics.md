@@ -6,7 +6,7 @@
 
 A SARIF log is a JSON file.<sup><a href="#note-1">1</a></sup>
 The SARIF spec defines an _object model_ to describe the contents of this file,
-and the top-level object -- the object that represents the log file as a whole --
+and the top-level object &mdash; the object that represents the log file as a whole &mdash;
 is the `sarifLog` object.
 
 To work with the contents of a log file in your program,
@@ -224,7 +224,7 @@ In the simplest case, which we'll show here, a `message` object contains a simpl
 }
 ```
 
-We'll say much [more about messages](../Beyond-basics.md#more-about-messages) later.
+We'll say much [more about messages](../3-Beyond-basics.md#more-about-messages) later.
 
 ## <a id=rule-id></a>Rule identifier
 
@@ -366,7 +366,7 @@ As usual, this is to support an advanced scenario.<sup><a href="#note-9">9</a></
 An _artifact_ is anything you create in the course of programming, such as a source file or a web page.
 In SARIF, every artifact must be URL-addressable.
 That means, for example, that if you want to write a static database analyzer that produces SARIF,
-then you need a way to express the locations of the things that you analyze -- tables, rows, indices, and so on --
+then you need a way to express the locations of the things that you analyze &mdash tables, rows, indices, and so on &mdash
 as URLs.
 
 The SARIF spec uses the term "artifact" in preference to "file" to emphasize that SARIF doesn't just support tools

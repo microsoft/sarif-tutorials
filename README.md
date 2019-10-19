@@ -4,8 +4,8 @@
 
 SARIF, the Static Analysis Results Interchange Format, defines a standard format for the output of static analysis tools.
 It is a powerful and sophisticated format suited to the needs of a wide variety of tools.
-For this reason -- and because the format is defined in a 220-plus page specification written in formal language!
--- it can be hard to learn SARIF and to figure out what parts of it you need to use.
+For this reason &mdash; and because the format is defined in a 220-plus page specification written in formal language!
+&mdash; it can be hard to learn SARIF and to figure out what parts of it you need to use.
 
 These tutorials aim to present SARIF in a more approachable way.
 We'll start with some background:
@@ -62,12 +62,12 @@ I've just started writing these tutorials. I'll remove this notice when I think 
   - [Logs and runs](docs/2-Basics.md#logs-runs)
   - [Property bags](docs/2-Basics.md#property-bags)
   - [Results](docs/2-Basics.md#results)
-  - [Rule identifier](docs/2-Basics.md#rule-id)
-  - [Level](docs/2-Basics.md#level)
-  - [Messages](docs/2-Basics.md#messages)
-  - [Locations](docs/2-Basics.md#locations)
-    - [The `locations` array](docs/2-Basics.md#loc-array)
-    - [Physical and logical locations](docs/2-Basics.md#phys-log-loc)
+    - [Messages](docs/2-Basics.md#messages)
+    - [Rule identifier](docs/2-Basics.md#rule-id)
+    - [Level](docs/2-Basics.md#level)
+    - [Locations](docs/2-Basics.md#locations)
+      - [The `locations` array](docs/2-Basics.md#loc-array)
+      - [Physical and logical locations](docs/2-Basics.md#phys-log-loc)
   - [Artifacts](docs/2-Basics.md#artifacts)
     - [Defining artifacts](docs/2-Basics.md#defining-artifacts)
     - [Linking results to artifacts](docs/2-Basics.md#linking-artifacts)
@@ -85,7 +85,7 @@ I've just started writing these tutorials. I'll remove this notice when I think 
   - Result matching (TODO)
 - Appendices
   - The history of SARIF (TODO)
-  - [Resources](5.2-Resources.md)
+  - [Resources](docs/5.2-Resources.md)
 
 ## Contributing
 
