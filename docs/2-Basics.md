@@ -357,6 +357,29 @@ The spec recommends<sup><a href="#note-11">11</a></sup> using the algorithms and
 [IANA registry of hash function names](https://www.iana.org/assignments/hash-function-text-names/hash-function-text-names.xhtml),
 and it particularly recommends that the `hashes` object contain a property `"sha-256"`.
 
+There are more properties to explore.
+In particular, you can embed the entire contents of each artifact in the SARIF file,
+which allows people to view the results in context even if they're not enlisted in the code base that was analyzed:
+
+```json
+{
+  "runs": [
+    {
+      "artifacts": [
+        {
+          "location": {
+            "uri": "io/kb.c"
+          },
+          "contents": {
+            "text": "#include <stdio>\n#include<stack>..."
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
 ### <a id="linking-artificats"></a> Linking results to artifacts
 
 ## <a id="rule-metadata"></a>Rule metadata
