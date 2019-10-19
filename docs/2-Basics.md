@@ -300,7 +300,7 @@ As usual, this is to support an advanced scenario.<sup><a href="#note-9">9</a></
 An _artifact_ is anything you create in the course of programming, such as a source file or a web page.
 In SARIF, every artifact must be URL-addressable.
 That means, for example, that if you want to write a static database analyzer that produces SARIF,
-then you need a way to express the locations of the things that you analyze -- tables, rows, indicies, and so on --
+then you need a way to express the locations of the things that you analyze -- tables, rows, indices, and so on --
 as URLs.
 
 As we said earlier, almost every result specifies a location, and those locations are often physical locations
@@ -346,8 +346,16 @@ whose value is an array of `artifact` objects:
 }
 ```
 
-`length` is measured in bytes.
-The SARIF spec suggests values for the `sourceLanguage` property for many programming languages.<sup><a href="#note-10">10</a></sup>
+Note that:
+
+- `length` is measured in bytes.
+- The SARIF spec suggests values for the `sourceLanguage` property for many programming languages.<sup><a href="#note-10">10</a></sup>
+- `hashes` can contain any number of hashes calculated by different algorithms.
+The spec recommends<sup><a href="#note-11">11</a></sup> using the algorithms and algorithm names contained in the
+[IANA registry of hash function names](https://www.iana.org/assignments/hash-function-text-names/hash-function-text-names.xhtml),
+and it particularly recommends that the `hashes` object contain a property `"sha-256"`.
+
+### <a id="linking-artificats"></a> Linking results to artifacts
 
 ## <a id="rule-metadata"></a>Rule metadata
 
@@ -394,5 +402,8 @@ although the spec never makes that claim.
 
 <a id="note-10"></a>10. See
 [Appendix J. (Informative) Sample sourceLanguage values](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012903).
+
+<a id="note-10"></a>10. See
+[§3.24.11, hashes property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012580)
 
 [Table of contents](../README.md#contents)
