@@ -369,6 +369,11 @@ That means, for example, that if you want to write a static database analyzer th
 then you need a way to express the locations of the things that you analyze -- tables, rows, indices, and so on --
 as URLs.
 
+The SARIF spec uses the term "artifact" in preference to "file" to emphasize that SARIF doesn't just support tools
+that analyze files.
+Having said that, in these tutorials we'll occasionally lapse and use the word "file" because it's just too
+awkward to say things like "open the artifact" when "open the file" is so much more natural.
+
 ### <a id="defining-artifacts"></a> Defining artifacts
 
 As we said earlier, almost every result specifies a location, and those locations are often physical locations
@@ -449,6 +454,63 @@ which allows people to view the results in context even if they're not enlisted 
 Of course that requires tooling that can extract the source file contents from the log file and display them.
 
 ### <a id="linking-artifacts"></a> Linking results to artifacts
+
+Now that we have a result that occurs in an artifact,
+and we have more information about the artifact,
+how can we link the result to the artifact?
+For example, if a user is examining a result in a SARIF viewer,
+how can the viewer present information about the file where the result occured?
+
+It would be natural to think that you could just find the element of `run.artifacts` whose `location.uri`
+matches the result's `physicalLocation.artifactLocation.uri`.
+In fact, early drafts of the SARIF spec did just that: `run.artifacts` was a JSON object whose property names
+were the URIs.
+
+The problem is that in obscure cases, two distinct artifacts can have the same URI.
+So SARIF establishes the link from a result to an artifact by using the `artifactLocation.index` property, like this:
+
+```json
+{
+  "runs": [
+    {
+      "artifacts": [
+        {
+          "location": {
+            "uri": "io/kb.c"
+          },
+          "contents": {
+            "text": "#include <stdio>\n#include<stack>..."
+          }
+        }
+      ],
+      "results": [
+        {
+          "message": {
+            "text": "Variable 'x' is used before being initialized."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "io/kb.c",
+                  "index": 0
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+The `"index": 0` says "To find more information about the artifact at this location, look at the `artifact` object
+at index 0 in the array `run.artifacts`."
+
+There are many places in SARIF where a property named `index` (or sometimes a more specific name, like `ruleIndex`)
+establishes a link from a SARIF object to another object that resides in an array.
+For each such property, the spec explains which array to look in.
 
 ## <a id="rule-metadata"></a>Rule metadata
 
