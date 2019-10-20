@@ -532,6 +532,13 @@ and viewer has displayed the help URI from the metadata for the `no-unused-vars`
 
 ![A SARIF viewer displays rule metadata for a result](../images/rule-metadata-for-a-result.png)
 
+Note the presence of a `ruleIndex` property in the `result` object in the example.
+In the same way that `result.locations[0].physicalLocation.artifactLocation.index` provides a link between
+a result and the artifact it was found in,
+`result.ruleIndex` provides the link between a result and the metadata for the rule that was violated.
+The link can't be made through `result.ruleId` because some tools use the same identifier for distinct rules,
+each with their own metadata.
+
 Rule metadata is optional.
 An analysis tool can choose not to include it at all,
 to include metadata for only those rules that are relevant to the results,
