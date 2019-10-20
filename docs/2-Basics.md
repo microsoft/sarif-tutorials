@@ -539,6 +539,11 @@ a result and the artifact it was found in,
 The link can't be made through `result.ruleId` because some tools use the same identifier for distinct rules,
 each with their own metadata.
 
+In the same way that `artifactLocation.uri` is unnecessary if `artifactLocation.index` is present,
+so `result.ruleId` is unnecessary if `result.ruleIndex` is present.
+The same considerations apply when deciding whether to include `result.ruleId`:
+omitting it makes the log file smaller, while including it makes the log file more understandable to a human user.
+
 Rule metadata is optional.
 An analysis tool can choose not to include it at all,
 to include metadata for only those rules that are relevant to the results,
