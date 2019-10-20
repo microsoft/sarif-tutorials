@@ -30,7 +30,23 @@ It's not correct for it to contain (for example) an invocation of Clang Static A
 an invocation of ESLint,
 or two successive invocations of Clang Static Analyzer.
 
-TODO: Required properties; common properties; security and redaction.
+The only required property of the `invocation` object is the Boolean `executionSuccessful`.
+It's required because you can't tell from the integer `exitCode` property whether the tool succeeded or failed:
+not every tool returns 0 on success and non-zero on failure.
+
+There are properties to capture the command line, both as a single string (`commandLine`) and parsed into
+arguments (`arguments`).
+There are properties for the start and end time (`startTimeUtc` and `endTimeUtc`<sup><a href="#note-2">2</a></sup>),
+for machine and environment information (`machine`, `account`, `processId`, `workingDirectory`,
+`environmentVariables`),
+and to capture the standard IO streams (`stdin`, `stdout`, `stderr`, `stdoutStderr`).
+
+Most important, there are properties to capture "notifications" produced by the tool.
+We'll discuss those next.
+
+If you capture the command line, or if you use the environment-related properties like `machine`, `account`,
+and `environmentVaribles`, be aware that they can contain sensitive information.
+SARIF offers a facility to "redact" sensitive information, and you should become familiar with it.<sup><a href="#note-3">3</a></sup>
 
 ## <a id="notifications"></a>Notifications
 
@@ -42,5 +58,13 @@ TODO: Required properties; common properties; security and redaction.
 
 <a id="note-1"></a>1. See
 [§3.14.11, invocations property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012451)
+
+<a id="note-2"></a>2. All times in SARIF's first-class properties are expressed in UTC, and the properties are named
+to remind you of that.
+
+<a id="note-3"></a>3. See
+[§3.5.2, Redactable strings](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012393),
+[§3.14.28, redactionTokens property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012468),
+and search for the string "redactable" in the spec to find all the tokens that might contain sensitive information.
 
 [Table of contents](../README.md#contents)
