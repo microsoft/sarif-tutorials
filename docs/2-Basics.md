@@ -515,6 +515,11 @@ So SARIF establishes the link from a result to an artifact by using the `artifac
 The `"index": 0` says "To find more information about the artifact at this location, look at the `artifact` object
 at index 0 in the array `run.artifacts`."
 
+When `artifactLocation.index` is present, `artifactLocation.uri` is redundant,
+because you can find it in the linked `artifact` object.
+A tool can choose to omit `uri` to make the log file smaller,
+or to include it to make the file more understandable to a human reader.<sup><a href="#note-12">12</a></sup>
+
 There are many places in SARIF where a property named `index` (or sometimes a more specific name, like `ruleIndex`)
 establishes a link from a SARIF object to another object that resides in an array.
 For each such property, the spec explains which array to look in.
@@ -554,7 +559,7 @@ omitting it makes the log file smaller, while including it makes the log file mo
 Rule metadata is optional.
 An analysis tool can choose not to include it at all,
 to include metadata for only those rules that are relevant to the results,
-or to include metadata for all rules known to the tool.<sup><a href="#note-12">12</a></sup>
+or to include metadata for all rules known to the tool.<sup><a href="#note-13">13</a></sup>
 
 ## Notes
 
@@ -603,7 +608,13 @@ although the spec never makes that claim.
 <a id="note-11"></a>11. See
 [§3.24.11, hashes property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012580)
 
-<a id="note-12"></a>12.
+<a id="note-12"></a>12. Rather than requiring every analysis tool to implement logic for excluding redundant properties
+to reduce file size, or including them to improve readability, such "file transformation" operations can be
+implemented by a <a href="5.2-Glossary.md#post-processor">_post-processor_</a>.
+The `Sarif.Multitool` NuGet package include a command line tool that (among other things) can post-process
+SARIF files, although at the time of this writing it doesn't implement the exact operation I've described here.
+
+<a id="note-13"></a>13.
 [Appendix E. (Informative) Locating rule and notification metadata](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012891)
 discusses how to decide whether to include rule metadata in a SARIF log file.
 
