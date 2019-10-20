@@ -86,7 +86,8 @@ Even so, I think there's enough useful information in these tutorials to be wort
   - Result matching (TODO)
 - Appendices
   - The history of SARIF (TODO)
-  - [Resources](docs/5.2-Resources.md)
+  - [Glossary](docs/5.2-Glossary.md)
+  - [Resources](docs/5.3-Resources.md)
 
 ## Contributing
 

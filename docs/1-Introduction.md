@@ -5,7 +5,7 @@
 ## <a id="what-is-sarif"></a>What is SARIF?
 
 SARIF, the Static Analysis Results Interchange Format, is a standard, JSON-based format for the output of
-<a href="Glossary.md#static-analysis-tool">_static analysis tools_</a>.
+<a href="5.2-Glossary.md#static-analysis-tool">_static analysis tools_</a>.
 It is an approved [OASIS](https://www.oasis-open.org/)
 [Committee Specification](https://www.oasis-open.org/news/announcements/static-analysis-results-interchange-format-sarif-v2-1-0-from-the-sarif-tc-is-an-a),<sup><a href="#note-1">1</a></sup>
 and is on the way to becoming a full OASIS specification.
@@ -18,7 +18,7 @@ doesn't directly represent.
 
 ## <a id="tools"></a>About static analysis tools
 
-Static analysis tools look for <a href="Glossary.md#issue">_issues_</a>
+Static analysis tools look for <a href="5.2-Glossary.md#issue">_issues_</a>
 by examining a program without executing it.<sup><a href="#note-2">2</a></sup>
 We often refer to a static analysis tool simply as a "tool."
 
@@ -199,7 +199,7 @@ Good luck, and I hope SARIF makes your experience with static analysis tools bet
 but not yet by OASIS as a whole.
 
 <a id="note-2">2.</a> A tool that looks for issues in a program by observing the program's execution
-is called a <a href="Glossary.md#dynamic-analysis-tool">_dynamic analysis tool_</a>.
+is called a <a href="5.2-Glossary.md#dynamic-analysis-tool">_dynamic analysis tool_</a>.
 SARIF does not claim to represent the output of dynamic analysis tools,
 but there are dynamic analysis tools that have adopted it successfully. YMMV.
 

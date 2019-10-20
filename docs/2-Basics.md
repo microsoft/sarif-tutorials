@@ -5,17 +5,19 @@
 ## <a id="log-file-and-om"></a>The log file and the object model
 
 A SARIF log is a JSON file.<sup><a href="#note-1">1</a></sup>
-The SARIF spec defines an _object model_ to describe the contents of this file,
+The SARIF spec defines an <a href="5.2-Glossary.md#object_model">_object model_</a>
+to describe the contents of this file,
 and the top-level object &mdash; the object that represents the log file as a whole &mdash;
 is the `sarifLog` object.
 
 To work with the contents of a log file in your program,
 you need a set of classes that correspond to the elements of the SARIF object model.
-The SARIF spec doesn't standardize the _bindings_ between its object model and any particular programming language.
-Today, there are bindings for .NET (available in the [SARIF SDK](https://www.nuget.org/packages/Sarif.Sdk/) NuGet package)
-and Python (available in the [`sarif-om`](https://pypi.org/project/sarif-om/) Python module).
+The SARIF spec doesn't standardize the <a href="5.2-Glossary.md#binding">_binding_</a> between its object model
+and any particular programming language.
+Today, there are bindings for .NET (in the [SARIF SDK](https://www.nuget.org/packages/Sarif.Sdk/) NuGet package)
+and Python (in the [`sarif-om`](https://pypi.org/project/sarif-om/) Python module).
 Each language binding conforms to normal language conventions.
-So, for example, the `sarifLog` SARIF object is represented by the C# class `SarifLog` in the SARIF SDK,
+For example, the `sarifLog` SARIF object is represented by the C# class `SarifLog` in the SARIF SDK,
 and by the Python class `sarif_log` in the `sarif-om` Python module.
 
 When we discuss the SARIF format, we usually speak in terms of its object model;
@@ -366,7 +368,7 @@ As usual, this is to support an advanced scenario.<sup><a href="#note-9">9</a></
 An _artifact_ is anything you create in the course of programming, such as a source file or a web page.
 In SARIF, every artifact must be URL-addressable.
 That means, for example, that if you want to write a static database analyzer that produces SARIF,
-then you need a way to express the locations of the things that you analyze &mdash tables, rows, indices, and so on &mdash
+then you need a way to express the locations of the things that you analyze &mdash; tables, rows, indices, and so on &mdash;
 as URLs.
 
 The SARIF spec uses the term "artifact" in preference to "file" to emphasize that SARIF doesn't just support tools
