@@ -61,6 +61,7 @@ Even so, I think there's enough useful information in these tutorials to be wort
 - [The basics](docs/2-Basics.md)
   - [The log file and the object model](docs/2-Basics.md#log-file-and-om)
   - [Logs and runs](docs/2-Basics.md#logs-runs)
+  - [Tools: driver and extensions](docs/2-Basics.md#tools)
   - [Property bags](docs/2-Basics.md#property-bags)
   - [Results](docs/2-Basics.md#results)
     - [Message](docs/2-Basics.md#message)

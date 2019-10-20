@@ -68,32 +68,21 @@ and the run has to describe the tool that produced it.
 Usually there is only one run. SARIF allows multiple runs for convenience,
 so that, for example, you can send the runs over a network in a single request.<sup><a href="#note-3">3</a></sup>
 
-The `tool` property is required. It describes the analysis tool that produced the log file.
+## <a id="tools"></a> Tools: driver and extensions
+
+The `tool` property is required. It describes the analysis tool that produced the run.
 The sub-property `tool.driver` is also required. It describes the tool's
+<a href="5.2-Glossary.md#driver">_driver_</a>, which is the
+<a href="5.2-Glossary.md#tool-component">_tool component_</a> that contains the tool's
 <a href="5.2-Glossary.md#primary-executable">_primary executable_</a>.
-Usually, that's enough, but some tools support plugins &mdash; for example,
-code libraries that define additional analysis rules.
-SARIF defines the optional `tool.extensions` property to represent plugins.<sup><a href="#note-4">4</a></sup>
+
+Some tools support additional components called
+<a href="5.2-Glossary.md#extension">_extensions_</a> (a.k.a. "plugins"),
+for example, code libraries that define additional analysis rules.
+SARIF defines the optional `tool.extensions` property
+to represent extensions.<sup><a href="#note-4">4</a></sup>
+
 Finally, `tool.driver.name` is required. Everything else under `tool` and `tool.driver` is optional.
-
-If the tool didn't detect any problems, the log file might look like this:
-
-```json
-{
-  "version": "2.1.0",
-  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.4.json",
-  "runs": [
-    {
-      "tool": {
-        "driver": {
-          "name": "CodeScanner"
-        }
-      },
-      "results": []
-    }
-  ]
-}
-```
 
 ## <a id="property-bags"></a>Property bags
 
@@ -156,6 +145,8 @@ A result is an observation about the code.
 For most tools, the results represent <a href="5.2-Glossary.md#issue">_issues_</a> &mdash;
 conditions that might detract from the quality of the code &mdash;
 but some results might be purely informational.
+
+In this example, the tool produced one result:
 
 ```json
 {
