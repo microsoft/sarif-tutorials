@@ -82,6 +82,8 @@ If we run ESLint with the SARIF formatter:
 
 ... we get:
 
+<a id="simple-example-file"></a>
+
 ```json
 {
   "version": "2.1.0",

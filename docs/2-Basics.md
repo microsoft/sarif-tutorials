@@ -158,7 +158,7 @@ but some results might be purely informational.
     {
       "tool": {
         "driver": {
-          "name": "CodeScanner"
+          "name": "ESLint"
         }
       },
       "results": [
@@ -209,7 +209,7 @@ by opening the file specified by `physicalLocation.artifactLocation.uri` (`simpl
 The viewer will typically scroll the portion of the file specified by `physicalLocation.region` (line 1 in the example)
 into view, and highlight it.
 
-### <a id="messages"></a>Messages
+### <a id="message"></a>Message
 
 The only required property of a `result` object is the `message` property.
 
@@ -513,6 +513,29 @@ establishes a link from a SARIF object to another object that resides in an arra
 For each such property, the spec explains which array to look in.
 
 ## <a id="rule-metadata"></a>Rule metadata
+
+A SARIF log file can contain information about the analysis rules defined by the static analysis tool.
+The spec refers to this information as _rule metadata_.
+Rule metadata can include a complete description of the rule,
+its default severity level,
+one or more message strings (possibly including substitution sequences like `{0}`) to include in a result,
+and a URI where you can find more information about the rule.
+
+If rule metadata is present, then when a user selects a result in a SARIF file,
+a SARIF viewer can display the metadata for the rule that was violated.
+Here is a screen shot that shows the
+[Microsoft SARIF Viewer VSIX for Visual Studio](https://marketplace.visualstudio.com/items?itemName=WDGIS.MicrosoftSarifViewer)
+displaying the SARIF file shown in the [simple example](1-Introduction.md#simple-example-file) from the introduction.
+The user has selected the result in the Error List window at the bottom.
+On the right, the user has selected the Info tab in the SARIF Explorer,
+and viewer has displayed the help URI from the metadata for the `no-unused-vars` rule.
+
+![A SARIF viewer displays rule metadata for a result](../images/rule-metadata-for-a-result.png)
+
+Rule metadata is optional.
+An analysis tool can choose not to include it at all,
+to include metadata for only those rules that are relevant to the results,
+or to include metadata for all rules known to the tool.
 
 ## Notes
 

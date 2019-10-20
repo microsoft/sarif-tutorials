@@ -47,7 +47,8 @@ They represent my personal interpretation and explanation of the standard.
 
 ## Work in progress
 
-I've just started writing these tutorials. I'll remove this notice when I think there's enough information to be useful.
+As you will see from the missing links in the table of contents, there's still much more I'd like to write about.
+Even so, I think there's enough useful information in these tutorials to be worth your while to read.
 
 ## <a id="contents"></a>Table of contents
 
@@ -62,7 +63,7 @@ I've just started writing these tutorials. I'll remove this notice when I think 
   - [Logs and runs](docs/2-Basics.md#logs-runs)
   - [Property bags](docs/2-Basics.md#property-bags)
   - [Results](docs/2-Basics.md#results)
-    - [Messages](docs/2-Basics.md#messages)
+    - [Message](docs/2-Basics.md#message)
     - [Rule identifier](docs/2-Basics.md#rule-id)
     - [Level](docs/2-Basics.md#level)
     - [Locations](docs/2-Basics.md#locations)
@@ -71,7 +72,7 @@ I've just started writing these tutorials. I'll remove this notice when I think 
   - [Artifacts](docs/2-Basics.md#artifacts)
     - [Defining artifacts](docs/2-Basics.md#defining-artifacts)
     - [Linking results to artifacts](docs/2-Basics.md#linking-artifacts)
-  - [Rule metadata (TODO)](docs/2-Basics.md#rule-metadata)
+  - [Rule metadata](docs/2-Basics.md#rule-metadata)
 - [Beyond the basics](docs/3-Beyond-basics.md)
   - [More about messages (TODO)](docs/3-Beyond-basics.md#more-about-messages)
   - [Invocations (TODO)](docs/3-Beyond-basics.md#invocations)
