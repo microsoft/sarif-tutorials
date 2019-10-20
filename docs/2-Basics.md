@@ -535,7 +535,7 @@ and viewer has displayed the help URI from the metadata for the `no-unused-vars`
 Rule metadata is optional.
 An analysis tool can choose not to include it at all,
 to include metadata for only those rules that are relevant to the results,
-or to include metadata for all rules known to the tool.
+or to include metadata for all rules known to the tool.<sup><a href="#note-12">12</a></sup>
 
 ## Notes
 
@@ -581,7 +581,11 @@ although the spec never makes that claim.
 <a id="note-10"></a>10. See
 [Appendix J. (Informative) Sample sourceLanguage values](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012903).
 
-<a id="note-10"></a>10. See
+<a id="note-11"></a>11. See
 [§3.24.11, hashes property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012580)
+
+<a id="note-12"></a>12.
+[Appendix E. (Informative) Locating rule and notification metadata](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012891)
+discusses how to decide whether to include rule metadata in a SARIF log file.
 
 [Table of contents](../README.md#contents)
