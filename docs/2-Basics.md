@@ -68,10 +68,13 @@ and the run has to describe the tool that produced it.
 Usually there is only one run. SARIF allows multiple runs for convenience,
 so that, for example, you can send the runs over a network in a single request.<sup><a href="#note-3">3</a></sup>
 
-The sub-property `tool.driver` describes the tool's "primary executable".
+The `tool` property is required. It describes the analysis tool that produced the log file.
+The sub-property `tool.driver` is also required. It describes the tool's
+<a href="5.2-Glossary.md#primary-executable">_primary executable_</a>.
 Usually, that's enough, but some tools support plugins &mdash; for example,
 code libraries that define additional analysis rules.
 SARIF defines the optional `tool.extensions` property to represent plugins.<sup><a href="#note-4">4</a></sup>
+Finally, `tool.driver.name` is required. Everything else under `tool` and `tool.driver` is optional.
 
 If the tool didn't detect any problems, the log file might look like this:
 
