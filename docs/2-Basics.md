@@ -310,7 +310,7 @@ SARIF supports two kinds of locations: physical and logical.
 A <a href="5.2-Glossary.md#physical-location">_physical location_</a>
 describes a location with respect to some programming artifact,
 for example, a range of lines in a source file or a byte range in an executable file.
-A <a href="5.2-Glossary.md#logical-location">_logical location_
+A <a href="5.2-Glossary.md#logical-location">_logical location_</a>
 describes a location by name, without reference to a programming artifact,
 for example the name of a method within a class within a namespace.
 
