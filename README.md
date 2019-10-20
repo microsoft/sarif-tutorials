@@ -76,7 +76,7 @@ Even so, I think there's enough useful information in these tutorials to be wort
   - [Rule metadata](docs/2-Basics.md#rule-metadata)
 - [Beyond the basics](docs/3-Beyond-basics.md)
   - [More about messages (TODO)](docs/3-Beyond-basics.md#more-about-messages)
-  - [Invocations (TODO)](docs/3-Beyond-basics.md#invocations)
+  - [Invocations](docs/3-Beyond-basics.md#invocations)
   - [Notifications (TODO)](docs/3-Beyond-basics.md#notifications)
   - [Taxonomies (TODO)](docs/3-Beyond-basics.md#taxonomies)
   - [Code flows (TODO)](docs/3-Beyond-basics.md#code-flows)
