@@ -78,6 +78,7 @@ Even so, I think there's enough useful information in these tutorials to be wort
   - [More about messages](docs/3-Beyond-basics.md#more-about-messages)
     - [Markdown messages](docs/3-Beyond-basics.md#markdown)
     - [Messages from metadata](docs/3-Beyond-basics.md#msg-from-metadata)
+    - [Messages with arguments](docs/3-Beyond-basics.md#msg-with-args)
   - [Invocations](docs/3-Beyond-basics.md#invocations)
   - [Notifications](docs/3-Beyond-basics.md#notifications)
     - [Tool execution notification and tool configuration notifications](docs/3-Beyond-basics.md#exec-config-notif)

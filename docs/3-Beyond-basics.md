@@ -36,7 +36,7 @@ Not every SARIF viewer will know how to render GFM, so while this is legal:
 }
 ```
 
-### <a id="msg-from_metadata"></a>Messages from metadata
+### <a id="msg-from-metadata"></a>Messages from metadata
 
 Some result messages are long, because a good message not only explains what was wrong:
 it also (as appropriate) explains why the flagged construct is considered questionable,
@@ -87,14 +87,64 @@ This is another of the file-size-vs.-readability tradeoffs that SARIF offers.
 If rule metadata is available, a tool (or a <a href="5.2-Glossary.md#post-processor">_post-processor_</a>)
 can choose to inline the messages or to refer to them in the metadata.
 
+### <a id="msg-with-args"></a>Messages with arguments
+
+Some messages vary from result to result because (for example) they mention specific variables:
+
+```txt
+Variable 'x' was used without being initialized.
+```
+
+Messages in metadata can include C#-like substitution sequences (`{0}`).
+If an analysis tool creates `message` objects that refer to message strings in metadata,
+it must provide values for the substitution sequences by populating the `arguments` property:
+
+```json
+{
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "CodeScanner",
+          "rules": [
+            {
+              "id": "CS0001",
+              "messageStrings": {
+                "default": "Variable '{0}' was used without being initialized."
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CS0001",
+          "ruleIndex": 0,
+          "message": {
+            "id": "default",
+            "arguments": [
+              "x"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+The elements of the `arguments` array are strings!
+Arguments of other types must be converted to strings before being added to `arguments`.
+It's up to the tool to choose the formatting, but it's likely to be culture-invariant.
+
 ## <a id="invocations"></a>Invocations
 
-We have seen that a `run` object describes a single invocation of a single analysis tool.
+We've seen that a `run` object describes a single invocation of a single analysis tool.
 We've seen that the required `run.tool` property describes the tool that produced the run.
 Now we'll discuss the optional `run.invocations` property, which describes how the tool was invoked.
 
 `run.invocations` is an _array_ of `invocation` objects.
-Since a `run` describes a single invocation, why is `run.invocations` an array?
+Since a `run` describes a single invocation, you probably wonder why `run.invocations` is an array.
 The spec explains:<sup><a href="#note-2">2</a></sup>
 
 > A `run` object **MAY** contain a property named `invocations` whose value is an array of zero or more
@@ -107,6 +157,8 @@ The spec explains:<sup><a href="#note-2">2</a></sup>
 > to analyze those artifacts.
 > The elements of the invocations array **SHOULD**, as far as possible, be arranged in chronological order according to
 > the start time of each process. If some of the processes run in parallel, this might not be possible.
+
+In other words, this is another case where support for an advanced scenario complicates the format.
 
 Note that the spec clearly states that the elements of the array together describe a single run of a single tool.
 It's not correct for it to contain (for example) an invocation of Clang Static Analyzer followed by
