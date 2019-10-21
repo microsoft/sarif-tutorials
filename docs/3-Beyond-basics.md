@@ -50,9 +50,61 @@ SARIF offers a facility to "redact" sensitive information, and you should become
 
 ## <a id="notifications"></a>Notifications
 
+In addition to analysis results, many tools provide information about their execution,
+such as progress notifications (for example, "Execution started." or "Analysing directory src/io...")
+and error conditions (for example, "Rule CA1304 threw an exception and has been disabled." or
+"Rule CA9999 cannot be enabled because it does not exist.").
+
+### <a id="exec-config-notif"></a>Tool execution notification and tool configuration notifications
+
+SARIF distinguishes two types of tool notifications,
+<a href="5.2-Glossary.md#config-notif">_tool configuration notifications_</a> and
+<a href="5.2-Glossary.md#exec-notif">_tool execution notifications_</a>.
+
+Tool configuration notifications provide information about the configuration of the tool,
+for example, which options were selected, or which rules were enabled or disabled.
+They are found in the optional `invocation.toolConfigurationNotifications` property.
+
+Tool execution notifications provide information about runtime conditions encountered
+during the tool's execution,
+such as the analysis start and end times, or an exception encountered during the evaluation of a rule.
+They are found in the optional `invocation.toolExecutionNotifications` property.
+
+Both `toolConfigurationNotifications` and `toolExecutionNotifications` are arrays of `notification`
+objects.
+
+Part of the rationale for distinguishing these notification types is that they are of interest to different audiences.
+Tool configuration notifications are of interest to build engineers;
+tool execution notifications (especially those that report runtime exceptions) are of interest to tool authors.
+Of course both might be of interest to tool users, and on smaller teams the same people might fill all of these roles.
+
+### <a id="notif-result"></a>Notifications _vs._ results
+
+Notifications and results have much in common:
+
+- They can both have a severity level (for example, "Analysis started."
+is a `"note"`-level notification, which "Rule CA1304 threw an exception." is an `"error"`-level notification.)
+- They both have user-facing messages, possibly parameterized (for example, `"Rule {0} threw an exception."`).
+- Both can be described by additional metadata such as a full description, a help URI, and so forth.
+
+For this reason, SARIF uses the same object to describe both rule metadata
+and what the spec refers to as <a href="5.2-Glossary.md#notification_metadata">_notification metadata_</a>:
+the `reportingDescriptor`.<sup><a href="#note-4">4</a></sup>
+
+Note that SARIF does _not_ use the same object to represent the results and notifications themselves:
+a `result` object is not the same as a `notification` object.
+This is because there are so many properties of a `result` (for example, `codeFlows`) that's don't apply to
+notifications.
+
+So in our [simple example](1-Introduction.md#simple-example-file),
+the property `tool.driver.rules` was actually an array of `reportingDescriptor`s,
+and `tool.driver` has an additional property `notifications` that is also an array of `reportingDescriptor`s.
+
 ## <a id="taxonomies"></a>Taxonomies
 
 ## <a id="code-flows"></a>Code flows
+
+## <a id="automation"></a>Automation
 
 ## Notes
 
@@ -66,5 +118,10 @@ to remind you of that.
 [§3.5.2, Redactable strings](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012393),
 [§3.14.28, redactionTokens property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012468),
 and search for the string "redactable" in the spec to find all the tokens that might contain sensitive information.
+
+<a id="note-4"></a>4. Before Michael Fanning noticed the similarities between results and notifications,
+this object was called simply the `rule` object.
+This is a case where in my opinion the generalization of a concept led to a name that was less understandable.
+But despite my reputation for being a good "namer," I've never been able to come up with a better one.
 
 [Table of contents](../README.md#contents)
