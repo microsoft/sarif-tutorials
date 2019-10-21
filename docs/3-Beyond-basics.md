@@ -7,15 +7,15 @@
 We have seen that in its simplest usage, a `message` object has a `text` property and that's the end of it.
 But `message` objects can do much more.
 
-### <a id="markdown"></a> Markdown
+### <a id="markdown"></a> Markdown messages
 
-A `message` object can optionally have a `markdown` property containing a string formatted with GitHub-Flavored Markdown
-(GFM).
+A `message` object can optionally have a `markdown` property containing a string formatted with GitHub-Flavored
+Markdown (GFM).
 Not every SARIF viewer will know how to render GFM, so while this is legal:
 
 ```json
 "message": {
-    "text": "This is great!"
+  "text": "This is great!"
 }
 ```
 
@@ -23,8 +23,8 @@ Not every SARIF viewer will know how to render GFM, so while this is legal:
 
 ```json
 "message": {
-    "text": "This is great!",
-    "markdown": "This is _great_!"
+  "text": "This is great!",
+  "markdown": "This is _great_!"
 }
 ```
 
@@ -32,9 +32,56 @@ Not every SARIF viewer will know how to render GFM, so while this is legal:
 
 ```json
 "message": {
-    "markdown": "This is _great_!"
+  "markdown": "This is _illegal_ because there's no `text` property!"
 }
 ```
+
+### <a id="msg-from_metadata"></a>Messages from metadata
+
+Some result messages are long, because a good message not only explains what was wrong:
+it also (as appropriate) explains why the flagged construct is considered questionable,
+provides guidance for remedying the problem,
+and explains when it's ok to ignore the result.
+
+To avoid repeating the lengthy message in every result, a `message` object can specify an
+identifier for the message text:
+
+```json
+{
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "CodeScanner",
+          "rules": [
+            {
+              "id": "CS0001",
+              "messageStrings": {
+                "default": "This is the message text. It might be very long."
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CS0001",
+          "ruleIndex": 0,
+          "message": {
+            "id": "default"
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+The `message.id` property tells us to look in the rule metadata for a string named `default`.
+The `result.ruleIndex` property tells us _which_ rule's metadata to look at (the rule at index 0
+in `tool.driver.rules`).
+The desired message is the property of `messageStrings` whose name matches `id`;
+that is, the property named `default`.<sup><a href="#note-1">1</a></sup>
 
 ## <a id="invocations"></a>Invocations
 
@@ -44,7 +91,7 @@ Now we'll discuss the optional `run.invocations` property, which describes how t
 
 `run.invocations` is an _array_ of `invocation` objects.
 Since a `run` describes a single invocation, why is `run.invocations` an array?
-The spec explains:<sup><a href="#note-1">1</a></sup>
+The spec explains:<sup><a href="#note-2">2</a></sup>
 
 > A `run` object **MAY** contain a property named `invocations` whose value is an array of zero or more
 > `invocation` objects (§3.20) that together describe a single run of a single analysis tool.
@@ -68,7 +115,7 @@ not every tool returns 0 on success and non-zero on failure.
 
 There are properties to capture the command line, both as a single string (`commandLine`) and parsed into
 arguments (`arguments`).
-There are properties for the start and end time (`startTimeUtc` and `endTimeUtc`<sup><a href="#note-2">2</a></sup>),
+There are properties for the start and end time (`startTimeUtc` and `endTimeUtc`<sup><a href="#note-3">3</a></sup>),
 for machine and environment information (`machine`, `account`, `processId`, `workingDirectory`,
 `environmentVariables`),
 and to capture the standard IO streams (`stdin`, `stdout`, `stderr`, `stdoutStderr`).
@@ -78,7 +125,7 @@ We'll discuss those next.
 
 If you capture the command line, or if you use the environment-related properties like `machine`, `account`,
 and `environmentVaribles`, be aware that they can contain sensitive information.
-SARIF offers a facility to "redact" sensitive information, and you should become familiar with it.<sup><a href="#note-3">3</a></sup>
+SARIF offers a facility to "redact" sensitive information, and you should become familiar with it.<sup><a href="#note-4">4</a></sup>
 
 ## <a id="notifications"></a>Notifications
 
@@ -121,7 +168,7 @@ is a `"note"`-level notification, which "Rule CA1304 threw an exception." is an 
 
 For this reason, SARIF uses the same object to describe both rule metadata
 and what the spec refers to as <a href="5.2-Glossary.md#notification-metadata">_notification metadata_</a>:
-the `reportingDescriptor`.<sup><a href="#note-4">4</a></sup>
+the `reportingDescriptor`.<sup><a href="#note-5">5</a></sup>
 
 Note that SARIF does _not_ use the same object to represent the results and notifications themselves:
 a `result` object is not the same as a `notification` object.
@@ -140,18 +187,36 @@ and `tool.driver` has an additional property `notifications` that is also an arr
 
 ## Notes
 
-<a id="note-1"></a>1. See
+<a id="note-1"></a>1. CAUTION: `message` objects appear throughout the SARIF format, not just in `result` objects.
+So it's not always appropriate to look up the message string in `tool.driver.rules`.
+Depending on context, the string might come from <a href="#notification-metadata">_notification metadata_</a>
+(see <a href="#notifications">Notifications</a>)
+or even from `globalMessageStrings`, which we won't say more about (See
+See
+[§3.19.22, globalMessageStrings property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012511)).
+You can find the complete, complicated algorithm in
+[§3.11.7, Message string lookup](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012424).
+But you're not likely to need it, because it works as (one hopes!) as you would expect:
+result messages are looked up in rule metadata,
+notification messages are looked up in notification metadata,
+and other messages are looked up in `globalMessageStrings`.
+The algorithm is complicated because it also has to see if the message string was specified "inline" in
+`message.text`,
+it has to choose between the text and Markdown forms of the message,
+and it has to decide whether the message was defined by the tool's driver or by one of its extensions.
+
+<a id="note-2"></a>2. See
 [§3.14.11, invocations property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012451)
 
-<a id="note-2"></a>2. All times in SARIF's first-class properties are expressed in UTC, and the properties are named
+<a id="note-3"></a>3. All times in SARIF's first-class properties are expressed in UTC, and the properties are named
 to remind you of that.
 
-<a id="note-3"></a>3. See
+<a id="note-4"></a>4. See
 [§3.5.2, Redactable strings](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012393),
 [§3.14.28, redactionTokens property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012468),
 and search for the string "redactable" in the spec to find all the tokens that might contain sensitive information.
 
-<a id="note-4"></a>4. Before Michael Fanning noticed the similarities between results and notifications,
+<a id="note-5"></a>5. Before Michael Fanning noticed the similarities between results and notifications,
 this object was called simply the `rule` object.
 This is a case where in my opinion the generalization of a concept led to a name that was less understandable.
 But despite my reputation for being a good "namer," I've never been able to come up with a better one.
