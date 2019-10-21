@@ -93,7 +93,7 @@ the `reportingDescriptor`.<sup><a href="#note-4">4</a></sup>
 
 Note that SARIF does _not_ use the same object to represent the results and notifications themselves:
 a `result` object is not the same as a `notification` object.
-This is because there are so many properties of a `result` (for example, `codeFlows`) that's don't apply to
+This is because there are so many properties of a `result` (for example, `codeFlows`) that don't apply to
 notifications.
 
 So in our [simple example](1-Introduction.md#simple-example-file),
