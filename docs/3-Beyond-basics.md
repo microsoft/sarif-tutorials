@@ -4,6 +4,38 @@
 
 ## <a id="more-about-messages"></a>More about messages
 
+We have seen that in its simplest usage, a `message` object has a `text` property and that's the end of it.
+But `message` objects can do much more.
+
+### <a id="markdown"></a> Markdown
+
+A `message` object can optionally have a `markdown` property containing a string formatted with GitHub-Flavored Markdown
+(GFM).
+Not every SARIF viewer will know how to render GFM, so while this is legal:
+
+```json
+"message": {
+    "text": "This is great!"
+}
+```
+
+... and this is legal:
+
+```json
+"message": {
+    "text": "This is great!",
+    "markdown": "This is _great_!"
+}
+```
+
+... this is _not_:
+
+```json
+"message": {
+    "markdown": "This is _great_!"
+}
+```
+
 ## <a id="invocations"></a>Invocations
 
 We have seen that a `run` object describes a single invocation of a single analysis tool.
