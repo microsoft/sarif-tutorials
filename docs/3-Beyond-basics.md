@@ -139,7 +139,34 @@ It's up to the tool to choose the formatting, but it's likely to be culture-inva
 
 ### <a id="msg-links"></a>Messages with embedded links
 
+SARIF messages can include hyperlinks to web sites as well as to constructs within the SARIF file itself.
+Both text messages and Markdown messages can contain these links.
+
 #### <a id="msg-links-text-markdown"></a>Links in text and Markdown
+
+Although a SARIF text message cannot contain formatting, it can contain hyperlinks using a small subset of
+the Markdown hyperlink syntax:
+
+```json
+{
+  "text": "You can learn more about XSS attacks [here](https://www.owasp.org/index.php/Cross-site_Scripting_(XSS))."
+}
+```
+
+SARIF viewers are expected to render these link properly, for example:
+
+> You can learn more about XSS attacks [here](https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)).
+
+On the other hand, since a SARIF viewer that chooses to render Markdown is presumed to have a full GFM parser available,
+Markdown messages can use the full link sytax.
+Here's an example that uses the [full reference link](https://github.github.com/gfm/#full-reference-link) syntax:
+
+```json
+{
+  "text": "You can learn more about XSS attacks [here](https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)).",
+  "markdown": "You can learn more about XSS attacks [here][xss].\n\n[xss]: https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)"
+}
+```
 
 #### <a id="msg-links-sarif-scheme"></a>Links using the `sarif:` URI scheme
 
