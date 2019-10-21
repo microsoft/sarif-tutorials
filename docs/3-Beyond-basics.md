@@ -51,13 +51,13 @@ SARIF offers a facility to "redact" sensitive information, and you should become
 ## <a id="notifications"></a>Notifications
 
 In addition to analysis results, many tools provide information about their execution,
-such as progress notifications (for example, "Execution started." or "Analysing directory src/io...")
+such as progress notifications (for example, "Execution started." or "Analyzing directory src/io...")
 and error conditions (for example, "Rule CA1304 threw an exception and has been disabled." or
 "Rule CA9999 cannot be enabled because it does not exist.").
 
 ### <a id="exec-config-notif"></a>Tool execution notification and tool configuration notifications
 
-SARIF distinguishes two types of tool notifications,
+SARIF distinguishes two types of notifications,
 <a href="5.2-Glossary.md#config-notif">_tool configuration notifications_</a> and
 <a href="5.2-Glossary.md#exec-notif">_tool execution notifications_</a>.
 
@@ -88,7 +88,7 @@ is a `"note"`-level notification, which "Rule CA1304 threw an exception." is an 
 - Both can be described by additional metadata such as a full description, a help URI, and so forth.
 
 For this reason, SARIF uses the same object to describe both rule metadata
-and what the spec refers to as <a href="5.2-Glossary.md#notification_metadata">_notification metadata_</a>:
+and what the spec refers to as <a href="5.2-Glossary.md#notification-metadata">_notification metadata_</a>:
 the `reportingDescriptor`.<sup><a href="#note-4">4</a></sup>
 
 Note that SARIF does _not_ use the same object to represent the results and notifications themselves:
