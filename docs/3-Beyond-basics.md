@@ -7,7 +7,7 @@
 We have seen that in its simplest usage, a `message` object has a `text` property and that's the end of it.
 But `message` objects can do much more.
 
-### <a id="markdown"></a> Markdown messages
+### <a id="msg-markdown"></a> Markdown messages
 
 A `message` object can optionally have a `markdown` property containing a string formatted with GitHub-Flavored
 Markdown (GFM).
@@ -36,7 +36,7 @@ Not every SARIF viewer will know how to render GFM, so while this is legal:
 }
 ```
 
-### <a id="msg-from-metadata"></a>Messages from metadata
+### <a id="msg-metadata"></a>Messages from metadata
 
 Some result messages are long, because a good message not only explains what was wrong:
 it also (as appropriate) explains why the flagged construct is considered questionable,
@@ -87,7 +87,7 @@ This is another of the file-size-vs.-readability tradeoffs that SARIF offers.
 If rule metadata is available, a tool (or a <a href="5.2-Glossary.md#post-processor">_post-processor_</a>)
 can choose to inline the messages or to refer to them in the metadata.
 
-### <a id="msg-with-args"></a>Messages with arguments
+### <a id="msg-args"></a>Messages with arguments
 
 Some messages vary from result to result because (for example) they mention specific variables:
 
@@ -95,9 +95,9 @@ Some messages vary from result to result because (for example) they mention spec
 Variable 'x' was used without being initialized.
 ```
 
-Messages in metadata can include C#-like substitution sequences (`{0}`).
+Messages in metadata can include C#-like placeholders (`{0}`).
 If an analysis tool creates `message` objects that refer to message strings in metadata,
-it must provide values for the substitution sequences by populating the `arguments` property:
+it must provide values for the placeholders by populating the `arguments` property:
 
 ```json
 {
@@ -136,6 +136,8 @@ it must provide values for the substitution sequences by populating the `argumen
 The elements of the `arguments` array are strings!
 Arguments of other types must be converted to strings before being added to `arguments`.
 It's up to the tool to choose the formatting, but it's likely to be culture-invariant.
+
+### <a id="msg-links"></a>Messages with embedded links
 
 ## <a id="invocations"></a>Invocations
 
