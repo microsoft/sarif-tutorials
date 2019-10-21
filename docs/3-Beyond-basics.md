@@ -139,6 +139,12 @@ It's up to the tool to choose the formatting, but it's likely to be culture-inva
 
 ### <a id="msg-links"></a>Messages with embedded links
 
+#### <a id="msg-links-text-markdown"></a>Links in text and Markdown
+
+#### <a id="msg-links-sarif-scheme"></a>Links using the `sarif:` URI scheme
+
+#### <a id="msg-links-location"></a>Links to locations
+
 ## <a id="invocations"></a>Invocations
 
 We've seen that a `run` object describes a single invocation of a single analysis tool.

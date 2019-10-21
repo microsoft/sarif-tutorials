@@ -80,7 +80,9 @@ Even so, I think there's enough useful information in these tutorials to be wort
     - [Messages from metadata](docs/3-Beyond-basics.md#msg-metadata)
     - [Messages with arguments](docs/3-Beyond-basics.md#msg-args)
     - [Messages with embedded links](docs/3-Beyond-basics.md#msg-links)
-      - [Links in text and Markdown]
+      - [Links in text and Markdown](docs/3-Beyond-basics.md#msg-links-text-markdown)
+      - [Links using the `sarif:` URI scheme](docs/3-Beyond-basics.md#msg-links-sarif-scheme)
+      - [Links to locations](docs/3-Beyond-basics.md#msg-links-location)
   - [Invocations](docs/3-Beyond-basics.md#invocations)
   - [Notifications](docs/3-Beyond-basics.md#notifications)
     - [Tool execution notification and tool configuration notifications](docs/3-Beyond-basics.md#exec-config-notif)
