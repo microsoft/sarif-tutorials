@@ -158,7 +158,7 @@ SARIF viewers are expected to render these link properly, for example:
 > You can learn more about XSS attacks [here](https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)).
 
 On the other hand, since a SARIF viewer that chooses to render Markdown is presumed to have a full GFM parser available,
-Markdown messages can use the full link sytax.
+Markdown messages can use the full link syntax.
 Here's an example that uses the [full reference link](https://github.github.com/gfm/#full-reference-link) syntax:
 
 ```json
