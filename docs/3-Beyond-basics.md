@@ -83,6 +83,10 @@ in `tool.driver.rules`).
 The desired message is the property of `messageStrings` whose name matches `id`;
 that is, the property named `default`.<sup><a href="#note-1">1</a></sup>
 
+This is another of the file-size-vs.-readability tradeoffs that SARIF offers.
+If rule metadata is available, a tool (or a <a href="5.2-Glossary.md#post-processor">_post-processor_</a>)
+can choose to inline the messages or to refer to them in the metadata.
+
 ## <a id="invocations"></a>Invocations
 
 We have seen that a `run` object describes a single invocation of a single analysis tool.
@@ -189,10 +193,10 @@ and `tool.driver` has an additional property `notifications` that is also an arr
 
 <a id="note-1"></a>1. CAUTION: `message` objects appear throughout the SARIF format, not just in `result` objects.
 So it's not always appropriate to look up the message string in `tool.driver.rules`.
-Depending on context, the string might come from <a href="#notification-metadata">_notification metadata_</a>
+Depending on context, the string might come from
+<a href="5.2-Glossary.md#notification-metadata">_notification metadata_</a>
 (see <a href="#notifications">Notifications</a>)
 or even from `globalMessageStrings`, which we won't say more about (See
-See
 [§3.19.22, globalMessageStrings property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012511)).
 You can find the complete, complicated algorithm in
 [§3.11.7, Message string lookup](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012424).
