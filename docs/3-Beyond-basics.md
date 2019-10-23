@@ -267,7 +267,7 @@ That's a bit abstract-sounding, so let's look at an example
 {
   "ruleId": "PY2335",
   "message": {
-    "text": "Use of tainted variable 'expr' (which entered the system [here](1)) in the insecure function 'eval'.\n"
+    "text": "Use of tainted variable 'expr' (which entered the system [here](1)) in the insecure function 'eval'."
   },
   "locations": [
     {
