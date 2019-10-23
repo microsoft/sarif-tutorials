@@ -300,6 +300,19 @@ That's a bit abstract-sounding, so let's look at an example
 }
 ```
 
+See how the target of the embedded link in the message consists of a single integer.
+This tells a SARIF viewer that the target of the link is a location defined somewhere in
+this result whose `id` property matches that integer.
+In this example, when a user clicks the link, the viewer should navigate to line 3
+in `bad-eval.py`.<sup><a href="#note-2">2</a></sup>
+
+Typically these links refer to elements of the `relatedLocations` array
+(see ["Related locations"](#related-locations)),
+but they can point to a location anywhere in the result, for example, in a
+[code flow](#code-flows).
+
+Naturally it's illegal to have more than one location in the same result with the same id.
+
 #### <a id="msg-links-sarif-scheme"></a>Links using the `sarif:` URI scheme
 
 ## <a id="invocations"></a>Invocations
@@ -310,7 +323,7 @@ Now we'll discuss the optional `run.invocations` property, which describes how t
 
 `run.invocations` is an _array_ of `invocation` objects.
 Since a `run` describes a single invocation, you probably wonder why `run.invocations` is an array.
-The spec explains:<sup><a href="#note-2">2</a></sup>
+The spec explains:<sup><a href="#note-3">3</a></sup>
 
 > A `run` object **MAY** contain a property named `invocations` whose value is an array of zero or more
 > `invocation` objects (§3.20) that together describe a single run of a single analysis tool.
@@ -336,7 +349,7 @@ not every tool returns 0 on success and non-zero on failure.
 
 There are properties to capture the command line, both as a single string (`commandLine`) and parsed into
 arguments (`arguments`).
-There are properties for the start and end time (`startTimeUtc` and `endTimeUtc`<sup><a href="#note-3">3</a></sup>),
+There are properties for the start and end time (`startTimeUtc` and `endTimeUtc`<sup><a href="#note-4">4</a></sup>),
 for machine and environment information (`machine`, `account`, `processId`, `workingDirectory`,
 `environmentVariables`),
 and to capture the standard IO streams (`stdin`, `stdout`, `stderr`, `stdoutStderr`).
@@ -346,7 +359,7 @@ We'll discuss those next.
 
 If you capture the command line, or if you use the environment-related properties like `machine`, `account`,
 and `environmentVaribles`, be aware that they can contain sensitive information.
-SARIF offers a facility to "redact" sensitive information, and you should become familiar with it.<sup><a href="#note-4">4</a></sup>
+SARIF offers a facility to "redact" sensitive information, and you should become familiar with it.<sup><a href="#note-5">5</a></sup>
 
 ## <a id="notifications"></a>Notifications
 
@@ -389,7 +402,7 @@ is a `"note"`-level notification, which "Rule CA1304 threw an exception." is an 
 
 For this reason, SARIF uses the same object to describe both rule metadata
 and what the spec refers to as <a href="5.2-Glossary.md#notification-metadata">_notification metadata_</a>:
-the `reportingDescriptor`.<sup><a href="#note-5">5</a></sup>
+the `reportingDescriptor`.<sup><a href="#note-6">6</a></sup>
 
 Note that SARIF does _not_ use the same object to represent the results and notifications themselves:
 a `result` object is not the same as a `notification` object.
@@ -426,18 +439,23 @@ The algorithm is complicated because it also has to see if the message string wa
 it has to choose between the text and Markdown forms of the message,
 and it has to decide whether the message was defined by the tool's driver or by one of its extensions.
 
-<a id="note-2"></a>2. See
+<a id="note-2"></a>2. There is a potential ambiguity here that the spec doesn't explicitly address:
+namely, that `1` is a perfectly fine relative URI, and you might have analyzed a file named `1`.
+A SARIF producer that uses links to locations should be aware of that, and should disambiguate
+file names that look like integers by (for example) changing `"1"` to `"./1"`.
+
+<a id="note-3"></a>3. See
 [§3.14.11, invocations property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012451)
 
-<a id="note-3"></a>3. All times in SARIF's first-class properties are expressed in UTC, and the properties are named
+<a id="note-4"></a>4. All times in SARIF's first-class properties are expressed in UTC, and the properties are named
 to remind you of that.
 
-<a id="note-4"></a>4. See
+<a id="note-5"></a>5. See
 [§3.5.2, Redactable strings](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012393),
 [§3.14.28, redactionTokens property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012468),
 and search for the string "redactable" in the spec to find all the tokens that might contain sensitive information.
 
-<a id="note-5"></a>5. Before Michael Fanning noticed the similarities between results and notifications,
+<a id="note-6"></a>6. Before Michael Fanning noticed the similarities between results and notifications,
 this object was called simply the `rule` object.
 This is a case where in my opinion the generalization of a concept led to a name that was less understandable.
 But despite my reputation for being a good "namer," I've never been able to come up with a better one.
