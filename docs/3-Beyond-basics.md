@@ -175,7 +175,7 @@ can choose to inline the messages or to refer to them in the metadata.
 
 Some messages vary from result to result because (for example) they mention specific variables:
 
-```txt
+```text
 Variable 'x' was used without being initialized.
 ```
 
@@ -259,10 +259,16 @@ Here's an example that uses the [full reference link](https://github.github.com/
 
 #### <a id="msg-links-location"></a>Links to locations
 
+SARIF supports a special "link target" syntax that refers to a location mentioned anywhere in the current result.
+That's a bit abstract-sounding, so let's look at an example
+(see [../samples/3-Beyond-basics/link-to-location.sarif](../samples/3-Beyond-basics/link-to-location.sarif)):
+
 ```json
 {
   "ruleId": "PY2335",
-  "message": "Use of tainted variable 'expr' (which entered the system [here](1)) in the insecure function 'eval'.\n",
+  "message": {
+    "text": "Use of tainted variable 'expr' (which entered the system [here](1)) in the insecure function 'eval'.\n"
+  },
   "locations": [
     {
       "physicalLocation": {
