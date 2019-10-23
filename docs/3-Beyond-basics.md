@@ -20,7 +20,7 @@ print(eval(expr))
 
 The tool might detect the use of `eval` on a "tainted" variable
 (one that entered the system through user input and wasn't subsequently "sanitized"),
-and might produce a `result` like this (see [../samples/3-Beyond-basics/bad-eval.sarif](../samples/3-Beyond-basics/bad-eval.sarif)):
+and might produce a `result` like this (see [bad-eval.sarif](../samples/3-Beyond-basics/bad-eval.sarif)):
 
 ```json
 {
@@ -44,7 +44,7 @@ and might produce a `result` like this (see [../samples/3-Beyond-basics/bad-eval
 In a large code base, a user might not immediately see where the variable `expr` came from
 or why it is considered tainted.
 `result.relatedLocations` can help
-(see [../samples/3-Beyond-basics/bad-eval-related-locations.sarif](../samples/3-Beyond-basics/bad-eval-related-locations.sarif)):
+(see [bad-eval-related-locations.sarif](../samples/3-Beyond-basics/bad-eval-related-locations.sarif)):
 
 ```json
 {
@@ -125,7 +125,7 @@ and explains when it's ok to ignore the result.
 
 To avoid repeating the lengthy message in every result, a `message` object can specify an
 identifier for the message text
-(see [../samples/3-Beyond-basics/message-from-metadata.sarif](../samples/3-Beyond-basics/message-from-metadata.sarif)):
+(see [message-from-metadata.sarif](../samples/3-Beyond-basics/message-from-metadata.sarif)):
 
 ```json
 {
@@ -182,7 +182,7 @@ Variable 'x' was used without being initialized.
 Messages in metadata can include C#-like placeholders (`{0}`).
 If an analysis tool creates `message` objects that refer to message strings in metadata,
 it must provide values for the placeholders by populating the `arguments` property
-(see [../samples/3-Beyond-basics/message-with-arguments.sarif](../samples/3-Beyond-basics/message-with-arguments.sarif)):
+(see [message-with-arguments.sarif](../samples/3-Beyond-basics/message-with-arguments.sarif)):
 
 ```json
 {
@@ -261,7 +261,7 @@ Here's an example that uses the [full reference link](https://github.github.com/
 
 SARIF supports a special "link target" syntax that refers to a location mentioned anywhere in the current result.
 That's a bit abstract-sounding, so let's look at an example
-(see [../samples/3-Beyond-basics/link-to-location.sarif](../samples/3-Beyond-basics/link-to-location.sarif)):
+(see [link-to-location.sarif](../samples/3-Beyond-basics/link-to-location.sarif)):
 
 ```json
 {
@@ -412,6 +412,14 @@ the property `tool.driver.rules` was actually an array of `reportingDescriptor`s
 and `tool.driver` has an additional property `notifications` that is also an array of `reportingDescriptor`s.
 
 ## <a id="taxonomies"></a>Taxonomies
+
+In the context of code analysis, a <a href="5.2-Glossary.md#taxonomy">_taxonomy_</a> is a system that classifies
+analysis results into a set of categories.
+The [Common Weakness Enumeration (CWE)](https://cwe.mitre.org/) is a well-known example.
+
+SARIF can represent taxonomies and associate results with <a href="5.2-Glossary.md#taxon">_taxa_</a>,
+(the individual categories within a taxonomy), as in this example
+(see [taxonomy.sarif](../samples/3-Beyond-basics/taxonomy.sarif)):
 
 ## <a id="code-flows"></a>Code flows
 
