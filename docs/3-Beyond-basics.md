@@ -43,7 +43,8 @@ and might produce a `result` like this (see [../samples/3-Beyond-basics/bad-eval
 
 In a large code base, a user might not immediately see where the variable `expr` came from
 or why it is considered tainted.
-`result.relatedLocations` can help:
+`result.relatedLocations` can help
+(see [../samples/3-Beyond-basics/bad-eval-related-locations.sarif](../samples/3-Beyond-basics/bad-eval-related-locations.sarif)):
 
 ```json
 {
