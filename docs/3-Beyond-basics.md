@@ -182,7 +182,7 @@ Variable 'x' was used without being initialized.
 Messages in metadata can include C#-like placeholders (`{0}`).
 If an analysis tool creates `message` objects that refer to message strings in metadata,
 it must provide values for the placeholders by populating the `arguments` property
-(see [../samples/3-Beyond-basics/message-with-placeholders.sarif](../samples/3-Beyond-basics/message-with-placeholders.sarif)):
+(see [../samples/3-Beyond-basics/message-with-arguments.sarif](../samples/3-Beyond-basics/message-with-arguments.sarif)):
 
 ```json
 {
