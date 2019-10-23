@@ -274,7 +274,7 @@ as in the example above.
 
 We call a place in the code where a tool detects a result a
 <a href="5.2-Glossary.md#result-location">_result location_</a>.
-SARIF represents result locations with the property `result.locations`,
+SARIF represents result locations with the optional property `result.locations`,
 an array of `location` objects which almost always contains exactly one element:
 
 ```json
