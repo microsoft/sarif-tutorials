@@ -124,10 +124,12 @@ provides guidance for remedying the problem,
 and explains when it's ok to ignore the result.
 
 To avoid repeating the lengthy message in every result, a `message` object can specify an
-identifier for the message text:
+identifier for the message text
+(see [../samples/3-Beyond-basics/message-from-metadata.sarif](../samples/3-Beyond-basics/message-from-metadata.sarif)):
 
 ```json
 {
+  "version": "2.1.0",
   "runs": [
     {
       "tool": {
@@ -137,7 +139,9 @@ identifier for the message text:
             {
               "id": "CS0001",
               "messageStrings": {
-                "default": "This is the message text. It might be very long."
+                "default": {
+                  "text": "This is the message text. It might be very long."
+                }
               }
             }
           ]
