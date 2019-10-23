@@ -181,10 +181,12 @@ Variable 'x' was used without being initialized.
 
 Messages in metadata can include C#-like placeholders (`{0}`).
 If an analysis tool creates `message` objects that refer to message strings in metadata,
-it must provide values for the placeholders by populating the `arguments` property:
+it must provide values for the placeholders by populating the `arguments` property
+(see [../samples/3-Beyond-basics/message-with-placeholders.sarif](../samples/3-Beyond-basics/message-with-placeholders.sarif)):
 
 ```json
 {
+  "version": "2.1.0",
   "runs": [
     {
       "tool": {
@@ -194,7 +196,9 @@ it must provide values for the placeholders by populating the `arguments` proper
             {
               "id": "CS0001",
               "messageStrings": {
-                "default": "Variable '{0}' was used without being initialized."
+                "default": {
+                  "text": "Variable '{0}' was used without being initialized."
+                }
               }
             }
           ]
