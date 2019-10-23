@@ -219,7 +219,7 @@ It's up to the tool to choose the formatting, but it's likely to be culture-inva
 ### <a id="msg-links"></a>Messages with embedded links
 
 SARIF messages can include hyperlinks to web sites as well as to constructs within the SARIF file itself.
-We call these hyperlinks <a href="5-2-Glossary.md#embedded-link">_embedded links_</a>.
+We call these hyperlinks <a href="5.2-Glossary.md#embedded-link">_embedded links_</a>.
 Both text messages and Markdown messages can contain embedded links.
 
 #### <a id="msg-links-text-markdown"></a>Links in text and Markdown
