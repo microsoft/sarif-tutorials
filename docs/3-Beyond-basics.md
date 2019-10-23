@@ -301,7 +301,7 @@ That's a bit abstract-sounding, so let's look at an example
 ```
 
 See how the target of the embedded link in the message consists of a single integer.
-This tells a SARIF viewer that the target of the link is a location defined somewhere in
+This tells a SARIF viewer that the link target is a location defined somewhere in
 this result whose `id` property matches that integer.
 In this example, when a user clicks the link, the viewer should navigate to line 3
 in `bad-eval.py`.<sup><a href="#note-2">2</a></sup>
@@ -312,8 +312,6 @@ but they can point to a location anywhere in the result, for example, in a
 [code flow](#code-flows).
 
 Naturally it's illegal to have more than one location in the same result with the same id.
-
-#### <a id="msg-links-sarif-scheme"></a>Links using the `sarif:` URI scheme
 
 ## <a id="invocations"></a>Invocations
 

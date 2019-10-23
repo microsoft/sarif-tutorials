@@ -83,7 +83,6 @@ Even so, I think there's enough useful information in these tutorials to be wort
     - [Messages with embedded links](docs/3-Beyond-basics.md#msg-links)
       - [Links in text and Markdown](docs/3-Beyond-basics.md#msg-links-text-markdown)
       - [Links to locations](docs/3-Beyond-basics.md#msg-links-location)
-      - [Links using the `sarif:` URI scheme](docs/3-Beyond-basics.md#msg-links-sarif-scheme)
   - [Invocations](docs/3-Beyond-basics.md#invocations)
   - [Notifications](docs/3-Beyond-basics.md#notifications)
     - [Tool execution notification and tool configuration notifications](docs/3-Beyond-basics.md#exec-config-notif)
@@ -96,6 +95,7 @@ Even so, I think there's enough useful information in these tutorials to be wort
   - Translations (TODO)
   - Handling large files (TODO)
   - Result matching (TODO)
+  - The `sarif:` URI scheme (TODO)
 - Appendices
   - The history of SARIF (TODO)
   - [Glossary](docs/5.2-Glossary.md)
