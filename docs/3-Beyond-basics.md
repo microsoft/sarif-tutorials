@@ -2,6 +2,85 @@
 
 # Beyond the Basics
 
+## <a id="related-locations"></a>Related locations
+
+Sometimes there are places in the code other than the result location that can can help you understand a problem.
+We call these places <a href="5.2-Glossary.md#related-location">_related locations_</a>.
+SARIF represents related locations with the optional `result.relatedLocations` property,
+an array of `location` objects.
+
+For example, suppose you analyze this Python file:
+
+```python
+# 3-Beyond-basics/bad-eval.py
+
+expr = input("Expression> ")
+print(eval(expr))
+```
+
+The tool might detect the use of `eval` on a "tainted" variable
+(one that entered the system through user input and wasn't subsequently "sanitized"),
+and might produce a `result` like this (see [../samples/3-Beyond-basics/bad-eval.sarif](../samples/3-Beyond-basics/bad-eval.sarif)):
+
+```json
+{
+  "ruleId": "PY2335",
+  "message": "Use of tainted variable 'expr' in the insecure function 'eval'.",
+  "locations": [
+    {
+      "physicalLocation": {
+        "artifactLocation": {
+          "uri": "3-Beyond-basics/bad-eval.py"
+        },
+        "region": {
+          "startLine": 4
+        }
+      }
+    }
+  ]
+}
+```
+
+In large code base, a user might not immediately see where the variable `expr` came from
+or why it is considered `tainted`.
+`result.relatedLocations` can help:
+
+```json
+{
+  "ruleId": "PY2335",
+  "message": "Use of tainted variable 'expr' in the insecure function 'eval'.",
+  "locations": [
+    {
+      "physicalLocation": {
+        "artifactLocation": {
+          "uri": "3-Beyond-basics/bad-eval.py"
+        },
+        "region": {
+          "startLine": 4
+        }
+      }
+    }
+  ],
+  "relatedLocations": [
+    {
+      "message": {
+        "text": "The tainted data entered the system here."
+      },
+      "physicalLocation": {
+        "artifactLocation": {
+          "uri": "3-Beyond-basics/bad-eval.py"
+        },
+        "region": {
+          "startLine": 3
+        }
+      }
+    }
+  ]
+}
+```
+
+The `message` property of the related location helps the user understand the problem.
+
 ## <a id="more-about-messages"></a>More about messages
 
 We have seen that in its simplest usage, a `message` object has a `text` property and that's the end of it.
@@ -140,7 +219,8 @@ It's up to the tool to choose the formatting, but it's likely to be culture-inva
 ### <a id="msg-links"></a>Messages with embedded links
 
 SARIF messages can include hyperlinks to web sites as well as to constructs within the SARIF file itself.
-Both text messages and Markdown messages can contain these links.
+We call these hyperlinks <a href="5-2.Glossary.md#embedded-link">_embedded links_</a>.
+Both text messages and Markdown messages can contain embedded links.
 
 #### <a id="msg-links-text-markdown"></a>Links in text and Markdown
 
@@ -153,7 +233,7 @@ the Markdown hyperlink syntax:
 }
 ```
 
-SARIF viewers are expected to render these link properly, for example:
+All SARIF viewers, even those that don't support Markdown, are expected to render these link properly, for example:
 
 > You can learn more about XSS attacks [here](https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)).
 
@@ -168,9 +248,44 @@ Here's an example that uses the [full reference link](https://github.github.com/
 }
 ```
 
-#### <a id="msg-links-sarif-scheme"></a>Links using the `sarif:` URI scheme
-
 #### <a id="msg-links-location"></a>Links to locations
+
+```json
+{
+  "ruleId": "PY2335",
+  "message": "Use of tainted variable 'expr' (which entered the system [here](1)) in the insecure function 'eval'.\n",
+  "locations": [
+    {
+      "physicalLocation": {
+        "artifactLocation": {
+          "uri": "3-Beyond-basics/bad-eval.py"
+        },
+        "region": {
+          "startLine": 4
+        }
+      }
+    }
+  ],
+  "relatedLocations": [
+    {
+      "id": 1,
+      "message": {
+        "text": "The tainted data entered the system here."
+      },
+      "physicalLocation": {
+        "artifactLocation": {
+          "uri": "3-Beyond-basics/bad-eval.py"
+        },
+        "region": {
+          "startLine": 3
+        }
+      }
+    }
+  ]
+}
+```
+
+#### <a id="msg-links-sarif-scheme"></a>Links using the `sarif:` URI scheme
 
 ## <a id="invocations"></a>Invocations
 

@@ -272,8 +272,10 @@ as in the example above.
 
 #### <a id="loc-array"></a>The `locations` array
 
-A SARIF `result` almost always contains a `locations` property whose value is an array of `location` objects,
-and that array almost always contains exactly one element:
+We call a place in the code where a tool detects a result a
+<a href="5.2-Glossary.md#result-location">_result location_</a>.
+SARIF represents result locations with the property `result.locations`,
+an array of `location` objects which almost always contains exactly one element:
 
 ```json
 {
@@ -297,6 +299,13 @@ and suppose your class is made up of a set of `partial` classes.
 You can't change the name in just one place: your code won't compile.
 You have to change every occurrence, and that's why the `result` points you at all the occurrences.
 (Of course IDEs can help you with this.)
+
+Don't use `result.locations` to specify the locations of multiple problems, even problems of the same kind,
+if they can be fixed independently.
+You might choose to fix some occurrences of the problem and not others, for example,
+if you know that some of the occurrences are in code that is slated for removal,
+or are false positives.
+Only put more than one element in `result.locations` if you _have_ to fix all the locations at once.
 
 #### <a id="phys-log-loc"></a>Physical and logical locations
 
