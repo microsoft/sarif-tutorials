@@ -623,7 +623,7 @@ But despite my reputation for being a good "namer," I've never been able to come
 <a id="note-8"></a>8. If a tool supported a custom taxonomy,
 that taxonomy would appear as `tool.driver.taxa`
 (or `tool.extensions[].taxa` if the custom taxonomy were defined by a tool extension).
-This is a much less common scenario than the use of a public taxonomy such as CWE,
+This is a much less common scenario than the use of a standard taxonomy such as CWE,
 and we won't discuss it further.
 
 <a id="note-9"></a>9. The reason for this design choice was that almost all of the properties of this object make sense
