@@ -27,12 +27,18 @@
               }
             }
           ],
-          "isComprehensive": false,
+          "isComprehensive": false
         }
       ],
       "tool": {
         "driver": {
           "name": "CodeScanner",
+          "supportedTaxonomies": [
+            {
+              "name": "CWE",
+              "guid": "A9282C88-F1FE-4A01-8137-E8D2A037AB82"
+            }
+          ],
           "rules": [
             {
               "id": "CA2101",
@@ -55,16 +61,26 @@
                 }
               ]
             }
-          ],
-          "supportedTaxonomies": [
-            {
-              "name": "CWE",
-              "guid": "A9282C88-F1FE-4A01-8137-E8D2A037AB82"
-            }
           ]
         }
       },
       "results": [
+        {
+          "ruleId": "CA2101",
+          "message": {
+            "text": "Memory allocated in variable 'p' was not released."
+          },
+          "taxa": [
+            {
+              "id": "401",
+              "guid": "A9282C88-F1FE-4A01-8137-E8D2A037AB82",
+              "toolComponent": {
+                "name": "CWE",
+                "guid": "10F28368-3A92-4396-A318-75B9743282F6"
+              }
+            }
+          ]
+        }
       ]
     }
   ]

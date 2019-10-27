@@ -503,13 +503,11 @@ SARIF can represent taxonomies and can associate results with <a href="5.2-Gloss
           },
           "taxa": [
             {
-              "target": {
-                "id": "401",
-                "guid": "A9282C88-F1FE-4A01-8137-E8D2A037AB82",
-                "toolComponent": {
-                  "name": "CWE",
-                  "guid": "10F28368-3A92-4396-A318-75B9743282F6"
-                }
+              "id": "401",
+              "guid": "A9282C88-F1FE-4A01-8137-E8D2A037AB82",
+              "toolComponent": {
+                "name": "CWE",
+                "guid": "10F28368-3A92-4396-A318-75B9743282F6"
               }
             }
           ]
@@ -563,15 +561,17 @@ In this example, the `"superset"` relationship kind tells us that VWE weakness 4
 that is, every violation of this rule is an example of CWE weakness 401,
 but not necessarily _vice versa_.<sup><a href="#note-12">12</a></sup>
 
-At last we come to `run.results`, where we see that each result can have a property `taxa` specifying the taxa
+At last we come to `run.results`, where we see that each result can have a property `taxa` specifying the categories
 into which this result falls.
-Like `reportingDescriptort.taxa`, `result.taxa` is an array of `reportingDescriptorReference` objects.
+Like `reportingDescriptort.taxa`
+(but unlike `toolComponent.taxa`, which is an array of `reportingDescriptor` objects!),
+`result.taxa` is an array of `reportingDescriptorReference` objects.<sup><a href="#note-13">13</a></sup>
 
 In this example, the result is a violation of rule `CA2101`,
 and we've already seen that CWE weakness 401 is a superset of `CA2101`.
 So we could infer that this result fell into the taxon "CWE 401" even if the SARIF file didn't explicitly say so.
 And indeed, the spec says, in its usual formal language,
-that we can omit this element of `result.taxa` in this case.<sup><a href="#note-13">13</a></sup>
+that we can omit this element of `result.taxa` in this case.<sup><a href="#note-14">14</a></sup>
 
 ## <a id="code-flows"></a>Code flows
 
@@ -657,7 +657,16 @@ reportingDescriptorRelationship object](https://docs.oasis-open.org/sarif/sarif/
 [§3.53.3,
 kinds property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012829).
 
-<a id="note-13"></a>13. As
+<a id="note-13"></a>13. Admittedly this is a bit confusing to remember.
+The SARIF TC considered using distinct names,
+so that the properties in `reportingDescriptor` and `result` would have been named (for example) "`taxonReferences`"
+instead of "`taxa`".
+We eventually decided that the more concise name was preferable.
+Actually the TC went through a little naming exercise at the end where we changed several properties names
+to improve conciseness.
+This might surprise you if you read the spec and encounter a name like `externalPropertyFileReference`!
+
+<a id="note-14"></a>14. As
 [§3.27.8,
 taxa property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012602)
 so eloquently puts it:
