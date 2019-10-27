@@ -598,7 +598,7 @@ which occur as values of `notification.message.id` for any notification object i
 <a id="note-10"></a>10. To avoid repeating taxonomy definitions in every log file,
 and to provide access to the complete taxonomy without bloating the log file,
 SARIF provides a facility called <a href="5.2-Glossary#external-property-file">_external property files_</a>
-(see [§3.15.2](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012514))
+(see [§3.15.2](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012471))
 that allows large data sets needed by a SARIF log file to be stored in separate files.
 
 [Table of contents](../README.md#contents)
