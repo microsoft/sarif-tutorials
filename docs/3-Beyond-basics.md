@@ -520,18 +520,18 @@ SARIF can represent taxonomies and can associate results with <a href="5.2-Gloss
 
 Let's look at this fairly complicated example from top to bottom.
 
-Each element of `run.taxonomies` describes a taxonomy.
+Each element of `run.taxonomies` describes a standard taxonomy.<sup><a href="#note-8">8</a></sup>
 The array elements are `toolComponent` objects,
-the same kind of object as `tool.driver` and the array elements of `tool.extensions`.<sup><a href="#note-8">8</a></sup>
+the same kind of object as `tool.driver` and the array elements of `tool.extensions`.<sup><a href="#note-9">9</a></sup>
 
 `toolComponent.taxa` defines the individual categories defined by the taxonomy.
 The array elements are `reportingDescriptor` objects,
-the same kind of object as the elements of `tool.driver.rules` and `tool.driver.notifications`.<sup><a href="#note-9">9</a></sup>
+the same kind of object as the elements of `tool.driver.rules` and `tool.driver.notifications`.<sup><a href="#note-10">10</a></sup>
 
 The log file does not have to include the complete taxonomy;
 it only needs to include the taxa relevant to the results in the current run.
 In this example, the value `false` for `toolComponent.isComprehensive` tells the SARIF consumer
-that this object contains only a subset of the taxa defined by the taxonomy.<sup><a href="#note-10">10</a></sup>
+that this object contains only a subset of the taxa defined by the taxonomy.<sup><a href="#note-11">11</a></sup>
 (`false` is actually the default value, which makes sense because a tool should have to make an explicit statement
 that it has provided the entire taxonomy.)
 
@@ -545,7 +545,7 @@ the object that defines the taxonomy itself.
 Now let's look at `tool.driver.rules`.
 Recall that each array element is a `reportingDescriptor` object, which in this context represents an analysis rule.
 For the first time we encounter `reportingDescriptor.relationships`,
-each of whose elements is a `reportingDescriptorRelationship` object<sup><a href="#note-11">11</a></sup>
+each of whose elements is a `reportingDescriptorRelationship` object<sup><a href="#note-12">12</a></sup>
 which establishes a relationship from this rule to another `reportingDescriptor` object.
 The target of the relationship can be a taxon in a taxonomy (as in this example),
 or another rule within this or another tool component.
@@ -557,21 +557,21 @@ Its value is a `reportingDescriptorReference` object that identifies a `reportin
 All together, this `reportingDescriptorReference` object designates weakness 401 in the CWE taxonomy.
 
 Finally, `reportingDescriptorRelationship.kinds` describes the type of this relationship (there can be more than one).
-In this example, the `"superset"` relationship kind tells us that VWE weakness 401 is a superset of this rule:
+In this example, the `"superset"` relationship kind tells us that CWE weakness 401 is a superset of this rule:
 that is, every violation of this rule is an example of CWE weakness 401,
-but not necessarily _vice versa_.<sup><a href="#note-12">12</a></sup>
+but not necessarily _vice versa_.<sup><a href="#note-13">13</a>, <a href="#note-14">14</a></sup>
 
 At last we come to `run.results`, where we see that each result can have a property `taxa` specifying the categories
 into which this result falls.
 Like `reportingDescriptort.taxa`
 (but unlike `toolComponent.taxa`, which is an array of `reportingDescriptor` objects!),
-`result.taxa` is an array of `reportingDescriptorReference` objects.<sup><a href="#note-13">13</a></sup>
+`result.taxa` is an array of `reportingDescriptorReference` objects.<sup><a href="#note-15">15</a></sup>
 
 In this example, the result is a violation of rule `CA2101`,
 and we've already seen that CWE weakness 401 is a superset of `CA2101`.
 So we could infer that this result fell into the taxon "CWE 401" even if the SARIF file didn't explicitly say so.
 And indeed, the spec says, in its usual formal language,
-that we can omit this element of `result.taxa` in this case.<sup><a href="#note-14">14</a></sup>
+that we can omit this element of `result.taxa` in this case.<sup><a href="#note-16">16</a></sup>
 
 ## <a id="code-flows"></a>Code flows
 
@@ -620,7 +620,13 @@ But despite my reputation for being a good "namer," I've never been able to come
 
 <a id="note-7"></a>7. See [§3.19.3, Taxonomies](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012492).
 
-<a id="note-8"></a>8. The reason for this design choice was that almost all of the properties of this object make sense
+<a id="note-8"></a>8. If a tool supported a custom taxonomy,
+that taxonomy would appear as `tool.driver.taxa`
+(or `tool.extensions[].taxa` if the custom taxonomy were defined by a tool extension).
+This is a much less common scenario than the use of a public taxonomy such as CWE,
+and we won't discuss it further.
+
+<a id="note-9"></a>9. The reason for this design choice was that almost all of the properties of this object make sense
 both for the tool's driver and extensions and for taxonomies.
 The result of this choice is that the spec occasionally has to include text
 to describe the conditions where certain properties can or cannot appear
@@ -629,7 +635,7 @@ to describe the conditions where certain properties can or cannot appear
 > If the `toolComponent` describes a standard taxonomy (for example, the Common Weakness Enumeration [CWE™]),
 it **SHALL NOT** contain `rules` (§3.19.23) or `notifications` (§3.19.24).
 
-<a id="note-9"></a>9. Again, the reason for this choice was the almost complete overlap between the properties that
+<a id="note-10"></a>10. Again, the reason for this choice was the almost complete overlap between the properties that
 make sense for rules, notifications, and taxa.
 Again, the result is that occasionally the spec has to describe differences among the usages of the same object
 for different purposes
@@ -644,20 +650,26 @@ which occur as values of `result.message.id` properties (§3.27.11, §3.11.10) i
 the set of property names appearing in the `messageStrings` property **SHALL** contain at least the set of strings
 which occur as values of `notification.message.id` for any notification object in the run.
 
-<a id="note-10"></a>10. To avoid repeating taxonomy definitions in every log file,
+<a id="note-11"></a>11. To avoid repeating taxonomy definitions in every log file,
 and to provide access to the complete taxonomy without bloating the log file,
 SARIF provides a facility called <a href="5.2-Glossary.md#external-property-file">_external property files_</a>
 (see [§3.15.2](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012471))
 that allows large data sets needed by a SARIF log file to be stored in separate files.
 
-<a id="note-11"></a>11. See [§3.49.11,
+<a id="note-12"></a>12. See [§3.49.11,
 reportingDescriptorRelationship object](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012826).
 
-<a id="note-12"></a>12. For information about all kinds of reporting descriptor relationships, see
+<a id="note-13"></a>13. For information about all kinds of reporting descriptor relationships, see
 [§3.53.3,
 kinds property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012829).
 
-<a id="note-13"></a>13. Admittedly this is a bit confusing to remember.
+<a id="note-14"></a>14. The "directionality" of the relationships is confusing.
+Reading the log file, it appears to say that "Rule `CA2101` is a superset of CWE weakness 401,"
+when in fact it's the other way around.
+The TC made this choice because the relationship kind definitions came from an existing tool,
+and the TC felt that it would confuse users of that tool if SARIF's definitions were the opposite of the tool's.
+
+<a id="note-15"></a>15. Admittedly this is a bit confusing to remember.
 The SARIF TC considered using distinct names,
 so that the properties in `reportingDescriptor` and `result` would have been named (for example) "`taxonReferences`"
 instead of "`taxa`".
@@ -666,7 +678,7 @@ Actually the TC went through a little naming exercise at the end where we change
 to improve conciseness.
 This might surprise you if you read the spec and encounter a name like `externalPropertyFileReference`!
 
-<a id="note-14"></a>14. As
+<a id="note-16"></a>16. As
 [§3.27.8,
 taxa property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012602)
 so eloquently puts it:
