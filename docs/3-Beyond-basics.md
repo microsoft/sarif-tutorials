@@ -416,7 +416,7 @@ and `tool.driver` has an additional property `notifications` that is also an arr
 In the context of code analysis, a <a href="5.2-Glossary.md#taxonomy">_taxonomy_</a> is a system that classifies
 analysis results into a set of categories.
 The SARIF spec uses the term <a href="5.2-Glossary.md#standard-taxonomy">_standard taxonomy_</a>
-for a taxonomy that is defined independently of any particular analysis tool,
+for a taxonomy defined independently of any particular analysis tool,
 and <a href="5.2-Glossary.md#custom-taxonomy">_custom taxonomy_</a>
 for a taxonomy defined by a tool.<sup><a href="#note-7">7</a></sup>
 The [Common Weakness Enumeration (CWE)](https://cwe.mitre.org/) is a well-known example of a standard taxonomy.
@@ -445,12 +445,6 @@ SARIF can represent taxonomies and can associate results with <a href="5.2-Gloss
           "shortDescription": {
             "text": "The MITRE Common Weakness Enumeration"
           },
-          "contents": [
-            "localizedData",
-            "nonLocalizedData"
-          ],
-          "isComprehensive": false,
-          "minimumRequiredLocalizedDataSemanticVersion": "3.2",
           "taxa": [
             {
               "id": "401",
@@ -463,7 +457,8 @@ SARIF can represent taxonomies and can associate results with <a href="5.2-Gloss
                 "level": "warning"
               }
             }
-          ]
+          ],
+          "isComprehensive": false
         }
       ],
       "tool": {
@@ -507,13 +502,27 @@ SARIF can represent taxonomies and can associate results with <a href="5.2-Gloss
 }
 ```
 
-The property `run.taxonomies` is an array each of whose elements describes one taxonomy.
-The array elements are SARIF `toolComponent` objects &mdash;
-the same kind of object as `tool.driver` and the array elements of `tool.extensions`.
+Each element of `run.taxonomies` describes a taxonomy.
+The array elements are `toolComponent` objects,
+the same kind of object as `tool.driver` and the array elements of `tool.extensions`.<sup><a href="#note-8">8</a></sup>
 
-`tool.driver.supportedTaxonomies`.
-In this example, it says that this tool supports the CWE taxonomy.
-The `guid`
+`toolComponent.taxa` defines the individual categories defined by the taxonomy.
+The array elements are `reportingDescriptor` objects,
+the same kind of object as the elements of `tool.driver.rules` and `tool.driver.notifications`.<sup><a href="#note-9">9</a></sup>.
+
+The log file does not have to include the complete taxonomy;
+it only needs to include the taxa relevant to the results in the current run.
+In this example, the value `false` for `toolComponent.isComprehensive` tells the SARIF consumer
+that this object contains only a subset of the taxa defined by the taxonomy.
+(`false` is actually the default value, which makes sense because a tool should have to make an explicit statement
+that it has provided the entire taxonomy.)<sup><a href="#note-10">10</a></sup>.
+
+Moving down to the `tool` object, we see `tool.driver.supportedTaxonomies`,
+which in this example says that this tool supports the CWE taxonomy.
+The array elements of `supportedTaxonomies` are `toolComponentReference` objects,
+which makes sense since the taxonomies themselves are `toolComponent` object.
+The `toolComponentReference.guid` property matches the `guid` property in `run.taxonomies[0]`,
+the object that defines the taxonomy itself.
 
 ## <a id="code-flows"></a>Code flows
 
@@ -561,5 +570,35 @@ This is a case where in my opinion the generalization of a concept led to a name
 But despite my reputation for being a good "namer," I've never been able to come up with a better one.
 
 <a id="note-7"></a>7. See [§3.19.3, Taxonomies](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012492).
+
+<a id="note-8"></a>8. The reason for this design choice was that almost all of the properties of this object make sense
+both for the tool's driver and extensions and for taxonomies.
+The result of this choice is that the spec occasionally has to include text
+to describe the conditions where certain properties can or cannot appear
+(see, for example, [§3.19.25, taxa property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012514)):
+
+> If the `toolComponent` describes a standard taxonomy (for example, the Common Weakness Enumeration [CWE™]),
+it **SHALL NOT** contain `rules` (§3.19.23) or `notifications` (§3.19.24).
+
+<a id="note-9"></a>9. Again, the reason for this choice was the almost complete overlap between the properties that
+make sense for rules, notifications, and taxa.
+Again, the result is that occasionally the spec has to describe differences among the usages of the same object
+for different purposes
+(see, for example, [§3.49.11,
+messageStrings property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012803)):
+
+> If the `reportingDescriptor` object defines a rule,
+the set of property names appearing in the `messageStrings` property **SHALL** contain at least the set of strings
+which occur as values of `result.message.id` properties (§3.27.11, §3.11.10) in the current run object...
+>
+> If the `reportingDescriptor` object describes a notification,
+the set of property names appearing in the `messageStrings` property **SHALL** contain at least the set of strings
+which occur as values of `notification.message.id` for any notification object in the run.
+
+<a id="note-10"></a>10. To avoid repeating taxonomy definitions in every log file,
+and to provide access to the complete taxonomy without bloating the log file,
+SARIF provides a facility called <a href="5.2-Glossary#external-property-file">_external property files_</a>
+(see [§3.15.2](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012514))
+that allows large data sets needed by a SARIF log file to be stored in separate files.
 
 [Table of contents](../README.md#contents)

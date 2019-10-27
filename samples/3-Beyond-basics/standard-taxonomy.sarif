@@ -14,12 +14,6 @@
           "shortDescription": {
             "text": "The MITRE Common Weakness Enumeration"
           },
-          "contents": [
-            "localizedData",
-            "nonLocalizedData"
-          ],
-          "isComprehensive": false,
-          "minimumRequiredLocalizedDataSemanticVersion": "3.2",
           "taxa": [
             {
               "id": "401",
@@ -32,7 +26,8 @@
                 "level": "warning"
               }
             }
-          ]
+          ],
+          "isComprehensive": false,
         }
       ],
       "tool": {
