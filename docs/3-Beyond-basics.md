@@ -119,7 +119,7 @@ Not every SARIF viewer will know how to render GFM, so while this is legal:
 ### <a id="msg-metadata"></a>Messages from metadata
 
 Some result messages are long, because a good message not only explains what was wrong:
-it also (as appropriate) explains why the flagged construct is considered questionable,
+it also explains why the flagged construct is considered questionable,
 provides guidance for remedying the problem,
 and explains when it's ok to ignore the result.
 
@@ -415,11 +415,105 @@ and `tool.driver` has an additional property `notifications` that is also an arr
 
 In the context of code analysis, a <a href="5.2-Glossary.md#taxonomy">_taxonomy_</a> is a system that classifies
 analysis results into a set of categories.
-The [Common Weakness Enumeration (CWE)](https://cwe.mitre.org/) is a well-known example.
+The SARIF spec uses the term <a href="5.2-Glossary#standard-taxonomy">_standard taxonomy_</a>
+for a taxonomy that is defined independently of any particular analysis tool,
+and <a href="5.2-Glossary#custom-taxonomy">_custom taxonomy_</a>
+for a taxonomy defined by a tool.<sup><a href="#note-7">7</a></sup>
+The [Common Weakness Enumeration (CWE)](https://cwe.mitre.org/) is a well-known example of a standard taxonomy.
 
-SARIF can represent taxonomies and associate results with <a href="5.2-Glossary.md#taxon">_taxa_</a>,
+In a sense, an analysis tool's rule set defines a taxonomy,
+but the SARIF spec uses the term only for classification systems other than analysis rule sets.
+
+SARIF can represent taxonomies and can associate results with <a href="5.2-Glossary.md#taxon">_taxa_</a>
 (the individual categories within a taxonomy), as in this example
-(see [taxonomy.sarif](../samples/3-Beyond-basics/taxonomy.sarif)):
+(see [standard-taxonomy.sarif](../samples/3-Beyond-basics/standard-taxonomy.sarif)):
+
+```json
+{
+  "version": "2.1.0",
+  "runs": [
+    {
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "version": "3.2",
+          "releaseDateUtc": "2019-01-03",
+          "guid": "A9282C88-F1FE-4A01-8137-E8D2A037AB82",
+          "informationUri": "https://cwe.mitre.org/data/published/cwe_v3.2.pdf/",
+          "downloadUri": "https://cwe.mitre.org/data/xml/cwec_v3.2.xml.zip",
+          "organization": "MITRE",
+          "shortDescription": {
+            "text": "The MITRE Common Weakness Enumeration"
+          },
+          "contents": [
+            "localizedData",
+            "nonLocalizedData"
+          ],
+          "isComprehensive": false,
+          "minimumRequiredLocalizedDataSemanticVersion": "3.2",
+          "taxa": [
+            {
+              "id": "401",
+              "guid": "10F28368-3A92-4396-A318-75B9743282F6",
+              "name": "Memory Leak",
+              "shortDescription": {
+                "text": "Missing Release of Memory After Effective Lifetime"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            }
+          ]
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "CodeScanner",
+          "rules": [
+            {
+              "id": "CA2101",
+              "shortDescription": {
+                "text": "Failed to release dynamic memory."
+              },
+              "relationships": [
+                {
+                  "target": {
+                    "id": "401",
+                    "guid": "A9282C88-F1FE-4A01-8137-E8D2A037AB82",
+                    "toolComponent": {
+                      "name": "CWE",
+                      "guid": "10F28368-3A92-4396-A318-75B9743282F6"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            }
+          ],
+          "supportedTaxonomies": [
+            {
+              "name": "CWE",
+              "guid": "A9282C88-F1FE-4A01-8137-E8D2A037AB82"
+            }
+          ]
+        }
+      },
+      "results": [
+      ]
+    }
+  ]
+}
+```
+
+The property `run.taxonomies` is an array each of whose elements describes one taxonomy.
+The array elements are SARIF `toolComponent` objects &mdash;
+the same kind of object as `tool.driver` and the array elements of `tool.extensions`.
+
+`tool.driver.supportedTaxonomies`.
+In this example, it says that this tool supports the CWE taxonomy.
+The `guid`
 
 ## <a id="code-flows"></a>Code flows
 
@@ -465,5 +559,7 @@ and search for the string "redactable" in the spec to find all the tokens that m
 this object was called simply the `rule` object.
 This is a case where in my opinion the generalization of a concept led to a name that was less understandable.
 But despite my reputation for being a good "namer," I've never been able to come up with a better one.
+
+<a id="note-7"></a>7. See [§3.19.3, Taxonomies](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012492).
 
 [Table of contents](../README.md#contents)
