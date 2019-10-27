@@ -508,14 +508,14 @@ the same kind of object as `tool.driver` and the array elements of `tool.extensi
 
 `toolComponent.taxa` defines the individual categories defined by the taxonomy.
 The array elements are `reportingDescriptor` objects,
-the same kind of object as the elements of `tool.driver.rules` and `tool.driver.notifications`.<sup><a href="#note-9">9</a></sup>.
+the same kind of object as the elements of `tool.driver.rules` and `tool.driver.notifications`.<sup><a href="#note-9">9</a></sup>
 
 The log file does not have to include the complete taxonomy;
 it only needs to include the taxa relevant to the results in the current run.
 In this example, the value `false` for `toolComponent.isComprehensive` tells the SARIF consumer
-that this object contains only a subset of the taxa defined by the taxonomy.
+that this object contains only a subset of the taxa defined by the taxonomy.<sup><a href="#note-10">10</a></sup>
 (`false` is actually the default value, which makes sense because a tool should have to make an explicit statement
-that it has provided the entire taxonomy.)<sup><a href="#note-10">10</a></sup>
+that it has provided the entire taxonomy.)
 
 Moving down to the `tool` object, we see `tool.driver.supportedTaxonomies`,
 which in this example says that this tool supports the CWE taxonomy.
