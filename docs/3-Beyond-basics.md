@@ -464,6 +464,12 @@ SARIF can represent taxonomies and can associate results with <a href="5.2-Gloss
       "tool": {
         "driver": {
           "name": "CodeScanner",
+          "supportedTaxonomies": [
+            {
+              "name": "CWE",
+              "guid": "A9282C88-F1FE-4A01-8137-E8D2A037AB82"
+            }
+          ],
           "rules": [
             {
               "id": "CA2101",
@@ -486,21 +492,35 @@ SARIF can represent taxonomies and can associate results with <a href="5.2-Gloss
                 }
               ]
             }
-          ],
-          "supportedTaxonomies": [
-            {
-              "name": "CWE",
-              "guid": "A9282C88-F1FE-4A01-8137-E8D2A037AB82"
-            }
           ]
         }
       },
       "results": [
+        {
+          "ruleId": "CA2101",
+          "message": {
+            "text": "Memory allocated in variable 'p' was not released."
+          },
+          "taxa": [
+            {
+              "target": {
+                "id": "401",
+                "guid": "A9282C88-F1FE-4A01-8137-E8D2A037AB82",
+                "toolComponent": {
+                  "name": "CWE",
+                  "guid": "10F28368-3A92-4396-A318-75B9743282F6"
+                }
+              }
+            }
+          ]
+        }
       ]
     }
   ]
 }
 ```
+
+Let's look at this fairly complicated example from top to bottom.
 
 Each element of `run.taxonomies` describes a taxonomy.
 The array elements are `toolComponent` objects,
@@ -523,6 +543,35 @@ The array elements of `supportedTaxonomies` are `toolComponentReference` objects
 which makes sense since the taxonomies themselves are `toolComponent` object.
 The `toolComponentReference.guid` property matches the `guid` property in `run.taxonomies[0]`,
 the object that defines the taxonomy itself.
+
+Now let's look at `tool.driver.rules`.
+Recall that each array element is a `reportingDescriptor` object, which in this context represents an analysis rule.
+For the first time we encounter `reportingDescriptor.relationships`,
+each of whose elements is a `reportingDescriptorRelationship` object<sup><a href="#note-11">11</a></sup>
+which establishes a relationship from this rule to another `reportingDescriptor` object.
+The target of the relationship can be a taxon in a taxonomy (as in this example),
+or another rule within this or another tool component.
+
+The `reportingDescriptorRelationship.target` property identifies the target of the relationship.
+Its value is a `reportingDescriptorReference` object that identifies a `reportingDescriptor` within a `toolComponent`.
+`reportingDescriptorReference.toolComponent`, in turn, is a `toolComponentReference` object
+(which we met earlier as elements of `supportedTaxonomies`).
+All together, this `reportingDescriptorReference` object designates weakness 401 in the CWE taxonomy.
+
+Finally, `reportingDescriptorRelationship.kinds` describes the type of this relationship (there can be more than one).
+In this example, the `"superset"` relationship kind tells us that VWE weakness 401 is a superset of this rule:
+that is, every violation of this rule is an example of CWE weakness 401,
+but not necessarily _vice versa_.<sup><a href="#note-12">12</a></sup>
+
+At last we come to `run.results`, where we see that each result can have a property `taxa` specifying the taxa
+into which this result falls.
+Like `reportingDescriptort.taxa`, `result.taxa` is an array of `reportingDescriptorReference` objects.
+
+In this example, the result is a violation of rule `CA2101`,
+and we've already seen that CWE weakness 401 is a superset of `CA2101`.
+So we could infer that this result fell into the taxon "CWE 401" even if the SARIF file didn't explicitly say so.
+And indeed, the spec says, in its usual formal language,
+that we can omit this element of `result.taxa` in this case.<sup><a href="#note-13">13</a></sup>
 
 ## <a id="code-flows"></a>Code flows
 
@@ -600,5 +649,20 @@ and to provide access to the complete taxonomy without bloating the log file,
 SARIF provides a facility called <a href="5.2-Glossary.md#external-property-file">_external property files_</a>
 (see [§3.15.2](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012471))
 that allows large data sets needed by a SARIF log file to be stored in separate files.
+
+<a id="note-11"></a>11. See [§3.49.11,
+reportingDescriptorRelationship object](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012826).
+
+<a id="note-12"></a>12. For information about all kinds of reporting descriptor relationships, see
+[§3.53.3,
+kinds property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012829).
+
+<a id="note-13"></a>13. As
+[§3.27.8,
+taxa property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012602)
+so eloquently puts it:
+
+> `thisObject.taxa` does not need to contain elements which correspond to `superset` or `equals` relationships;
+rather, the result **SHALL** implicitly be taken to fall into all the taxa described by those relationships.
 
 [Table of contents](../README.md#contents)
