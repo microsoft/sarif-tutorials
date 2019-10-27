@@ -415,9 +415,9 @@ and `tool.driver` has an additional property `notifications` that is also an arr
 
 In the context of code analysis, a <a href="5.2-Glossary.md#taxonomy">_taxonomy_</a> is a system that classifies
 analysis results into a set of categories.
-The SARIF spec uses the term <a href="5.2-Glossary#standard-taxonomy">_standard taxonomy_</a>
+The SARIF spec uses the term <a href="5.2-Glossary.md#standard-taxonomy">_standard taxonomy_</a>
 for a taxonomy that is defined independently of any particular analysis tool,
-and <a href="5.2-Glossary#custom-taxonomy">_custom taxonomy_</a>
+and <a href="5.2-Glossary.md#custom-taxonomy">_custom taxonomy_</a>
 for a taxonomy defined by a tool.<sup><a href="#note-7">7</a></sup>
 The [Common Weakness Enumeration (CWE)](https://cwe.mitre.org/) is a well-known example of a standard taxonomy.
 
