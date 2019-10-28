@@ -88,7 +88,7 @@ Even so, I think there's enough useful information in these tutorials to be wort
     - [Tool execution notification and tool configuration notifications](docs/3-Beyond-basics.md#exec-config-notif)
     - [Notifications _vs._ results](docs/3-Beyond-basics.md#notif-result)
   - [Taxonomies](docs/3-Beyond-basics.md#taxonomies)
-  - [Code flows (TODO)](docs/3-Beyond-basics.md#code-flows)
+  - [Code flows](docs/3-Beyond-basics.md#code-flows)
   - [Automation (TODO)](docs/3-Beyond-basics.md#automation)
 - Advanced topics
   - Tool extensions (TODO)

@@ -575,6 +575,13 @@ that we can omit this element of `result.taxa` in this case.<sup><a href="#note-
 
 ## <a id="code-flows"></a>Code flows
 
+Some tools detect issues by simulating the execution of a program,
+sometimes across multiple threads of execution.
+SARIF refers to the set of locations encountered in such a simulated execution as a
+<a href="5.2-Glossary.md#code-flow">_code flow_</a>.
+A SARIF code flow contains one or more <a href="5.2-Glossary.md#thread-flow">_thread flows_</a>
+each of which describes a time-ordered sequence of code locations on a single thread of execution.<sup><a href="#note-17">17</a></sup>
+
 ## <a id="automation"></a>Automation
 
 ## Notes
@@ -685,5 +692,12 @@ so eloquently puts it:
 
 > `thisObject.taxa` does not need to contain elements which correspond to `superset` or `equals` relationships;
 rather, the result **SHALL** implicitly be taken to fall into all the taxa described by those relationships.
+
+<a id="note-17"></a>17. The spec does not commit to any particular operating system implementation of the concept of
+"thread of execution"
+([§3.36.1, Code flow object, General](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012697)):
+
+> We define a thread flow as a temporally ordered sequence of code locations occurring within a single thread of execution,
+> typically an operating system thread or a fiber.
 
 [Table of contents](../README.md#contents)
