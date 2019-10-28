@@ -582,6 +582,182 @@ SARIF refers to the set of locations encountered in such a simulated execution a
 A SARIF code flow contains one or more <a href="5.2-Glossary.md#thread-flow">_thread flows_</a>
 each of which describes a time-ordered sequence of code locations on a single thread of execution.<sup><a href="#note-17">17</a></sup>
 
+Since more than one code flow might be relevant to understanding a result,
+the optional `result.codeFlows` property contains an array of `codeFlow` objects.
+
+Here's an example with a single code flow tracing a single thread of execution.
+Suppose you analyze this Python file, similar to the example in <a href="#related-locations">Related locations</a>,
+but with a function call for added interest
+(see [bad-eval-with-code-flow.py](../samples/3-Beyond-basics/bad-eval-with-code-flow.py)):
+
+```python
+# 3-Beyond-basics/bad-eval-with-code-flow.py
+
+print("Hello, world!")
+expr = input("Expression> ")
+use_input(expr)
+
+def use_input(raw_input):
+    print(eval(raw_input))
+```
+
+The tool might produce something like this (see [bad-eval-with-code-flow.sarif](../samples/3-Beyond-basics/bad-eval-with-code-flow.sarif)):
+
+```json
+{
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "PythonScanner"
+        }
+      },
+      "results": [
+        {
+          "ruleId": "PY2335",
+          "message": {
+            "text": "Use of tainted variable 'raw_input' in the insecure function 'eval'."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "3-Beyond-basics/bad-eval-with-code-flow.py"
+                },
+                "region": {
+                  "startLine": 8
+                }
+              }
+            }
+          ],
+          "codeFlows": [
+            {
+              "message": {
+                "text": "Tracing the path from user input to insecure usage."
+              },
+              "threadFlows": [
+                {
+                  "id": "thread-123",
+                  "locations": [
+                    {
+                      "message": {
+                        "text": "The tainted data enters the system here."
+                      },
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "3-Beyond-basics/bad-eval-with-code-flow.py"
+                          },
+                          "region": {
+                            "startLine": 3
+                          }
+                        }
+                      },
+                      "state": {
+                        "expr": {
+                          "text": "undef"
+                        }
+                      },
+                      "nestingLevel": 0
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "3-Beyond-basics/bad-eval-with-code-flow.py"
+                          },
+                          "region": {
+                            "startLine": 4
+                          }
+                        }
+                      },
+                      "state": {
+                        "expr": {
+                          "text": "42"
+                        }
+                      },
+                      "nestingLevel": 0
+                    },
+                    {
+                      "message": {
+                        "text": "The tainted data is used insecurely here."
+                      },
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "3-Beyond-basics/bad-eval-with-code-flow.py"
+                          },
+                          "region": {
+                            "startLine": 8
+                          }
+                        }
+                      },
+                      "state": {
+                        "raw_input": {
+                          "text": "42"
+                        }
+                      },
+                      "nestingLevel": 1
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+We see that `result.codeFlows` is an array containing a single `codeFlow` object,
+whose required `threadFlows` property in turn is an array containing a single `threadFlow` object.
+The optional `codeFlow.message` explains the significance of the code flow.
+(`threadFlow` also has an optional `message` property, not used in this example.)
+The `threadFlow` object has a required `locations` property whose value is an array of `threadFlowLocation` objects.
+
+Let's look more closely at the `threadFlowLocation` object.
+It has an optional `message` property that describes the significance of the location.
+
+Next, we see that it has a `location` property of type `location`,
+so the code flow can include both physical and logical location
+information.<sup><a href="#note-18">18</a>, <a href="#note-19">19</a></sup>
+
+Next we have the `state` property,
+whose purpose is to allow a SARIF viewer to provide a "debugger Watch window"-like experience
+as the user steps through the code flow.
+The property names can be anything,
+but they are typically variable names (like the `"expr"` in this example)
+or expressions such as `"x + y"` in the syntax of the language being analyzed.
+The property values are string representations of the values of the corresponding variables or expressions.
+For example, if the value of the variable `n` is the integer `42`
+and the value of the variable `s` is the string `"Hello"`,
+then the state property would look like this:
+
+```json
+"state": {
+  "n": "42",
+  "s": "\"Hello\""
+}
+```
+
+Finally we see the optional `nestingLevel` property,
+whose purpose is to allow a SARIF viewer to present an indented view of the execution trace, for example:
+
+```text
+bad-eval-with-code-flow:3
+bad-eval-with-code-flow:4
+    bad-eval-with-code-flow:8
+```
+
+The level of indentation would typically track the function call nesting level,
+but the spec doesn't require that.<sup><a href="#note-20">20</a></sup>
+
+We've just scratched the surface of code flows in SARIF.
+The `codeFlow`, `threadFlow`, and `threadFlowLocation` objects all have more properties for more advanced scenarios.
+
 ## <a id="automation"></a>Automation
 
 ## Notes
@@ -699,5 +875,25 @@ rather, the result **SHALL** implicitly be taken to fall into all the taxa descr
 
 > We define a thread flow as a temporally ordered sequence of code locations occurring within a single thread of execution,
 > typically an operating system thread or a fiber.
+
+<a id="note-18"></a>18. Here's another example of where reasonable people might disagree about the property naming.
+The array elements of `threadFlow.locations` are of type `threadFlowLocation` (_not_ of type `location`),
+whereas the property `threadFlowLocation.location` _is_ of type `location`.
+Perhaps `threadFlow.locations` should have been named `threadFlow.threadFlowLocations`,
+but again, the TC chose conciseness in naming.
+
+<a id="note-19"></a>19. `threadFlowLocation.location` is almost always present, but it's not required because
+there are rare circumstances where location information is not available.
+See [§3.38.3, location property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012710)
+for such an example.
+
+<a id="note-20"></a>20. Here's what the spec actually says (see
+[§3.38.10, nestingLevel property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012717)):
+
+> [It] represents any type of logical containment hierarchy among the `threadFlowLocation` objects
+> in the `threadFlow`. Typically, it represents function call depth.
+>
+> A viewer that renders a `threadFlow` **SHOULD** provide a visual representation of the value of `nestingLevel`.
+> Typically, this would be an indentation indicating the depth of each location in the call tree.
 
 [Table of contents](../README.md#contents)
