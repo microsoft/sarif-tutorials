@@ -32,7 +32,6 @@
               },
               "threadFlows": [
                 {
-                  "id": "thread-123",
                   "locations": [
                     {
                       "location": {

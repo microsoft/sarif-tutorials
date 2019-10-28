@@ -638,7 +638,6 @@ The tool might produce something like this (see [bad-eval-with-code-flow.sarif](
               },
               "threadFlows": [
                 {
-                  "id": "thread-123",
                   "locations": [
                     {
                       "message": {
