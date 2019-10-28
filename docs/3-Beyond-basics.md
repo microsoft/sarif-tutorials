@@ -776,7 +776,7 @@ So it's not always appropriate to look up the message string in `tool.driver.rul
 Depending on context, the string might come from
 <a href="5.2-Glossary.md#notification-metadata">_notification metadata_</a>
 (see <a href="#notifications">Notifications</a>)
-or even from `globalMessageStrings`, which we won't say more about (See
+or even from `globalMessageStrings`, which we won't say more about (see
 [§3.19.22, globalMessageStrings property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012511)).
 You can find the complete, complicated algorithm in
 [§3.11.7, Message string lookup](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012424).
@@ -896,7 +896,7 @@ there are rare circumstances where location information is not available.
 See [§3.38.3, location property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012710)
 for such an example.
 
-<a id="note-20"></a>20. Here's what the spec actually says (see
+<a id="note-20"></a>20. Here's what the spec actually says about `threadFlowLocation.nestingLevel` (see
 [§3.38.10, nestingLevel property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012717)):
 
 > [It] represents any type of logical containment hierarchy among the `threadFlowLocation` objects
