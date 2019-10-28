@@ -737,10 +737,20 @@ then the state property would look like this:
 
 ```json
 "state": {
-  "n": "42",
-  "s": "\"Hello\""
+  "n": {
+    "text": "42"
+  },
+  "s": {
+    "text": "\"Hello\""
+  }
 }
 ```
+
+Note that the property values aren't simple strings;
+they are actually `multiformatMessageString` objects,
+which we haven't met before and won't discuss further &mdash;
+except to say that this allows a tool to produce a Markdown version of the expression value
+for viewers that can render Markdown.
 
 Finally we see the optional `nestingLevel` property,
 whose purpose is to allow a SARIF viewer to present an indented view of the execution trace, for example:
