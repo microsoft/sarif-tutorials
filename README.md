@@ -45,10 +45,14 @@ But despite the fact that I'm the co-Editor (with Michael Fanning) and primary w
 these tutorials are _not_ an OASIS work product or endorsed by OASIS in any way.
 They represent my personal interpretation and explanation of the standard.
 
-## Work in progress
+## Status
 
-As you will see from the missing links in the table of contents, there's still much more I'd like to write about.
-Even so, I think there's enough useful information in these tutorials to be worth your while to read.
+These tutorials now contain enough information to give you a solid background in SARIF.
+As you will see from the "TODO" entries in the table of contents, there's much more I'd like to write about.
+But these are advanced topics that I will address when I have time.
+
+If you'd like an explanation of a SARIF feature that I haven't covered,
+please let me know by filing an issue in this repo
 
 ## <a id="contents"></a>Table of contents
 
@@ -89,7 +93,7 @@ Even so, I think there's enough useful information in these tutorials to be wort
     - [Notifications _vs._ results](docs/3-Beyond-basics.md#notif-result)
   - [Taxonomies](docs/3-Beyond-basics.md#taxonomies)
   - [Code flows](docs/3-Beyond-basics.md#code-flows)
-  - [Automation (TODO)](docs/3-Beyond-basics.md#automation)
+  - [Automation](docs/3-Beyond-basics.md#automation)
 - Advanced topics
   - Tool extensions (TODO)
   - Translations (TODO)

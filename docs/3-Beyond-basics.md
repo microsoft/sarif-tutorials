@@ -769,6 +769,12 @@ The `codeFlow`, `threadFlow`, and `threadFlowLocation` objects all have more pro
 
 ## <a id="automation"></a>Automation
 
+You can run a SARIF-producing analysis tool by hand at any time,
+examine the resulting log file in a text editor or in a SARIF viewer,
+and use the results to improve your code.
+But SARIF goes beyond "manual" usage scenarioes with features that support its usage in large teams with elaborate,
+automated engineering processes.
+
 ## Notes
 
 <a id="note-1"></a>1. CAUTION: `message` objects appear throughout the SARIF format, not just in `result` objects.
