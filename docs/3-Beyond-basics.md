@@ -781,7 +781,36 @@ Note that it is the _run_, not the _log file_, that has a unique identity.
 The log file is just a packaging mechanism for a set of runs;
 it's the runs that are important.<sup><a href="#note-21">21</a></sup>
 
-### <a id="run-ids"></a>Run identifiers and aggregates
+### <a id="run-ids"></a>Run identifiers
+
+A run is identified by the `run.automationDetails` property,
+whose name suggests its intended usage: to enable automatic processing of scan results in an engineering system.
+Its value is an `runAutomationDetails` object.
+Here's an example (see [automation-details.sarif](../samples/3-Beyond-basics/automation-details.sarif)):
+
+```json
+{
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "CodeScanner"
+        }
+      },
+      "automationDetails": {
+        "description": {
+          "text": "This is the October 10, 2018 nightly run of the CodeScanner tool on all product binaries in the 'master' branch of the 'sarif-sdk' repo"
+        },
+        "id": "CodeScanner/nightly/sarif-sdk/master/2018-10-05",
+        "guid": "d541006e-582d-4600-a603-64925b7f7f35",
+        "correlationGuid": "53819b2e-a790-4f8b-b68f-a145c13b4f39"
+      },
+      "results": []
+    }
+  ]
+}
+```
 
 ## Notes
 
