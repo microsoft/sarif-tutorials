@@ -775,6 +775,14 @@ and use the results to improve your code.
 But SARIF goes beyond "manual" usage scenarioes with features that support its usage in large teams with elaborate,
 automated engineering processes.
 
+SARIF provides ways to uniquely identify a run and to describe its role in the user's
+<a href="5.2-Glossary.md#engineering-system">_engineering system_</a>.
+Note that it is the _run_, not the _log file_, that has a unique identity.
+The log file is just a packaging mechanism for a set of runs;
+it's the runs that are important.<sup><a href="#note-21">21</a></sup>
+
+### <a id="run-ids"></a>Run identifiers and aggregates
+
 ## Notes
 
 <a id="note-1"></a>1. CAUTION: `message` objects appear throughout the SARIF format, not just in `result` objects.
@@ -910,5 +918,11 @@ for such an example.
 >
 > A viewer that renders a `threadFlow` **SHOULD** provide a visual representation of the value of `nestingLevel`.
 > Typically, this would be an indentation indicating the depth of each location in the call tree.
+
+<a id="note-21"></a>21. The SARIF spec doesn't say these words.
+This is simply a point of view I advocated in the TC design meetings,
+whenever we argued over whether a particular property should appear on the `run` object or the `sarifLog` object.
+The fact that the `sarifLog` object has hardly any properties of its own beyond the `runs` array indicates
+that this point of view prevailed.
 
 [Table of contents](../README.md#contents)
