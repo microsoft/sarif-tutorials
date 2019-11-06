@@ -978,7 +978,7 @@ Hierarchical strings](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-
 there might be out of band information (such as a convention)
 that interprets other string-valued properties as hierarchical strings,
 and tools built to work within that engineering system might respect that hierarchy.
-But the log files won't be interoperable, in the sense the "generic" SARIF tools &mdash;
+But the log files won't be interoperable, in the sense that "generic" SARIF tools &mdash;
 tools _not_ specifically built to work within that engineering system &mdash;
 won't recognize the hierarchy.
 
