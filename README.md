@@ -94,6 +94,8 @@ please let me know by filing an issue in this repo
   - [Taxonomies](docs/3-Beyond-basics.md#taxonomies)
   - [Code flows](docs/3-Beyond-basics.md#code-flows)
   - [Automation](docs/3-Beyond-basics.md#automation)
+    - [The `id` and `guid` properties](docs/3-Beyond-basics.md#run-id-and-guid)
+    - [The `correlationGuid` property](docs/3-Beyond-basics.md#run-correlationGuid)
 - Advanced topics
   - Tool extensions (TODO)
   - Translations (TODO)

@@ -323,9 +323,6 @@ Now we'll discuss the optional `run.invocations` property, which describes how t
 Since a `run` describes a single invocation, you probably wonder why `run.invocations` is an array.
 The spec explains:<sup><a href="#note-3">3</a></sup>
 
-> A `run` object **MAY** contain a property named `invocations` whose value is an array of zero or more
-> `invocation` objects (§3.20) that together describe a single run of a single analysis tool.
->
 > **NOTE**: Normally, an analysis tool runs as a single process, and the `invocations` array requires only one element.
 > The `invocations` property is defined as an array, rather than as a single `invocation` object,
 > to accommodate tools which execute a sequence of programs to produce results.
@@ -812,6 +809,25 @@ Here's an example (see [automation-details.sarif](../samples/3-Beyond-basics/aut
 }
 ```
 
+#### <a id="run-id-and-guid"></a>The `id` and `guid` properties
+
+Depending on the needs of your engineering system, you can identify your runs with a string-valued `id` property,
+a `guid` property, or both.
+
+The `id` property is what the spec refers to as a
+<a href="5.2-Glossary.md#hierarchical-string">_hierarchical string_</a>.<sup><a href="#note-22">22</a></sup>
+In a hierarchical string, the slashes are significant,
+and they're interpreted as defining a logical hierarchy.
+This means (for example) that a viewer is allowed to display a list of run ids indented by that hierarchy,
+or that an API is allowed to support a query such as "find all runs under `CodeScanner/nightly/sarif-sdk`".
+
+The spec explicitly states when a string-valued property is hierarchical.
+In string-valued properties that are not hierarchical (which is most of them),
+slashes are not special and SARIF consumers aren't allowed to assume that they define
+a logical hierarchy.<sup><a href="#note-23">23</a></sup>
+
+#### <a id="run-correlationGuid"></a>The `correlationGuid` property
+
 ## Notes
 
 <a id="note-1"></a>1. CAUTION: `message` objects appear throughout the SARIF format, not just in `result` objects.
@@ -953,5 +969,17 @@ This is simply a point of view I advocated in the TC design meetings,
 whenever we argued over whether a particular property should appear on the `run` object or the `sarifLog` object.
 The fact that the `sarifLog` object has hardly any properties of its own beyond the `runs` array indicates
 that this point of view prevailed.
+
+<a id="note-22"></a>22. See
+[§3.5.4,
+Hierarchical strings](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012395)
+
+<a id="note-23"></a>23. Within a team's engineering system,
+there might be out of band information (such as a convention)
+that interprets other string-valued properties as hierarchical strings,
+and tools built to work within that engineering system might respect that hierarchy.
+But the log files won't be interoperable, in the sense the "generic" SARIF tools &mdash;
+tools _not_ specifically built to work within that engineering system &mdash;
+won't recognize the hierarchy.
 
 [Table of contents](../README.md#contents)
