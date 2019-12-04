@@ -422,8 +422,14 @@ In a sense, an analysis tool's rule set defines a taxonomy,
 but the SARIF spec uses the term only for classification systems other than analysis rule sets.
 
 SARIF can represent taxonomies and can associate results with <a href="5.2-Glossary.md#taxon">_taxa_</a>
-(the individual categories within a taxonomy), as in this example
-(see [standard-taxonomy.sarif](../samples/3-Beyond-basics/standard-taxonomy.sarif)):
+(the individual categories within a taxonomy).
+
+This will be easier to understand with an example. In the example below
+(see [standard-taxonomy.sarif](../samples/3-Beyond-basics/standard-taxonomy.sarif)),
+the analysis tool claims to support the CWE taxonomy.
+The log file includes only the CWE taxa that are relevant to the results in the log file.
+The tool's analysis rule `CA2101` detects memory leaks that correspond to the "Memory Leak"
+taxon in the CWE taxonomy.
 
 ```json
 {
@@ -517,11 +523,13 @@ SARIF can represent taxonomies and can associate results with <a href="5.2-Gloss
 
 Let's look at this fairly complicated example from top to bottom.
 
-Each element of `run.taxonomies` describes a standard taxonomy.<sup><a href="#note-8">8</a></sup>
+Each element of `run.taxonomies` describes a standard taxonomy,<sup><a href="#note-8">8</a></sup>
+in this case the CWE taxonomy.
 The array elements are `toolComponent` objects,
 the same kind of object as `tool.driver` and the array elements of `tool.extensions`.<sup><a href="#note-9">9</a></sup>
 
-`toolComponent.taxa` defines the individual categories defined by the taxonomy.
+`toolComponent.taxa` defines the individual categories defined by the taxonomy;
+in this case, the single array element describes the CWE "Memory Leak" category.
 The array elements are `reportingDescriptor` objects,
 the same kind of object as the elements of `tool.driver.rules` and `tool.driver.notifications`.<sup><a href="#note-10">10</a></sup>
 
