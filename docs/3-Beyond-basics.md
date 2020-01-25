@@ -122,6 +122,8 @@ Some result messages are long, because a good message not only explains what was
 it also explains why the flagged construct is considered questionable,
 provides guidance for remedying the problem,
 and explains when it's ok to ignore the result.
+[Appendix A](Authoring-rule-metadata-and-result-messages.md) provides guidance on authoring
+informative and actionable result messages.
 
 To avoid repeating the lengthy message in every result, a `message` object can specify an
 identifier for the message text

@@ -222,7 +222,10 @@ In the simplest case, which we'll show here, a `message` object contains a simpl
 }
 ```
 
-We'll say much [more about messages](3-Beyond-basics.md#more-about-messages) later.
+We'll say much [more about the features and capabilities of messages](3-Beyond-basics.md#more-about-messages) later.
+Just as important as these technical issues is the quality of the message text.
+[Appendix A](Authoring-rule-metadata-and-result-messages.md) provides guidance on authoring
+informative and actionable result messages.
 
 ### <a id=rule-id></a>Rule identifier
 
@@ -533,7 +536,7 @@ A SARIF log file can contain information about the analysis rules defined by the
 The spec refers to this information as <a href="5.2-Glossary.md#rule-metadata">_rule metadata_</a>.
 Rule metadata can include a complete description of the rule,
 its default severity level,
-one or more message strings (possibly including substitution sequences like `{0}`) to include in a result,
+one or more message strings (possibly including substitution sequences like `{0}`) to include in a result),
 and a URI where you can find more information about the rule.
 
 If rule metadata is present, then when a user selects a result in a SARIF file,
@@ -546,6 +549,10 @@ On the right, the user has selected the Info tab in the SARIF Explorer,
 and viewer has displayed the help URI from the metadata for the `no-unused-vars` rule.
 
 ![A SARIF viewer displays rule metadata for a result](../images/rule-metadata-for-a-result.png)
+
+[Appendix A](Authoring-rule-metadata-and-result-messages.md) provides guidance on authoring
+rule metadata that provides the most useful information to the developer
+and also works well in automated systems.
 
 Note the presence of a `ruleIndex` property in the `result` object in the example.
 In the same way that `result.locations[0].physicalLocation.artifactLocation.index` provides a link between

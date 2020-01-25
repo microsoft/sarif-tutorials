@@ -1,6 +1,6 @@
 [Table of contents](../README.md#contents)
 
-# Glossary
+# Appendix B: Glossary
 
 <a id="analysis-tool"></a>**analysis tool**: A tool that produces observations about a set of programming
 <a href="#artifact">_artifacts_</a>, for example by detecting <a href="#issue">_issues_</a>
