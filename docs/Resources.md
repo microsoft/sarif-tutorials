@@ -1,6 +1,6 @@
 [Table of contents](../README.md#contents)
 
-# Resources
+# Appendix C: Resources
 
 - The [SARIF Home Page](http://sarifweb.azurewebsites.net/) might be the only resource you need.
 It has links to the spec, these tutorials, tools and libraries,
