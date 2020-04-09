@@ -13,8 +13,10 @@
       },
       "results": [
         {
-          "ruleId": "SMP0001"
-        }
+          "ruleId": "SMP0001",
+          "message": {
+            "text": "The result."
+          }        }
       ],
       "columnKind": "utf16CodeUnits"
     }
