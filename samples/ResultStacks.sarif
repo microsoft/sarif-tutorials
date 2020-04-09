@@ -58,7 +58,7 @@
                     },
                     "logicalLocations": [
                       {
-                        "fullyQualifiedName": "collections::list::add_core",
+                        "fullyQualifiedName": "collections::list::add_core"
                       }
                     ]
                   },
