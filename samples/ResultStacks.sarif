@@ -15,7 +15,7 @@
         {
           "ruleId": "SMP0001",
           "message": {
-            "text": "Uninitialized variable"
+            "text": "Uninitialized variable."
           },
           "locations": [
             {
@@ -30,8 +30,7 @@
               },
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "collections::list::add",
-                  "index": 0
+                  "fullyQualifiedName": "collections::list::add"
                 }
               ]
             }
