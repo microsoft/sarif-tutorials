@@ -15,14 +15,33 @@
         {
           "ruleId": "SMP0001",
           "message": {
-            "text": "The result."
+            "text": "Result 1: points to an artifact with an explicit encoding."
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "hello.txt",
+                  "uri": "explicit.txt",
                   "index": 0
+                },
+                "region": {
+                  "startLine": 2
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SMP0002",
+          "message": {
+            "text": "Result 2: points to an artifact that inherits the run's default encoding."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "default.txt",
+                  "index": 1
                 },
                 "region": {
                   "startLine": 2
@@ -35,14 +54,23 @@
       "artifacts": [
         {
           "location": {
-            "uri": "hello.txt"
+            "uri": "explicit.txt"
           },
           "contents": {
             "text": "Hello,\r\nworld"
           },
           "encoding": "UTF-8"
+        },
+        {
+          "location": {
+            "uri": "default.txt"
+          },
+          "contents": {
+            "text": "Hello,\r\nworld"
+          }
         }
       ],
+      "defaultEncoding": "UTF-8",
       "columnKind": "utf16CodeUnits"
     }
   ]
