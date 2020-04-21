@@ -110,7 +110,7 @@
         {
           "ruleId": "SMP0001",
           "message": {
-            "text": "This result is shown because no suppression has been accepted."
+            "text": "This result is visible because no suppression has been accepted."
           },
           "suppressions": [
             {
