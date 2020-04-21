@@ -17,14 +17,17 @@
                 "level": "error"
               },
               "shortDescription": {
-                "text": "URI-valued properties must contain valid URIs."
+                "text": "Properties defined with the 'uri' or 'uri-reference' format must contain valid URIs.",
+                "markdown": "Properties defined with the `uri` or `uri-reference` format must contain valid URIs."
                },
               "fullDescription": {
-                "text": "Every JSON property whose value is defined by the schema to be a URI must contain a valid URI."
+                "text": "Every JSON property whose value is defined by the schema to be a URI (with \"format\": \"uri\" or \"format\": \"uri-reference\") must contain a valid URI.",
+                "markdown": "Every JSON property whose value is defined by the schema to be a URI (with `\"format\": \"uri\"` or `\"format\": \"uri-reference\"`) must contain a valid URI."
               },
               "messageStrings": {
                 "default": {
-                  "text": "The URI '{0}' is invalid."
+                  "text": "The URI '{0}' is invalid.",
+                  "markdown": "The URI `{0}` is invalid."
                 }
               }
             }
@@ -40,7 +43,10 @@
           "level": "error",
           "ruleIndex": 0,
           "message": {
-            "text": "The URI '://C:/code/dev' is invalid."
+            "id": "default",
+            "arguments": [
+              "//C:/code/dev"
+            ]
           },
           "locations": [
             {
