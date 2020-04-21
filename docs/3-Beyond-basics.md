@@ -5,7 +5,7 @@
 ## <a id="related-locations"></a>Related locations
 
 Sometimes there are places in the code other than the result location that can can help you understand a problem.
-We call these places <a href="5.2-Glossary.md#related-location">_related locations_</a>.
+We call these places <a href="Glossary.md#related-location">_related locations_</a>.
 SARIF represents related locations with the optional `result.relatedLocations` property,
 an array of `location` objects.
 
@@ -170,7 +170,7 @@ The desired message is the property of `messageStrings` whose name matches `id`;
 that is, the property named `default`.<sup><a href="#note-1">1</a></sup>
 
 This is another of the file-size-vs.-readability tradeoffs that SARIF offers.
-If rule metadata is available, a tool (or a <a href="5.2-Glossary.md#post-processor">_post-processor_</a>)
+If rule metadata is available, a tool (or a <a href="Glossary.md#post-processor">_post-processor_</a>)
 can choose to inline the messages or to refer to them in the metadata.
 
 ### <a id="msg-args"></a>Messages with arguments
@@ -230,7 +230,7 @@ It's up to the tool to choose the formatting, but it's likely to be culture-inva
 ### <a id="msg-links"></a>Messages with embedded links
 
 SARIF messages can include hyperlinks to web sites as well as to constructs within the SARIF file itself.
-We call these hyperlinks <a href="5.2-Glossary.md#embedded-link">_embedded links_</a>.
+We call these hyperlinks <a href="Glossary.md#embedded-link">_embedded links_</a>.
 Both text messages and Markdown messages can contain embedded links.
 
 #### <a id="msg-links-text-markdown"></a>Links in text and Markdown
@@ -368,8 +368,8 @@ and error conditions (for example, "Rule CA1304 threw an exception and has been 
 ### <a id="exec-config-notif"></a>Tool execution notification and tool configuration notifications
 
 SARIF distinguishes two types of notifications,
-<a href="5.2-Glossary.md#config-notif">_tool configuration notifications_</a> and
-<a href="5.2-Glossary.md#exec-notif">_tool execution notifications_</a>.
+<a href="Glossary.md#config-notif">_tool configuration notifications_</a> and
+<a href="Glossary.md#exec-notif">_tool execution notifications_</a>.
 
 Tool configuration notifications provide information about the configuration of the tool,
 for example, which options were selected, or which rules were enabled or disabled.
@@ -398,7 +398,7 @@ is a `"note"`-level notification, which "Rule CA1304 threw an exception." is an 
 - Both can be described by additional metadata such as a full description, a help URI, and so forth.
 
 For this reason, SARIF uses the same object to describe both rule metadata
-and what the spec refers to as <a href="5.2-Glossary.md#notification-metadata">_notification metadata_</a>:
+and what the spec refers to as <a href="Glossary.md#notification-metadata">_notification metadata_</a>:
 the `reportingDescriptor`.<sup><a href="#note-6">6</a></sup>
 
 Note that SARIF does _not_ use the same object to represent the results and notifications themselves:
@@ -412,18 +412,18 @@ and `tool.driver` has an additional property `notifications` that is also an arr
 
 ## <a id="taxonomies"></a>Taxonomies
 
-In the context of code analysis, a <a href="5.2-Glossary.md#taxonomy">_taxonomy_</a> is a system that classifies
+In the context of code analysis, a <a href="Glossary.md#taxonomy">_taxonomy_</a> is a system that classifies
 analysis results into a set of categories.
-The SARIF spec uses the term <a href="5.2-Glossary.md#standard-taxonomy">_standard taxonomy_</a>
+The SARIF spec uses the term <a href="Glossary.md#standard-taxonomy">_standard taxonomy_</a>
 for a taxonomy defined independently of any particular analysis tool,
-and <a href="5.2-Glossary.md#custom-taxonomy">_custom taxonomy_</a>
+and <a href="Glossary.md#custom-taxonomy">_custom taxonomy_</a>
 for a taxonomy defined by a tool.<sup><a href="#note-7">7</a></sup>
 The [Common Weakness Enumeration (CWE)](https://cwe.mitre.org/) is a well-known example of a standard taxonomy.
 
 In a sense, an analysis tool's rule set defines a taxonomy,
 but the SARIF spec uses the term only for classification systems other than analysis rule sets.
 
-SARIF can represent taxonomies and can associate results with <a href="5.2-Glossary.md#taxon">_taxa_</a>
+SARIF can represent taxonomies and can associate results with <a href="Glossary.md#taxon">_taxa_</a>
 (the individual categories within a taxonomy).
 
 This will be easier to understand with an example. In the example below
@@ -585,8 +585,8 @@ that we can omit this element of `result.taxa` in this case.<sup><a href="#note-
 Some tools detect issues by simulating the execution of a program,
 sometimes across multiple threads of execution.
 SARIF refers to the set of locations encountered in such a simulated execution as a
-<a href="5.2-Glossary.md#code-flow">_code flow_</a>.
-A SARIF code flow contains one or more <a href="5.2-Glossary.md#thread-flow">_thread flows_</a>
+<a href="Glossary.md#code-flow">_code flow_</a>.
+A SARIF code flow contains one or more <a href="Glossary.md#thread-flow">_thread flows_</a>
 each of which describes a time-ordered sequence of code locations on a single thread of execution.<sup><a href="#note-17">17</a></sup>
 
 Since more than one code flow might be relevant to understanding a result,
@@ -783,7 +783,7 @@ But SARIF goes beyond "manual" usage scenarioes with features that support its u
 automated engineering processes.
 
 SARIF provides ways to uniquely identify a run and to describe its role in the user's
-<a href="5.2-Glossary.md#engineering-system">_engineering system_</a>.
+<a href="Glossary.md#engineering-system">_engineering system_</a>.
 Note that it is the _run_, not the _log file_, that has a unique identity.
 The log file is just a packaging mechanism for a set of runs;
 it's the runs that are important.<sup><a href="#note-21">21</a></sup>
@@ -825,7 +825,7 @@ Depending on the needs of your engineering system, you can identify your runs wi
 a `guid` property, or both.
 
 The `id` property is what the spec refers to as a
-<a href="5.2-Glossary.md#hierarchical-string">_hierarchical string_</a>.<sup><a href="#note-22">22</a></sup>
+<a href="Glossary.md#hierarchical-string">_hierarchical string_</a>.<sup><a href="#note-22">22</a></sup>
 In a hierarchical string, the slashes are significant,
 and they're interpreted as defining a logical hierarchy.
 This means (for example) that a viewer is allowed to display a list of run ids indented by that hierarchy,
@@ -843,7 +843,7 @@ a logical hierarchy.<sup><a href="#note-23">23</a></sup>
 <a id="note-1"></a>1. CAUTION: `message` objects appear throughout the SARIF format, not just in `result` objects.
 So it's not always appropriate to look up the message string in `tool.driver.rules`.
 Depending on context, the string might come from
-<a href="5.2-Glossary.md#notification-metadata">_notification metadata_</a>
+<a href="Glossary.md#notification-metadata">_notification metadata_</a>
 (see <a href="#notifications">Notifications</a>)
 or even from `globalMessageStrings`, which we won't say more about (see
 [§3.19.22, globalMessageStrings property](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012511)).
@@ -913,7 +913,7 @@ which occur as values of `notification.message.id` for any notification object i
 
 <a id="note-11"></a>11. To avoid repeating taxonomy definitions in every log file,
 and to provide access to the complete taxonomy without bloating the log file,
-SARIF provides a facility called <a href="5.2-Glossary.md#external-property-file">_external property files_</a>
+SARIF provides a facility called <a href="Glossary.md#external-property-file">_external property files_</a>
 (see [§3.15.2](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html#_Toc16012471))
 that allows large data sets needed by a SARIF log file to be stored in separate files.
 

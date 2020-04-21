@@ -5,14 +5,14 @@
 ## <a id="log-file-and-om"></a>The log file and the object model
 
 A SARIF log is a JSON file.<sup><a href="#note-1">1</a></sup>
-The SARIF spec defines an <a href="5.2-Glossary.md#object-model">_object model_</a>
+The SARIF spec defines an <a href="Glossary.md#object-model">_object model_</a>
 to describe the contents of this file,
 and the top-level object &mdash; the object that represents the log file as a whole &mdash;
 is the `sarifLog` object.
 
 To work with the contents of a log file in your program,
 you need a set of classes that correspond to the elements of the SARIF object model.
-The SARIF spec doesn't standardize the <a href="5.2-Glossary.md#binding">_binding_</a> between its object model
+The SARIF spec doesn't standardize the <a href="Glossary.md#binding">_binding_</a> between its object model
 and any particular programming language.
 Today, there are bindings for .NET (in the [SARIF SDK](https://www.nuget.org/packages/Sarif.Sdk/) NuGet package)
 and Python (in the [`sarif-om`](https://pypi.org/project/sarif-om/) Python module).
@@ -72,12 +72,12 @@ so that, for example, you can send the runs over a network in a single request.<
 
 The `tool` property is required. It describes the analysis tool that produced the run.
 The sub-property `tool.driver` is also required. It describes the tool's
-<a href="5.2-Glossary.md#driver">_driver_</a>, which is the
-<a href="5.2-Glossary.md#tool-component">_tool component_</a> that contains the tool's
-<a href="5.2-Glossary.md#primary-executable">_primary executable_</a>.
+<a href="Glossary.md#driver">_driver_</a>, which is the
+<a href="Glossary.md#tool-component">_tool component_</a> that contains the tool's
+<a href="Glossary.md#primary-executable">_primary executable_</a>.
 
 Some tools support additional components called
-<a href="5.2-Glossary.md#extension">_extensions_</a> (a.k.a. "plugins"),
+<a href="Glossary.md#extension">_extensions_</a> (a.k.a. "plugins"),
 for example, code libraries that define additional analysis rules.
 SARIF defines the optional `tool.extensions` property
 to represent extensions.<sup><a href="#note-4">4</a></sup>
@@ -91,7 +91,7 @@ What do I do if my tool produces information that the SARIF specification doesn'
 
 The answer is that every object in the SARIF object model &mdash; from logs to runs to results to locations
 to messages, without exception &mdash; defines a property named `properties`.
-The spec calls a property named `properties` a <a href="5.2-Glossary.md#property-bag">_property bag_</a>.
+The spec calls a property named `properties` a <a href="Glossary.md#property-bag">_property bag_</a>.
 
 A property bag is a set of name/value pairs &mdash; a JSON object, in SARIF's JSON serialization &mdash;
 with any name and any value.
@@ -128,7 +128,7 @@ It looks like this:
 ```
 
 Having said all that, it's important that you do your best to use the properties that SARIF defines
-(we call them <a href="5.2-Glossary.md#first-class-property">_first class properties_</a>)
+(we call them <a href="Glossary.md#first-class-property">_first class properties_</a>)
 rather than using the property bag.
 Generic SARIF tooling &mdash; tooling that is not aware of the details of any particular tool &mdash;
 will at best be able to display property bag properties.
@@ -140,9 +140,9 @@ Each tool vendor needs to make the call on a property by property basis.
 
 ## <a id="results"></a>Results
 
-The primary purpose of a run is to hold a set of <a href="5.2-Glossary.md#result">_results_</a>.
+The primary purpose of a run is to hold a set of <a href="Glossary.md#result">_results_</a>.
 A result is an observation about the code.
-For most tools, the results represent <a href="5.2-Glossary.md#issue">_issues_</a> &mdash;
+For most tools, the results represent <a href="Glossary.md#issue">_issues_</a> &mdash;
 conditions that might detract from the quality of the code &mdash;
 but some results might be purely informational.
 
@@ -276,7 +276,7 @@ as in the example above.
 #### <a id="loc-array"></a>The `locations` array
 
 We call a place in the code where a tool detects a result a
-<a href="5.2-Glossary.md#result-location">_result location_</a>.
+<a href="Glossary.md#result-location">_result location_</a>.
 SARIF represents result locations with the optional property `result.locations`,
 an array of `location` objects which almost always contains exactly one element:
 
@@ -313,10 +313,10 @@ Only put more than one element in `result.locations` if you _have_ to fix all th
 #### <a id="phys-log-loc"></a>Physical and logical locations
 
 SARIF supports two kinds of locations: physical and logical.
-A <a href="5.2-Glossary.md#physical-location">_physical location_</a>
+A <a href="Glossary.md#physical-location">_physical location_</a>
 describes a location with respect to some programming artifact,
 for example, a range of lines in a source file or a byte range in an executable file.
-A <a href="5.2-Glossary.md#logical-location">_logical location_</a>
+A <a href="Glossary.md#logical-location">_logical location_</a>
 describes a location by name, without reference to a programming artifact,
 for example the name of a method within a class within a namespace.
 
@@ -375,7 +375,7 @@ As usual, this is to support an advanced scenario.<sup><a href="#note-9">9</a></
 
 ## <a id="artifacts"></a>Artifacts
 
-An <a href="5.2-Glossary.md#artifact">_artifact_</a> is anything you create in the course of programming,
+An <a href="Glossary.md#artifact">_artifact_</a> is anything you create in the course of programming,
 such as a source file, an object file, or a web page.
 In SARIF, every artifact must be URL-addressable.
 That means, for example, that if you want to write a static database analyzer that produces SARIF,
@@ -533,7 +533,7 @@ For each such property, the spec explains which array to look in.
 ## <a id="rule-metadata"></a>Rule metadata
 
 A SARIF log file can contain information about the analysis rules defined by the static analysis tool.
-The spec refers to this information as <a href="5.2-Glossary.md#rule-metadata">_rule metadata_</a>.
+The spec refers to this information as <a href="Glossary.md#rule-metadata">_rule metadata_</a>.
 Rule metadata can include a complete description of the rule,
 its default severity level,
 one or more message strings (possibly including substitution sequences like `{0}`) to include in a result),
@@ -620,7 +620,7 @@ although the spec never makes that claim.
 
 <a id="note-12"></a>12. Rather than requiring every analysis tool to implement logic for excluding redundant properties
 to reduce file size, or including them to improve readability, such "file transformation" operations can be
-implemented by a <a href="5.2-Glossary.md#post-processor">_post-processor_</a>.
+implemented by a <a href="Glossary.md#post-processor">_post-processor_</a>.
 The `Sarif.Multitool` NuGet package include a command line tool that (among other things) can post-process
 SARIF files, although at the time of this writing it doesn't implement the exact operation I've described here.
 
