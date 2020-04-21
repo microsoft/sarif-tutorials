@@ -130,6 +130,10 @@ message strings should follow certain "presentational" guidelines:
 This is important because it enables the reader to quickly understand the problem
 and because some viewers might truncate the message to one sentence in contexts where screen real estate is limited.
 
+- Uniquely identifying details, such as the name of the file in which the result occurred,
+should appear in the first sentence, and as close to the beginning of the sentence as possible.
+Again, this helps to provide the maximum amount of visible information when screen space is limited.
+
 - Design the first sentence for people who are familiar with this class of issue,
 but provide additional explanatory detail later for people who are not.
 This optimizes the "read many" case.
