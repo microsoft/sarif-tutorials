@@ -95,7 +95,7 @@
         {
           "ruleId": "SMP0001",
           "message": {
-            "text": "This result is hidden because at least one unqualified suppression."
+            "text": "This result is hidden because it has at least one unqualified suppression."
           },
           "suppressions": [
             {
@@ -110,7 +110,7 @@
         {
           "ruleId": "SMP0001",
           "message": {
-            "text": "This result is visible because no suppression has been accepted."
+            "text": "This result is hidden because at least one suppression has not yet been rejected (it is still under review)."
           },
           "suppressions": [
             {
