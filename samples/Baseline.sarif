@@ -1,0 +1,47 @@
+{
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "version": "2.1.0",
+  "properties": {
+    "comment": "This sample demonstrates the various baseline states a result can have."
+  },
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "SarifSamples"
+        }
+      },
+      "results": [
+        {
+          "ruleId": "SMP0001",
+          "message": {
+            "text": "Absent result."
+          },
+          "baselineState": "absent"
+        },
+        {
+          "ruleId": "SMP0001",
+          "message": {
+            "text": "Unchanged result."
+          },
+          "baselineState": "unchanged"
+        },
+        {
+          "ruleId": "SMP0001",
+          "message": {
+            "text": "Updated result."
+          },
+          "baselineState": "updated"
+        },
+        {
+          "ruleId": "SMP0001",
+          "message": {
+            "text": "New result."
+          },
+          "baselineState": "new"
+        }
+      ],
+      "columnKind": "utf16CodeUnits"
+    }
+  ]
+}
