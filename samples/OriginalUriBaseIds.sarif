@@ -1,0 +1,77 @@
+{
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "version": "2.1.0",
+  "properties": {
+    "comment": "This sample demonstrates the use of originalUriBaseIds."
+  },
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "SarifSamples"
+        }
+      },
+      "originalUriBaseIds": {
+        "PROJECTROOT": {
+          "description": {
+            "text": "The root directory for all project files."
+          },
+          "properties": {
+            "comment": "The SARIF producer has chosen not to specify a URI for PROJECTROOT. See §3.14.14, NOTE 1, for an explanation."
+          }
+        },
+        "SRCROOT": {
+          "uri": "src",
+          "uriBaseId": "PROJECTROOT",
+          "description": {
+            "text": "The root of the source tree."
+          },
+          "properties": {
+            "comment": "SRCROOT is expressed relative to PROJECTROOT."
+          }
+        }
+      },
+      "results": [
+        {
+          "ruleId": "SMP0001",
+          "message": {
+            "text": "A result outside the source tree."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "README.md",
+                  "uriBaseId": "PROJECTROOT",
+                  "properties": {
+                    "comment": "If PROJECTROOT is C:\\project, this file location resolves to C:\\project\\README.md"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SMP0002",
+          "message": {
+            "text": "A result in a source file."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "io/kb.c",
+                  "uriBaseId": "SRCROOT",
+                  "properties": {
+                    "comment": "If PROJECTROOT is C:\\project, this file location resolves to C:\\project\\src\\io\\kb.c"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "columnKind": "utf16CodeUnits"
+    }
+  ]
+}
