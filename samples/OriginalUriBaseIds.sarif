@@ -12,28 +12,37 @@
         }
       },
       "originalUriBaseIds": {
-        "PROJECTROOT": {
+        "REPOROOT": {
           "description": {
-            "text": "The root directory for all project files."
+            "text": "The directory into which the repo was cloned."
           },
           "properties": {
-            "comment": "The SARIF producer has chosen not to specify a URI for PROJECTROOT. See §3.14.14, NOTE 1, for an explanation."
+            "comment": "The SARIF producer has chosen not to specify a URI for REPOROOT. See §3.14.14, NOTE 1, for an explanation."
           }
         },
         "SRCROOT": {
-          "uri": "src",
-          "uriBaseId": "PROJECTROOT",
+          "uri": "src/",
+          "uriBaseId": "REPOROOT",
           "description": {
-            "text": "The root of the source tree."
+            "text": "The r."
           },
           "properties": {
-            "comment": "SRCROOT is expressed relative to PROJECTROOT."
+            "comment": "SRCROOT is expressed relative to REPOROOT."
+          }
+        },
+        "LOGSROOT": {
+          "uri": "file:///C:/logs/",
+          "description": {
+            "text": "Destination for tool logs."
+          },
+          "properties": {
+            "comment": "An originalUriBaseId that resolves directly to an absolute URI."
           }
         }
       },
       "results": [
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "A result outside the source tree."
           },
@@ -42,9 +51,9 @@
               "physicalLocation": {
                 "artifactLocation": {
                   "uri": "README.md",
-                  "uriBaseId": "PROJECTROOT",
+                  "uriBaseId": "REPOROOT",
                   "properties": {
-                    "comment": "If PROJECTROOT is C:\\project, this file location resolves to C:\\project\\README.md"
+                    "comment": "If REPOROOT is C:\\project, this file location resolves to C:\\project\\README.md"
                   }
                 }
               }
@@ -52,7 +61,7 @@
           ]
         },
         {
-          "ruleId": "SMP0002",
+          "ruleId": "TUT1002",
           "message": {
             "text": "A result in a source file."
           },
@@ -63,8 +72,24 @@
                   "uri": "io/kb.c",
                   "uriBaseId": "SRCROOT",
                   "properties": {
-                    "comment": "If PROJECTROOT is C:\\project, this file location resolves to C:\\project\\src\\io\\kb.c"
+                    "comment": "If REPOROOT is C:\\project, this file location resolves to C:\\project\\src\\io\\kb.c"
                   }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "TUT1003",
+          "message": {
+            "text": "A result in a directory, for instance, 'This repo does not contain a LICENSE file.'."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".",
+                  "uriBaseId": "REPOROOT"
                 }
               }
             }
