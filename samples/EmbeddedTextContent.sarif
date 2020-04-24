@@ -13,7 +13,7 @@
       },
       "results": [
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "Result 1: points to an artifact with an explicit encoding."
           },
@@ -32,7 +32,7 @@
           ]
         },
         {
-          "ruleId": "SMP0002",
+          "ruleId": "TUT1002",
           "message": {
             "text": "Result 2: points to an artifact that inherits the run's default encoding."
           },
