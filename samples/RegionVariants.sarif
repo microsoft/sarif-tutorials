@@ -13,7 +13,7 @@
       },
       "results": [
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "Result in text file, specified by startLine only."
           },
@@ -32,7 +32,7 @@
           ]
         },
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "Result in text file, specified by all line/column properties. See SARIF Spec §3.30.2, Example 1."
           },
@@ -54,7 +54,7 @@
           ]
         },
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "Result in text file, specified by all charOffset/charLength properties. See SARIF Spec §3.30.2, Example 1."
           },
@@ -74,7 +74,7 @@
           ]
         },
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "Result in text file, specified by consistent line/column and charOffset/charLength properties. See SARIF Spec §3.30.2, Example 1."
           },
@@ -98,7 +98,7 @@
           ]
         },
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "Result in text file, specified by inconsistent line/column and charOffset/charLength properties. See SARIF Spec §3.30.2, Example 2."
           },
@@ -122,7 +122,7 @@
           ]
         },
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "Result in text file, specified by startLine only. See SARIF Spec §3.30.2, Example 3."
           },
@@ -141,7 +141,7 @@
           ]
         },
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "Result in text file, spanning lines. See SARIF Spec §3.30.2, Example 4."
           },
@@ -161,7 +161,7 @@
           ]
         },
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "Result in text file, including line end. See SARIF Spec §3.30.2, Example 5."
           },
@@ -182,7 +182,7 @@
           ]
         },
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "Result in text file, specifying insertion point with line/column properties. See SARIF Spec §3.30.2, Example 6."
           },
@@ -203,7 +203,7 @@
           ]
         },
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "Result in text file, specifying insertion point with charOffset/charLength properties. See SARIF Spec §3.30.2, Example 6."
           },
@@ -223,7 +223,7 @@
           ]
         },
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "Result in text file, specifying insertion point at start of file with line/column properties. See SARIF Spec §3.30.2, Example 7."
           },
@@ -244,7 +244,7 @@
           ]
         },
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "Result in text file, specifying insertion point at start of file with charOffset/charLength properties. See SARIF Spec §3.30.2, Example 7."
           },
@@ -264,7 +264,7 @@
           ]
         },
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "Result in text file, specifying insertion point at end of file with line/column properties. See SARIF Spec §3.30.2, Example 8."
           },
@@ -285,7 +285,7 @@
           ]
         },
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "Result in text file, specifying insertion point at end of file with charOffset/charLength properties. See SARIF Spec §3.30.2, Example 8."
           },
@@ -305,7 +305,7 @@
           ]
         },
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "Result in text file, specifying a region with consistent line/column, charOffset/charLength, and byteOffset/byteLength properties. See SARIF Spec §3.30.2, Example 8."
           },
@@ -331,7 +331,7 @@
           ]
         },
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "Result in binary file, specifying a region of non-zero length."
           },
@@ -351,7 +351,7 @@
           ]
         },
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "Result in binary file, specifying an insertion point."
           },
@@ -371,7 +371,7 @@
           ]
         },
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "Result in binary file, specifying an insertion point at the beginning of the file."
           },
@@ -391,7 +391,7 @@
           ]
         },
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "Result in binary file, specifying an insertion point at the end of the file."
           },
