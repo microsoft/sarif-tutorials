@@ -11,7 +11,7 @@
           "name": "SarifSamples",
           "rules": [
             {
-              "id": "SMP0001",
+              "id": "TUT1001",
               "name": "InvalidUri",
               "defaultConfiguration": {
                 "level": "error"
@@ -39,7 +39,7 @@
           "properties": {
             "comment": "The ruleIndex property points into the array tool.driver.rules."
           },
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "level": "error",
           "ruleIndex": 0,
           "message": {
