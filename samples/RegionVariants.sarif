@@ -15,25 +15,6 @@
         {
           "ruleId": "TUT1001",
           "message": {
-            "text": "Result in text file, specified by startLine only."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "TextFile.txt",
-                  "index": 0
-                },
-                "region": {
-                  "startLine": 2
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "TUT1001",
-          "message": {
             "text": "Result in text file, specified by all line/column properties. See SARIF Spec §3.30.2, Example 1."
           },
           "locations": [
