@@ -13,28 +13,28 @@
       },
       "results": [
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "Absent result."
           },
           "baselineState": "absent"
         },
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "Unchanged result."
           },
           "baselineState": "unchanged"
         },
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "Updated result."
           },
           "baselineState": "updated"
         },
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "New result."
           },

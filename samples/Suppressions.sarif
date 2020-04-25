@@ -13,13 +13,13 @@
       },
       "results": [
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "This result is visible because it is not suppressed."
           }
         },
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "This result is hidden because it is suppressed in source."
           },
@@ -30,7 +30,7 @@
           ]
         },
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "This result is hidden because it is suppressed externally."
           },
@@ -41,7 +41,7 @@
           ]
         },
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "This result is visible because its suppression was rejected."
           },
@@ -53,7 +53,7 @@
           ]
         },
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "This result is hidden because its suppression was accepted."
           },
@@ -65,7 +65,7 @@
           ]
         },
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "This result is visible because its suppression is still under review."
           },
@@ -77,7 +77,7 @@
           ]
         },
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "This result is hidden because at least one suppression was accepted."
           },
@@ -93,7 +93,7 @@
           ]
         },
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "This result is hidden because it has at least one unqualified suppression."
           },
@@ -108,7 +108,7 @@
           ]
         },
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "This result is hidden because at least one suppression has not yet been rejected (it is still under review)."
           },

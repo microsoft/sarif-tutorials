@@ -13,7 +13,7 @@
       },
       "results": [
         {
-          "ruleId": "SMP0001",
+          "ruleId": "TUT1001",
           "message": {
             "text": "Uninitialized variable."
           },
