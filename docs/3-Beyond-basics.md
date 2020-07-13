@@ -410,7 +410,7 @@ So in our [simple example](1-Introduction.md#simple-example-file),
 the property `tool.driver.rules` was actually an array of `reportingDescriptor`s,
 and `tool.driver` has an additional property `notifications` that is also an array of `reportingDescriptor`s.
 
-For a more detailed example of the definition and use of notifications, see [Notifications.sarif](samples/Notifications.sarif).
+For a more detailed example of the definition and use of notifications, see [Notifications.sarif](../samples/Notifications.sarif).
 
 ## <a id="taxonomies"></a>Taxonomies
 
