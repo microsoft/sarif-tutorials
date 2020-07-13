@@ -13,6 +13,7 @@
           "rules": [
             {
               "id": "TUT1201",
+              "name": "MissingSemicolon",
               "defaultConfiguration": {
                 "level": "error"
               },
@@ -35,10 +36,10 @@
               },
               "messageStrings": {
                 "disabled": {
-                  "text": "The rule '{0}' cannot be disabled because it does not exist."
+                  "text": "'{0}' cannot be disabled because this rule does not exist."
                 },
                 "enabled": {
-                  "text": "The rule '{0}' cannot be enabled because it does not exist."
+                  "text": "'{0}' cannot be enabled because this rule does not exist."
                 }
               }
             },
@@ -56,10 +57,10 @@
               },
               "messageStrings": {
                 "disable": {
-                  "text": "The rule '{0}' threw a '{1}' while analyzing file '{2}'. The rule has been disabled."
+                  "text": "'{0}' threw a '{1}' exception while analyzing file '{2}'. The rule has been disabled."
                 },
                 "continue": {
-                  "text": "The rule '{0}' threw a '{1}' while analyzing file '{2}'. The rule will continue to be run on subsequent files."
+                  "text": "'{0}' threw a '{1}' exception while analyzing file '{2}'. The rule will continue to be run on subsequent files."
                 }
               }
             }
@@ -97,6 +98,65 @@
                   "NullReferenceException",
                   "example.c"
                 ]
+              },
+              "exception": {
+                "kind": "System.NullReferenceException",
+                "message": "Object reference not set to an instance of an object.",
+                "stack": {
+                  "frames": [
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "rules/MissingSemicolon.cs"
+                          },
+                          "region": {
+                            "startLine": 42
+                          }
+                        },
+                        "logicalLocations": [
+                          {
+                            "fullyQualifiedName": "SarifSample.Rules.MissingSemicolon.Execute()"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "EvaluationEngine.cs"
+                          },
+                          "region": {
+                            "startLine": 104
+                          }
+                        },
+                        "logicalLocations": [
+                          {
+                            "fullyQualifiedName": "SarifSample.EvaluationEngine.Run()"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "Program.cs"
+                          },
+                          "region": {
+                            "startLine": 25
+                          }
+                        },
+                        "logicalLocations": [
+                          {
+                            "fullyQualifiedName": "SarifSample.Program.Main(string[])"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
               }
             }
           ]
