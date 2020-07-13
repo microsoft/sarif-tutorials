@@ -8,7 +8,8 @@
     {
       "tool": {
         "driver": {
-          "name": "SarifSamples"
+          "name": "SarifSamples",
+          "version": "1.0"
         }
       },
       "results": [
