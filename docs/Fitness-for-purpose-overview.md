@@ -85,7 +85,11 @@ You can use [policies/gitub-dsp.config.xml](https://github.com/microsoft/sarif-s
 
 To validate a SARIF file according to a rule configuration, run this command (for example):
 
-    sarif validate MyFile.sarif --config policies\github-dsp.config.xml --output MyFile-validation.sarif
+    sarif validate MyFile.sarif --config policies\github-dsp.config.xml --verbose --output MyFile-validation.sarif
+
+Note the `--verbose` option.
+By default, the `validate` command will not produce results for rules whose level is `"note"`, even if the rule is enabled.<sup><a href="#note-6">6</a></sup>
+When `--verbose` is specified, the validator's output includes `"note"`-level results.
 
 ## Summary
 
@@ -98,12 +102,14 @@ During development, SARIF producers can do the same to ensure that their `rewrit
 
 <a id="note-1">1.</a> The system doesn't need to file a separate bug for each result. It might file one bug per source file, or even one bug per tool run.
 
-<a id="note-2">2.</a> At the time of writing, plug-in rule assemblies are not supported. Issue [microsoft/sarif-sdk#1868](https://github.com/microsoft/sarif-sdk/issues/1868), "Allow validation command to accept plug-ins with additional validation rules", tracks this work. Feel free to raise a PR to address it!
+<a id="note-2">2.</a> At the time of writing, plug-in rule assemblies are not supported. Issue [microsoft/sarif-sdk#1868](https://github.com/microsoft/sarif-sdk/issues/1868), "Allow validation command to accept plug-ins with additional validation rules", tracks this work. Feel free to raise a PR to address it.
 
 <a id="note-3">3.</a> At the time of writing, we consider the `rewrite` command the appropriate place to integrate operations that make SARIF log files fit for purpose. It is possible that a future version of the SARIF Multitool will provide a different way of accessing this functionality.
 
 <a id="note-4">4.</a> Analysis rules in the range `SARIF1001-1999` represent absolute requirements of the SARIF standard. They are enabled by default and should never be disabled.
 
-<a id="note-5">5.</a> At the time of writing, this config file does not follow the guidance of disabling non-relevant 2000-level rules. Issue [microsoft/sarif-sdk#2039](https://github.com/microsoft/sarif-sdk/issues/2039), "Disable non-relevant 2000-level rules in DSP config files", tracks this work. Feel free to raise a PR to address it!
+<a id="note-5">5.</a> At the time of writing, this config file does not follow the guidance of disabling non-relevant 2000-level rules. Issue [microsoft/sarif-sdk#2039](https://github.com/microsoft/sarif-sdk/issues/2039), "Disable non-relevant 2000-level rules in DSP config files", tracks this work. Feel free to raise a PR to address it.
+
+<a id="note-6">6.</a> We're considering changing this behavior, which in the past has caused me to overlook results I actually cared about.
 
 [Table of contents](../README.md#contents)
