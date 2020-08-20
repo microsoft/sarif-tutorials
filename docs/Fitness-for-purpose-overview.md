@@ -59,7 +59,7 @@ Document the set of analysis rules that validates fitness for purpose. Call out 
 
 ### Step 3: Provide fixes for issues identified by the analysis rules
 
-Provide a programmatic mechanism for fixing (as far as possible) the issues identified by the analysis rules listed in <a href="step-2">Step 2</a>.
+Provide a programmatic mechanism for fixing (as far as possible) the issues identified by the analysis rules listed in <a href="#step-2">Step 2</a>.
 
 The SARIF Multitool offers a `rewrite` command that can perform a variety of operations on a SARIF log file, such as populating optional SARIF properties (we refer to this operation as <a href="Glossary.md#enrichment">_enrichment_</a>). For example, you can embed the contents of the analyzed files into the SARIF log file:
 
@@ -79,9 +79,9 @@ Provide an XML configuration file that
 - Configures the rules, if necessary, with appropriate parameter values.
 - Disables all other rules with rule ids `SARIF2000` and above.<sup><a href="#note-4">4</a></sup>
 
-If appropriate, contribute the configuration file to the SARIF SDK repo in the [policies](https://github.com/microsoft/sarif-sdk/tree/master/policies) directory.
+If appropriate, contribute the configuration file to the [policies](https://github.com/microsoft/sarif-sdk/tree/master/policies) directory of the [microsoft/sarif-sdk](https://github.com/microsoft/sarif-sdk) repo.
 
-You can use policies/gitub-dsp.config.xml as a model.<sup><a href="#note-5">5</a></sup>
+You can use [policies/gitub-dsp.config.xml](https://github.com/microsoft/sarif-sdk/tree/master/policies/github-dsp.config.xml) as a model.<sup><a href="#note-5">5</a></sup>
 
 ## Summary
 
@@ -95,7 +95,7 @@ That's it. SARIF producers can use the `sarif rewrite` command defined in <a hre
 
 <a id="note-3">3.</a> At the time of writing, we consider the `rewrite` command the appropriate place to integrate operations that make SARIF log files fit for purpose. It is possible that a future version of the SARIF Multitool will provide a different way of accessing this functionality.
 
-<sup><a href="#note-4">4</a></sup> Analysis rules in the range `SARIF1001-1999` represent absolute requirements of the SARIF standard. They are enabled by default and should never be disabled.
+<a id="note-4">4.</a> Analysis rules in the range `SARIF1001-1999` represent absolute requirements of the SARIF standard. They are enabled by default and should never be disabled.
 
 <a id="note-5">5.</a> At the time of writing, this config file does not follow the guidance of disabling non-relevant 2000-level rules. Issue [microsoft/sarif-sdk#2039](https://github.com/microsoft/sarif-sdk/issues/2039), "Disable non-relevant 2000-level rules in DSP config files", tracks this work. Feel free to raise a PR to address it!
 
