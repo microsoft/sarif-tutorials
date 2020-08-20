@@ -57,7 +57,7 @@ For example, the standard might impose certain quality requirements on user-faci
 
 Document the set of analysis rules that validates fitness for purpose. Call out any fitness criteria for which a rule cannot be written.
 
-### Step 3: Provide fixes for issues identified by the analysis rules
+### <a id="step-3">Step 3</a>: Provide fixes for issues identified by the analysis rules
 
 Provide a programmatic mechanism for fixing (as far as possible) the issues identified by the analysis rules listed in <a href="#step-2">Step 2</a>.
 
@@ -71,7 +71,7 @@ If there is no command line option that performs the necessary operations, consi
 
 Document the complete set of `rewrite` options that fix the issues identified by the analysis rules. If any other programmatic or manual steps are necessary to make the log file fit for purpose, document those as well.
 
-### Step 4: Provide a configuration file that enables just the relevant rules.
+### <a id="step-4">Step 4</a>: Provide a configuration file that enables just the relevant rules.
 
 Provide an XML configuration file that
 
@@ -83,9 +83,16 @@ If appropriate, contribute the configuration file to the [policies](https://gith
 
 You can use [policies/gitub-dsp.config.xml](https://github.com/microsoft/sarif-sdk/tree/master/policies/github-dsp.config.xml) as a model.<sup><a href="#note-5">5</a></sup>
 
+To validate a SARIF file according to a rule configuration, run this command (for example):
+
+    sarif validate MyFile.sarif --config policies\github-dsp.config.xml --output MyFile-validation.sarif
+
 ## Summary
 
-That's it. SARIF producers can use the `sarif rewrite` command defined in <a href="#step-3">Step 3</a> to produce SARIF log files that are fit for purpose. SARIF consumers can use the `sarif validate` command with the configuration file defined in <a href="#step-4">Step 4</a> verify that the files it receives are fit for purpose before it processes them further. During development, SARIF producers can do the same to ensure that their `rewrite` operation works properly.
+That's it.
+SARIF producers can use the `sarif rewrite` command defined in <a href="#step-3">Step 3</a> to produce SARIF log files that are fit for purpose.
+SARIF consumers can use the `sarif validate` command with the configuration file defined in <a href="#step-4">Step 4</a> to verify that the files it receives are fit for purpose before it processes them further.
+During development, SARIF producers can do the same to ensure that their `rewrite` operation works properly.
 
 ## Notes
 
