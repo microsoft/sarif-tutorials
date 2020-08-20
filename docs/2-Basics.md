@@ -621,7 +621,7 @@ although the spec never makes that claim.
 <a id="note-12"></a>12. Rather than requiring every analysis tool to implement logic for excluding redundant properties
 to reduce file size, or including them to improve readability, such "file transformation" operations can be
 implemented by a <a href="Glossary.md#post-processor">_post-processor_</a>.
-The `Sarif.Multitool` NuGet package include a command line tool that (among other things) can post-process
+The [Sarif.Multitool](Multitool.md) NuGet package include a command line tool that (among other things) can post-process
 SARIF files, although at the time of this writing it doesn't implement the exact operation I've described here.
 
 <a id="note-13"></a>13.
