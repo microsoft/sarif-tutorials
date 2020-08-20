@@ -103,6 +103,8 @@ please let me know by filing an issue in this repo
   - Result matching (TODO)
   - The `sarif:` URI scheme (TODO)
 - Appendices
+  - [Fitness for purpose: An overview](docs/Fitness-for-purpose-overview.md)
+  - [Fitness for purpose: Automatic bug filing](docs/Fitness-for-purpose-automatic-bug-filing.md)
   - [Authoring rule metadata and result messages](docs/Authoring-rule-metadata-and-result-messages.md)
   - [Glossary](docs/Glossary.md)
   - [Resources](docs/Resources.md)
