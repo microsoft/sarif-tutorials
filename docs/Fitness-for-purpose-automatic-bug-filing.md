@@ -16,7 +16,7 @@ For automatic bug filing to be effective, the engineering system must compare th
 
 In the following list of requirements, "should" means that the validator should produce a `"warning"`-level message, and "must" means that the validator should produce an `"error"`-level message. In any case where this is not the default behavior for the rule, the configuration file (see below) can adjust the rule's level.
 
-- Result `message` objects should provide the `id` and `arguments` properties (as opposed to only providing the `text` property). This is important because the result macthing algorithm (implemented in the [SARIF Multitool's](Multitool.md) `match-results-forward` command) includes message id and arguments in its matching criteria.
+- Result `message` objects should provide the `id` and `arguments` properties (as opposed to only providing the `text` property). This is important because the result matching algorithm (implemented in the [SARIF Multitool's](Multitool.md) `match-results-forward` command) includes message id and arguments in its matching criteria.
 
 - The `run` object must provide the `versionControlProvenance` property. The bug filer uses this information (which includes the URL of the repo containing the files that were analyzed) to decide which team should be assigned the filed bugs.
 
@@ -36,15 +36,25 @@ The analysis rules that enforce these standards are:
 
 - `SARIF2002.ProvideMessageArguments`: ensures that `result.message.id` and `.arguments` are present.
 - `SARIF2003.ProvideVersionControlProvenance`: ensures that `run.versionControlProvenance` is present.
-- `SARIF2005.ProvideToolProperties`: ensures that `run.tool.driver.name`, and at least one of `.version` and `.semanticVersion`, is present.
+- `SARIF2005.ProvideToolProperties`: ensures that at least one of `.version` and `.semanticVersion`, is present.
 - `SARIF2007.ExpressPathsRelativeToRepoRoot`: ensures that all result location URIs are expressed as relative references with respect to the repo root.
 - `SARIF2012.ProvideHelpUris`: ensures that `rules[].helpUri` is present.
 - `SARIF2013.ProvideEmbeddedFileContent OR SARIFnippets`: ensures that ... **UNFINISHED**
 
 ## The fixers
 
+- The `sarif rewrite` option `--insert VersionControlInformation;CodeSnippets` enriches the SARIF file with `run.versionControlProvenance` if it isn't already present, and with code snippets if they're not already present.
+
+- The `sarif rebaseuris` command changes any absolute URIs to relative references with respect to `originalUriBaseIds`.<sup><a href="#note-1">1</a></sup>
+
+There is no way to automatically fix the rest of the criteria.
+
 ## The configuration file
 
 This is a standard validation XML configuration file, which explicitly enables all the analysis rules mentioned above, and sets there levels as indicated in the standard section above.
+
+## Notes
+
+<a id="note-1">1.</a> This should probably be just an option `--rebase-uris` to the `rewrite` command.
 
 [Table of contents](../README.md#contents)
