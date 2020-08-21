@@ -36,7 +36,7 @@ The analysis rules that enforce these standards are:
 
 - `SARIF2002.ProvideMessageArguments`: ensures that `result.message.id` and `.arguments` are present.
 - `SARIF2003.ProvideVersionControlProvenance`: ensures that `run.versionControlProvenance` is present.
-- `SARIF2005.ProvideToolProperties`: ensures that at least one of `.version` and `.semanticVersion`, is present.
+- `SARIF2005.ProvideToolProperties`: ensures that at least one of `.version` and `.semanticVersion` is present.
 - `SARIF2007.ExpressPathsRelativeToRepoRoot`: ensures that all result location URIs are expressed as relative references with respect to the repo root.
 - `SARIF2012.ProvideHelpUris`: ensures that `rules[].helpUri` is present.
 - `SARIF2013.ProvideEmbeddedFileContent OR SARIFnippets`: ensures that ... **UNFINISHED**
@@ -45,9 +45,11 @@ The analysis rules that enforce these standards are:
 
 - The `sarif rewrite` option `--insert VersionControlInformation;CodeSnippets` enriches the SARIF file with `run.versionControlProvenance` if it isn't already present, and with code snippets if they're not already present.
 
+    For the `CodeSnippets` enrichment to work, the SARIF Multitool must be run from the repository root directory.
+
 - The `sarif rebaseuris` command changes any absolute URIs to relative references with respect to `originalUriBaseIds`.<sup><a href="#note-1">1</a></sup>
 
-There is no way to automatically fix the rest of the criteria.
+There is no way to automatically enforce the rest of the criteria.
 
 ## The configuration file
 
