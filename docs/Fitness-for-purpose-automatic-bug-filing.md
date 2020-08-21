@@ -12,34 +12,53 @@ In that case, do read the [Overview](Fitness-for-purpose-overview.md) to underst
 
 ## The standard
 
-For automatic bug filing to be effective, the engineering system must compare the SARIF results from the current build to those from a previous build, to identify those results that are new in the current build. This process is known as <a href="Glossary.md#result-matching">_result matching_</a>. Some of the requirements of the bug filing fitness-for-purpose standard help to ensure that result matching is accurate, reducing the number of duplicate bugs that are filed (and ensuring that bugs _are_ filed for truly new results).
+For automatic bug filing to be effective, the engineering system must compare the SARIF results from the current build to those from a previous build, to identify those results that are new in the current build.
+This process is known as <a href="Glossary.md#result-matching">_result matching_</a>.
+Some of the requirements of this standard help to ensure that result matching is accurate, reducing the number of duplicate bugs that are filed (and ensuring that bugs _are_ filed for truly new results).
+Other requirements ensure that the filed bugs contain enough information to be understood and acted upon.
 
-In the following list of requirements, "should" means that the validator should produce a `"warning"`-level message, and "must" means that the validator should produce an `"error"`-level message. In any case where this is not the default behavior for the rule, the configuration file (see below) can adjust the rule's level.
+Every requirement in the the following list is a "must", meaning that the validator must produce an `"error"`-level message for all of them, and the bug filing system must refuse to accept a file that violates any of them.
 
-- Result `message` objects should provide the `id` and `arguments` properties (as opposed to only providing the `text` property). This is important because the result matching algorithm (implemented in the [SARIF Multitool's](Multitool.md) `match-results-forward` command) includes message id and arguments in its matching criteria.
+1. Result `message` objects must provide `id` and `arguments` (as opposed to only providing `text`).
+    The result matching algorithm (implemented in the [SARIF Multitool's](Multitool.md) `match-results-forward` command) includes `id` and `arguments` in its matching criteria.
 
-- The `run` object must provide the `versionControlProvenance` property. The bug filer uses this information (which includes the URL of the repo containing the files that were analyzed) to decide which team should be assigned the filed bugs.
+2. The `run` object must provide `versionControlProvenance`.
+    The bug filing system uses this information (which includes the URL of the repo containing the files that were analyzed) to decide which team should be assigned the filed bugs.
 
-- The `run.tool.driver` object must provide at least one of the `version`, `semanticVersion`, or `dottedQuadFileVersion` properties.
+3. The `run.tool.driver` object must provide at least one of `version`, `semanticVersion`, or `dottedQuadFileVersion`.
+    The bug filing system uses this information to decide whether the current run was analyzed with a different tool version than the previous run.
+    If the tool version has changed, the bug filing system must re-analyze the sources as they existed during the previous run with the new version of the tool.
+    This prevents a discontinuity due to any new analysis rules that the new tool version might have introduced.
+    The bug filing system will only file bugs for results introduced since the last run -- whether those results come from previously existing or newly introduced rules.
 
-- The `run.tool.driver` object should provide `informationUri`. This helps the developer responsible for fixing the bug by providing a way to learn more about the tool.
+4. The `run.tool.driver` object must provide `informationUri`. This helps the developer responsible for fixing the bug by providing a way to learn more about the tool.
 
-- All result location URIs should be expressed as relative references with respect to the repo root. **WHY**
+5. All result location URIs must be expressed as relative references with respect to the repo root.
 
-- Each rule should provide `helpUri`. This helps the developer responsible for fixing the bug by providing a way to learn more about the rule violation.
+    **TODO** Understand why it's not good enough to have absolute URIs if they start with repo root (as specified by `versionControlDetails.mappedTo`).
 
-- Each result should provide a way for a user viewing the bug to see the problem in context. This can be done either by including a code snippet (`result.locations[].physicalLocation.{region,contextRegion}.snippet`) or by embedding the entire file... **UNFINISHED**
+6. Each rule must provide `helpUri`. This helps the developer responsible for fixing the bug by providing a way to learn more about the rule violation.
+
+7. Each result must enable the user to view the problem in context.
+    The result must include a code snippet for a region containing a few lines on either side of the actual result (`result.locations[].physicalLocation.contextRegion.snippet`).
+    It is not enough to provide `...physicalLocation.region.snippet`: the region designating the actual error might be only a few characters long, or even just an insertion point.
+
+    In addition, the log file must embed the entire contents of every file in which the tool detected a result so that the appropriate file can be attached to each filed bug.
+    This is important for two reasons.
+    First, the user assessing the bug might not yet have an enlistment, and if they do, they might not have checked out the branch that was analyzed.
+    In some source control systems, switching branches on a large code base can be time consuming.
+    Second, the user assessing the bug might not have permission to enlist. For example, the user might be a security analyst in an organization where only developers can enlist.
 
 ## The analysis rules
 
 The analysis rules that enforce these standards are:
 
-- `SARIF2002.ProvideMessageArguments`: ensures that `result.message.id` and `.arguments` are present.
-- `SARIF2003.ProvideVersionControlProvenance`: ensures that `run.versionControlProvenance` is present.
-- `SARIF2005.ProvideToolProperties`: ensures that at least one of `.version` and `.semanticVersion` is present.
-- `SARIF2007.ExpressPathsRelativeToRepoRoot`: ensures that all result location URIs are expressed as relative references with respect to the repo root.
-- `SARIF2012.ProvideHelpUris`: ensures that `rules[].helpUri` is present.
-- `SARIF2013.ProvideEmbeddedFileContent OR SARIFnippets`: ensures that ... **UNFINISHED**
+- `SARIF2002.ProvideMessageArguments`: Enforces Requirement <span>#</span>1 by ensuring that `result.message.id` and `.arguments` are present.
+- `SARIF2003.ProvideVersionControlProvenance`: Enforces Requirement <span>#</span>2 by ensuring that `run.versionControlProvenance` is present.
+- `SARIF2005.ProvideToolProperties`: Enforces Requirement <span>#</span>3 by ensuring that at least one of `version`, `semanticVersion`, and `dottedQuadFileVersion` is present, and <span>#</span>4 by ensuring that `informationUri` is present.<sup><a href="#note-`1`">1</a></sup>
+- `SARIF2007.ExpressPathsRelativeToRepoRoot`: Enforces Requirement <span>#</span>5 by ensuring that all result location URIs are expressed as relative references with respect to the repo root.
+- `SARIF2012.ProvideHelpUris`: Enforces Requirement <span>#</span>6 by ensuring that `helpUri` is present.
+- `SARIF2010.ProvideSupplementalCodeContext`: Enforces Requirement <span>#</span>7 by ensuring that context region snippets and embedded file content are present.<sup><a href="#note-`2`">2</a></sup>
 
 ## The fixers
 
@@ -47,7 +66,7 @@ The analysis rules that enforce these standards are:
 
     For the `CodeSnippets` enrichment to work, the SARIF Multitool must be run from the repository root directory.
 
-- The `sarif rebaseuris` command changes any absolute URIs to relative references with respect to `originalUriBaseIds`.<sup><a href="#note-1">1</a></sup>
+- The `sarif rebaseuris` command changes any absolute URIs to relative references with respect to `originalUriBaseIds`.<sup><a href="#note-2">2</a></sup>
 
 There is no way to automatically enforce the rest of the criteria.
 
@@ -57,6 +76,10 @@ This is a standard validation XML configuration file, which explicitly enables a
 
 ## Notes
 
-<a id="note-1">1.</a> This should probably be just an option `--rebase-uris` to the `rewrite` command.
+<a id="note-3">1.</a> At the time of writing, `SARIF2005` is not satisfied by `dottedQuadFileVersion`, and it does not require `informationUri`. **TODO** File issue.
+
+<a id="note-3">2.</a> At the time of writing, `SARIF2010` covers code snippets, `SARIF2011` covers context regions, and `SARIF2013` covers embedded file content. **TODO** File an issue to combine them into a single configurable rule.
+
+<a id="note-3">3.</a> This should probably be just an option `--rebase-uris` to the `rewrite` command.
 
 [Table of contents](../README.md#contents)
