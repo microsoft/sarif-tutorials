@@ -55,10 +55,10 @@ The analysis rules that enforce these standards are:
 
 - `SARIF2002.ProvideMessageArguments`: Enforces Requirement <span>#</span>1 by ensuring that `result.message.id` and `.arguments` are present.
 - `SARIF2003.ProvideVersionControlProvenance`: Enforces Requirement <span>#</span>2 by ensuring that `run.versionControlProvenance` is present.
-- `SARIF2005.ProvideToolProperties`: Enforces Requirement <span>#</span>3 by ensuring that at least one of `version`, `semanticVersion`, and `dottedQuadFileVersion` is present, and <span>#</span>4 by ensuring that `informationUri` is present.<sup><a href="#note-`1`">1</a></sup>
+- `SARIF2005.ProvideToolProperties`: Enforces Requirement <span>#</span>3 by ensuring that at least one of `version`, `semanticVersion`, and `dottedQuadFileVersion` is present, and <span>#</span>4 by ensuring that `informationUri` is present.<sup><a href="#note-1">1</a></sup>
 - `SARIF2007.ExpressPathsRelativeToRepoRoot`: Enforces Requirement <span>#</span>5 by ensuring that all result location URIs are expressed as relative references with respect to the repo root.
 - `SARIF2012.ProvideHelpUris`: Enforces Requirement <span>#</span>6 by ensuring that `helpUri` is present.
-- `SARIF2010.ProvideSupplementalCodeContext`: Enforces Requirement <span>#</span>7 by ensuring that context region snippets and embedded file content are present.<sup><a href="#note-`2`">2</a></sup>
+- `SARIF2010.ProvideSupplementalCodeContext`: Enforces Requirement <span>#</span>7 by ensuring that context region snippets and embedded file content are present.<sup><a href="#note-2">2</a></sup>
 
 ## The fixers
 
@@ -66,7 +66,7 @@ The analysis rules that enforce these standards are:
 
     For the `CodeSnippets` enrichment to work, the SARIF Multitool must be run from the repository root directory.
 
-- The `sarif rebaseuris` command changes any absolute URIs to relative references with respect to `originalUriBaseIds`.<sup><a href="#note-2">2</a></sup>
+- The `sarif rebaseuris` command changes any absolute URIs to relative references with respect to `originalUriBaseIds`.<sup><a href="#note-3">3</a></sup>
 
 There is no way to automatically enforce the rest of the criteria.
 
