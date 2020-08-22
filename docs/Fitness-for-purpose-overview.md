@@ -47,7 +47,7 @@ The complete set of existing analysis rules is available in the [src/Sarif.Multi
 
 For each element of the fitness standard identified in <a href="#step-1">Step 1</a>, identify a validation rule that enforces it. If no such rule exists, then:
 
-- If the rule is generally useful, feel free to contribute a new rule to the sarif-sdk repo.
+- If the rule is generally useful, contribute a new rule to the sarif-sdk repo.
 - If the rule is specific to a single, proprietary system, implement the rule in a plug-in rules assembly.<sup><a href="#note-2">2</a></sup>
 
 If you are contributing a new rule, consider whether the rule is useful in all scenarios (in which case it should be enabled by default) or is useful only in this particular scenario (in which case it should be disabled by default).
@@ -102,13 +102,13 @@ During development, SARIF producers can do the same to ensure that their `rewrit
 
 <a id="note-1">1.</a> The system doesn't need to file a separate bug for each result. It might file one bug per source file, or even one bug per tool run.
 
-<a id="note-2">2.</a> At the time of writing, plug-in rule assemblies are not supported. Issue [microsoft/sarif-sdk#1868](https://github.com/microsoft/sarif-sdk/issues/1868), "Allow validation command to accept plug-ins with additional validation rules", tracks this work. Feel free to raise a PR to address it.
+<a id="note-2">2.</a> At the time of writing, plug-in rule assemblies are not supported. Issue [microsoft/sarif-sdk#1868](https://github.com/microsoft/sarif-sdk/issues/1868), "Allow validation command to accept plug-ins with additional validation rules", tracks this work.
 
 <a id="note-3">3.</a> At the time of writing, we consider the `rewrite` command the appropriate place to integrate operations that make SARIF log files fit for purpose. It is possible that a future version of the SARIF Multitool will provide a different way of accessing this functionality.
 
 <a id="note-4">4.</a> Analysis rules in the range `SARIF1001-1999` represent absolute requirements of the SARIF standard. They are enabled by default and should never be disabled.
 
-<a id="note-5">5.</a> At the time of writing, this config file does not follow the guidance of disabling non-relevant 2000-level rules. Issue [microsoft/sarif-sdk#2039](https://github.com/microsoft/sarif-sdk/issues/2039), "Disable non-relevant 2000-level rules in DSP config files", tracks this work. Feel free to raise a PR to address it.
+<a id="note-5">5.</a> At the time of writing, this config file does not follow the guidance of disabling non-relevant 2000-level rules. Issue [microsoft/sarif-sdk#2039](https://github.com/microsoft/sarif-sdk/issues/2039), "Disable non-relevant 2000-level rules in DSP config files", tracks this work.
 
 <a id="note-6">6.</a> We're considering changing this behavior, which in the past has caused me to overlook results I actually cared about.
 
