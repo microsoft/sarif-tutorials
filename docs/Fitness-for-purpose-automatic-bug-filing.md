@@ -72,13 +72,13 @@ There is no way to automatically enforce the rest of the criteria.
 
 ## The configuration file
 
-This is a standard validation XML configuration file, which explicitly enables all the analysis rules mentioned above, and sets there levels as indicated in the standard section above.
+This is a standard validation XML configuration file, which explicitly enables all the analysis rules mentioned above, and sets their levels as `"error"`.
 
 ## Notes
 
-<a id="note-3">1.</a> At the time of writing, `SARIF2005` is not satisfied by `dottedQuadFileVersion`, and it does not require `informationUri`. **TODO** File issue.
+<a id="note-1">1.</a> At the time of writing, `SARIF2005` is not satisfied by `dottedQuadFileVersion`, and it does not require `informationUri`. Issue [microsoft/sarif-sdk#2040](https://github.com/microsoft/sarif-sdk/issues/2040), "SARIF2005.ProvideToolProperties: Allow dottedQuadFileVersion; require informationUri", tracks this work.
 
-<a id="note-3">2.</a> At the time of writing, `SARIF2010` covers code snippets, `SARIF2011` covers context regions, and `SARIF2013` covers embedded file content. **TODO** File an issue to combine them into a single configurable rule.
+<a id="note-2">2.</a> At the time of writing, `SARIF2010` covers code snippets, `SARIF2011` covers context regions, and `SARIF2013` covers embedded file content. Issue [microsoft/sarif-sdk#2041](https://github.com/microsoft/sarif-sdk/issues/2041), "Combine 'code context' rules", tracks this work.
 
 <a id="note-3">3.</a> This should probably be just an option `--rebase-uris` to the `rewrite` command.
 
