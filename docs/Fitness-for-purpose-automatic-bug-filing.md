@@ -62,13 +62,38 @@ The analysis rules that enforce these standards are:
 
 ## The fixers
 
-- The `sarif rewrite` option `--insert VersionControlInformation;CodeSnippets` enriches the SARIF file with `run.versionControlProvenance` if it isn't already present, and with code snippets if they're not already present.
+The following procedure will address requirements <span>#</span>2 (provide `run.versionControlProvenance`), <span>#</span>5 (express URIs relative to repo roots), and <span>#</span>7 (embed file contents, and provide code snippets for context regions).
+To embed file content and provide code snippets, the code we describe here must be run from the root directory of the repository.
 
-    For the `CodeSnippets` enrichment to work, the SARIF Multitool must be run from the repository root directory.
+There is no way to automatically enforce the rest of the criteria (for example, there's no way to provide a tool information URI if the tool itself didn't provide one). Also, this procedure will only provide code snippets for context regions if the tool itself provided context regions.
 
-- The `sarif rebaseuris` command changes any absolute URIs to relative references with respect to `originalUriBaseIds`.<sup><a href="#note-3">3</a></sup>
+1. In whatever program you are using to prepare SARIF for bug filing, add a NuGet reference to `Sarif.Multitool.Library`, version 2.3.5 or later.
 
-There is no way to automatically enforce the rest of the criteria.
+2. Write the following code:
+
+```C#
+var command = new RewriteCommand();
+var options = new RewriteOptions
+{
+    InputFilePath = "<input-file>",
+    OutputFilePath = "<output-file>",
+    DataToInsert = new List<OptionallyEmittedData>
+    {
+        OptionallyEmittedData.ContextRegionSnippets,
+        OptionallyEmittedData.TextFiles,
+        OptionallyEmittedData.BinaryFiles,
+        OptionallyEmittedData.VersionControlInformation
+    }
+};
+
+int exitCode = command.Run(options);
+```
+
+This is equivalent to the SARIF Multitool command line
+
+```
+sarif rewrite --insert ContextRegionSnippets,TextFiles,BinaryFiles,VersionControlInformation --output <output-file> input-file
+```
 
 ## The configuration file
 
