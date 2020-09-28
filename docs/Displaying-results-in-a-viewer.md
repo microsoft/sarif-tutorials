@@ -70,7 +70,7 @@ If `level` is `"none"`, `importance` depends `kind` as follows:
 
 ## Summary
 
-To ensure a uniform experience across the SARIF ecosystem, it is important that viewers implement a standard algorithm for determining which results to display by default. We recommend the algorithm described here.
+To ensure a uniform experience across the SARIF ecosystem, it is important that viewers implement a standard algorithm for determining which results to display by default, and for conveying the relative importance of the results it does display. We recommend the algorithms described here.
 
 In addition, viewers should provide UI gestures to allow users to see results that are not displayed by default.
 
