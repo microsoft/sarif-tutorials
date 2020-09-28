@@ -224,7 +224,7 @@ In the simplest case, which we'll show here, a `message` object contains a simpl
 
 We'll say much [more about the features and capabilities of messages](3-Beyond-basics.md#more-about-messages) later.
 Just as important as these technical issues is the quality of the message text.
-[Appendix A](Authoring-rule-metadata-and-result-messages.md) provides guidance on authoring
+[Appendix](Authoring-rule-metadata-and-result-messages.md) provides guidance on authoring
 informative and actionable result messages.
 
 ### <a id=rule-id></a>Rule identifier
@@ -550,7 +550,7 @@ and viewer has displayed the help URI from the metadata for the `no-unused-vars`
 
 ![A SARIF viewer displays rule metadata for a result](../images/rule-metadata-for-a-result.png)
 
-[Appendix A](Authoring-rule-metadata-and-result-messages.md) provides guidance on authoring
+[Appendix](Authoring-rule-metadata-and-result-messages.md) provides guidance on authoring
 rule metadata that provides the most useful information to the developer
 and also works well in automated systems.
 

@@ -104,6 +104,7 @@ please let me know by filing an issue in this repo
   - The `sarif:` URI scheme (TODO)
 - Appendices
   - [Authoring rule metadata and result messages](docs/Authoring-rule-metadata-and-result-messages.md)
+  - [Displaying results in a viewer](docs/Displaying-results)
   - [Glossary](docs/Glossary.md)
   - [Resources](docs/Resources.md)
   - The history of SARIF (TODO)
