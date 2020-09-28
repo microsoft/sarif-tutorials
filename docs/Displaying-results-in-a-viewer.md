@@ -33,7 +33,7 @@ Proceed through the algorithm below. If at any point the algorithm states that t
 
         Otherwise, `"unchanged"` and `"updated"` results should be shown by default.
 
-    - If `result.baselineState` is absent (meaning that this run has not been "baselined" -- compared to a previous run -- and therefore there is no way for the viewer to know if the result is new or pre-existing -- then the result should be shown by default.
+    - If `result.baselineState` is absent (meaning that this run has not been "baselined" -- compared to a previous run -- and therefore there is no way for the viewer to know if the result is new or pre-existing) then the result should be shown by default.
 
 3. `importance`:
 
@@ -42,7 +42,7 @@ Proceed through the algorithm below. If at any point the algorithm states that t
 
 ## <a id="suppression-status"></a>Determining suppression status
 
-The `result.suppressions` property is an array each of whose elements represents a request to suppress the result. Each array element has an optional `"status"` property that describes the review status of the suppression request: `"accepted"`, `"underReview"`, or `"rejected"`.
+The `result.suppressions` property is an array each of whose elements represents a request to suppress the result. Each array element has an optional `"status"` property that describes the review status of the suppression request: `"accepted"`, `"underReview"`, or `"rejected"`.<sup><a href="#note-1">1</a></sup>
 
 If the status of _any_ of the suppressions is `"underReview"` or `"rejected"`, then the result should be considered suppressed. Otherwise, the result should not be considered suppressed.
 
@@ -52,7 +52,7 @@ The SARIF `result` object's `level` and `kind` properties together determine the
 
 In general, results whose `importance` is `"error"` are blocking and must be fixed, results whose `importance` is `"warning"` are non-blocking but should still be fixed, and results whose `importance` is `"note"` represent either optional opportunities to improve code quality, or purely informational messages.
 
-By the SARIF spec, only certain combinations of `kind` and `level` are valid. If `level` is `"error"`, `"warning"`, or `"note"`, then the result describes a failure of some kind, and therefore `"kind"` must be `"fail"`. Conversely, if `"kind"` is anything other than `"fail"` (for example `"pass"` or `"open"`), then the result does _not_ describe a failure, so `"level"` must be `"none"`.<sup><a href="#note-1">1</a></sup>
+By the SARIF spec, only certain combinations of `kind` and `level` are valid. If `level` is `"error"`, `"warning"`, or `"note"`, then the result describes a failure of some kind, and therefore `"kind"` must be `"fail"`. Conversely, if `"kind"` is anything other than `"fail"` (for example `"pass"` or `"open"`), then the result does _not_ describe a failure, so `"level"` must be `"none"`.<sup><a href="#note-2">2</a></sup>
 
 With that background, `importance` is calculated as follows:
 
@@ -64,8 +64,8 @@ If `level` is `"none"`, `importance` depends `kind` as follows:
 | --- | --- | --- |
 | `"informational"` | The result represents a purely informational observation about the code (for example, "This file was compiled with C++ Compiler Version 7.1.2") | `"note"` |
 | `"notApplicable"` | The analysis rule was not applicable to this analysis target. | `"note"` |
-| `"open"` | The analysis tool did not have enough information to determine whether there was a problem.<sup><a href="#note-2">2</a></sup> | `"warning"` |
-| `"pass"` | The analysis rule was evaluated, and no problem was found. | `"note"`<sup><a href="#note-3">3</a></sup> |
+| `"open"` | The analysis tool did not have enough information to determine whether there was a problem.<sup><a href="#note-3">3</a></sup> | `"warning"` |
+| `"pass"` | The analysis rule was evaluated, and no problem was found. | `"note"`<sup><a href="#note-4">4</a></sup> |
 | `"review"` | The result requires human review | `"warning"` |
 
 ## Summary
@@ -76,10 +76,12 @@ In addition, viewers should provide UI gestures to allow users to see results th
 
 ## Notes
 
-<a id="note-1"></a>1. See [§3.27.9](https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/sarif-v2.1.0-os.html#_Toc34317647) and [§3.27.10](https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/sarif-v2.1.0-os.html#_Toc34317648) in the SARIF spec for details.
+<a id="note-1"></a>1. See [§3.35](https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/sarif-v2.1.0-os.html#_Toc34317733) and [§3.35.3](https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/sarif-v2.1.0-os.html#_Toc34317736) in the SARIF spec for details.
 
-<a id="note-2"></a>2. This value is used by program correctness provers. If a prover doesn't know (for example), if a particular function can throw an exception, it might not be able to decide whether a code path is safe.
+<a id="note-2"></a>2. See [§3.27.9](https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/sarif-v2.1.0-os.html#_Toc34317647) and [§3.27.10](https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/sarif-v2.1.0-os.html#_Toc34317648) in the SARIF spec for details.
 
-<a id="note-3"></a>3. If possible, a viewer should represent a `"pass"` result with an icon distinct from the typical "blue information" icon used for other `"note"`s, for example, a green check mark.
+<a id="note-3"></a>3. This value is used by program correctness provers. If a prover doesn't know (for example), if a particular function can throw an exception, it might not be able to decide whether a code path is safe.
+
+<a id="note-4"></a>4. If possible, a viewer should represent a `"pass"` result with an icon distinct from the typical "blue information" icon used for other `"note"`s, for example, a green check mark.
 
 [Table of contents](../README.md#contents)
