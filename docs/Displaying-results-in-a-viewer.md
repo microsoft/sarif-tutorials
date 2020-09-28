@@ -44,7 +44,7 @@ Proceed through the algorithm below. If at any point the algorithm states that t
 
 The `result.suppressions` property is an array each of whose elements represents a request to suppress the result. Each array element has an optional `"status"` property that describes the review status of the suppression request: `"accepted"`, `"underReview"`, or `"rejected"`.<sup><a href="#note-1">1</a></sup>
 
-If the status of _any_ of the suppressions is `"underReview"` or `"rejected"`, then the result should be considered suppressed. Otherwise, the result should not be considered suppressed.
+If the status of _any_ of the suppressions is `"underReview"` or `"rejected"`, then the result should _not_ be considered suppressed. Otherwise, the result _should_ be considered suppressed.
 
 ## <a id="importance"></a>Determining importance
 
