@@ -33,7 +33,7 @@ Proceed through the algorithm below. If at any point the algorithm states that t
 
     - If the baseline state is `"unchanged"` (meaning that the result has not changed since the previous run) or `"updated"` (meaning that some aspects of the result have changed since the previous run, but it is nonetheless still identifiably the same result), then whether or not to show the result by default depends on the usage scenario.
 
-        If the viewer is operating in a continuous integration (CI) workflow, where the developer wants to see whether she has introduced any problems in her most recent commits, then `"unchanged"` and `"updated"` results should not be shown by default. STOP.
+        If the viewer is operating in an "incremental" scenario (a scenario where the developer wants to focus on the problems introduced by her most recent commits, for example, examining the results of a continuous integration (CI) build) then `"unchanged"` and `"updated"` results should not be shown by default. STOP.
 
         Otherwise, `"unchanged"` and `"updated"` results should be shown by default.
 
