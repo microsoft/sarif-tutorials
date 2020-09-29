@@ -100,7 +100,7 @@ In addition, viewers should provide UI gestures to allow users to see results th
 
 <a id="note-3"></a>3. See [§3.27.9](https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/sarif-v2.1.0-os.html#_Toc34317647) and [§3.27.10](https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/sarif-v2.1.0-os.html#_Toc34317648) in the SARIF spec for details.
 
-<a id="note-4"></a>4. This value is used by program correctness provers. If a prover doesn't know (for example) if a particular function can throw an exception, it might not be able to decide whether a code path is safe.
+<a id="note-4"></a>4. This value is used by program correctness provers. If, for example, a prover doesn't know if a particular function can throw an exception, it might not be able to decide whether a code path is safe.
 
 <a id="note-5"></a>5. If possible, a viewer should represent a `"pass"` result with an icon distinct from the typical "blue information" icon used for other `"note"`s, for example, a green check mark.
 
