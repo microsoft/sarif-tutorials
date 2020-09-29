@@ -64,7 +64,7 @@ With that background, `importance` is calculated as follows:
 
 If `level` is `"error"`, `"warning"`, or `"none"`, then `importance` is equal to `level`.
 
-If `level` is `"none"`, `importance` depends `kind` as follows:
+If `level` is `"none"`, `importance` depends upon `kind` as follows:
 
 | `kind` | Meaning | `importance` |
 | --- | --- | --- |
