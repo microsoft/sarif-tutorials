@@ -2,7 +2,7 @@
 
 # Displaying results in a viewer
 
-Many SARIF viewers display a list of the results contained in the log file or files being viewed. Since log files can contain thousands of results, it is important for the viewer to display by default just those results that are most useful, while still giving the user a way to see all available results. Even if a log file contains only a few results, the viewer can still help the user by directing her attention to the most important ones.
+Many SARIF viewers display a list of the results contained in the log file or files being viewed. Since log files can contain thousands of results, it is important for the viewer to display by default just those results that are most useful, while still giving the user a way to see all available results.
 
 Having decided which results to display, most viewers have a way to indicate the relative importance of each result. The viewer should direct the user's attention to the most important of the displayed results.
 
@@ -33,7 +33,7 @@ Proceed through the algorithm below. If at any point the algorithm states that t
 
     - If the baseline state is `"unchanged"` (meaning that the result has not changed since the previous run) or `"updated"` (meaning that some aspects of the result have changed since the previous run, but it is nonetheless still identifiably the same result), then whether or not to show the result by default depends on the usage scenario.
 
-        If the viewer is operating in a continuous integration (CI) workflow, where the developer wants to see whether he has introduced any problems in his most recent commits, then `"unchanged"` and `"updated"` results should not be shown by default. STOP.
+        If the viewer is operating in a continuous integration (CI) workflow, where the developer wants to see whether she has introduced any problems in her most recent commits, then `"unchanged"` and `"updated"` results should not be shown by default. STOP.
 
         Otherwise, `"unchanged"` and `"updated"` results should be shown by default.
 
