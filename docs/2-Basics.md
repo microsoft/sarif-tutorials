@@ -224,7 +224,7 @@ In the simplest case, which we'll show here, a `message` object contains a simpl
 
 We'll say much [more about the features and capabilities of messages](3-Beyond-basics.md#more-about-messages) later.
 Just as important as these technical issues is the quality of the message text.
-[Appendix A](Authoring-rule-metadata-and-result-messages.md) provides guidance on authoring
+The Appendix [Authoring rule metadata and result messages](Authoring-rule-metadata-and-result-messages.md) provides guidance on authoring
 informative and actionable result messages.
 
 ### <a id=rule-id></a>Rule identifier
@@ -550,7 +550,7 @@ and viewer has displayed the help URI from the metadata for the `no-unused-vars`
 
 ![A SARIF viewer displays rule metadata for a result](../images/rule-metadata-for-a-result.png)
 
-[Appendix A](Authoring-rule-metadata-and-result-messages.md) provides guidance on authoring
+The Appendix [Authoring rule metadata and result messages](Authoring-rule-metadata-and-result-messages.md) provides guidance on authoring
 rule metadata that provides the most useful information to the developer
 and also works well in automated systems.
 
@@ -621,7 +621,7 @@ although the spec never makes that claim.
 <a id="note-12"></a>12. Rather than requiring every analysis tool to implement logic for excluding redundant properties
 to reduce file size, or including them to improve readability, such "file transformation" operations can be
 implemented by a <a href="Glossary.md#post-processor">_post-processor_</a>.
-The `Sarif.Multitool` NuGet package include a command line tool that (among other things) can post-process
+The [Sarif.Multitool](Multitool.md) NuGet package include a command line tool that (among other things) can post-process
 SARIF files, although at the time of this writing it doesn't implement the exact operation I've described here.
 
 <a id="note-13"></a>13.

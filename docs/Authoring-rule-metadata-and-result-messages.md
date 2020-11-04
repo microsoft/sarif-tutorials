@@ -1,6 +1,6 @@
 [Table of contents](../README.md#contents)
 
-# Appendix A: Authoring rule metadata and result messages
+# Appendix: Authoring rule metadata and result messages
 
 This Appendix explains how to author the metadata that describes a tool's analysis rules.
 Perhaps the most important component of this metadata is a result message that is informative and actionable.
