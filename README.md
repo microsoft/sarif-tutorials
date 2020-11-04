@@ -106,6 +106,7 @@ please let me know by filing an issue in this repo
   - [Fitness for purpose: An overview](docs/Fitness-for-purpose-overview.md)
   - [Fitness for purpose: Automatic bug filing](docs/Fitness-for-purpose-automatic-bug-filing.md)
   - [Authoring rule metadata and result messages](docs/Authoring-rule-metadata-and-result-messages.md)
+  - [Displaying results in a viewer](docs/Displaying-results-in-a-viewer.md)
   - [The SARIF Multitool](docs/Multitool.md)
   - The history of SARIF (TODO)
   - [Glossary](docs/Glossary.md)
