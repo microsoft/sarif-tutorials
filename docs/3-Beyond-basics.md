@@ -122,8 +122,8 @@ Some result messages are long, because a good message not only explains what was
 it also explains why the flagged construct is considered questionable,
 provides guidance for remedying the problem,
 and explains when it's ok to ignore the result.
-[Appendix](Authoring-rule-metadata-and-result-messages.md) provides guidance on authoring
-informative and actionable result messages.
+The Appendix [Authoring rule metadata and result messages](Authoring-rule-metadata-and-result-messages.md) provides guidance on authoring
+ informative and actionable result messages.
 
 To avoid repeating the lengthy message in every result, a `message` object can specify an
 identifier for the message text
@@ -409,6 +409,8 @@ notifications.
 So in our [simple example](1-Introduction.md#simple-example-file),
 the property `tool.driver.rules` was actually an array of `reportingDescriptor`s,
 and `tool.driver` has an additional property `notifications` that is also an array of `reportingDescriptor`s.
+
+For a more detailed example of the definition and use of notifications, see [Notifications.sarif](../samples/Notifications.sarif).
 
 ## <a id="taxonomies"></a>Taxonomies
 

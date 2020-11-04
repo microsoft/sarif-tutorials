@@ -34,6 +34,8 @@ It typically includes a build system, a source control system,
 a <a href="#result-management-system">_result management system_</a>,
 a bug tracking system, a test execution system, and so on.
 
+<a id="enrichment"></a>**enrichment**: The process of adding additional, optional data to an existing SARIF log file.
+
 <a id="extension"></a>**extension**: A <a href="#tool-component">_component_</a> of an
 <a href="#analysis-tool">_analysis tool_</a> other than the <a href="#driver">_driver_</a>.
 Extensions are typically authored separately from and discovered dynamically by the driver.
@@ -44,6 +46,8 @@ typically used to store large data sets (such as <a href="#taxonomy">_taxonomies
 
 <a id="first-class-property"></a>**first-class property**: A property defined by the SARIF specification, as opposed to
 one that occurs in a <a href="#property-bag">_property bag_</a>.
+
+<a id="fit-for-purpose"></a>**fit for purpose**: Describes a SARIF log file that contains the information necessary to allow the file to be used for a particular purpose.
 
 <a id="hierarchical-string"></a>**hierarchical string**: A string in which the forward slash character `'/'`
 is significant and defines a logical hierarchy on the values of the string.
@@ -80,16 +84,18 @@ with any value.
 
 <a id="result"></a>**result**: An observation about an artifact, often but not always an <a href="#issue">_issue_</a>.
 
-<a id="result-management-system"></a>**result management system**: A system that consumes
-<a href="#result">_results_</a> produced by <a href="#analysis-tool">_analysis tools_</a >
-and typically performs functions such as filing bugs
-and producing reports that provide a view of system quality over time.
-
 <a id="related-location"></a>**related location**: A place in the code other than the
 <a href="#result-location">_result location_</a> that helps a user understand a <a href="#result">_result_</a>.
 
 <a id="result-location"></a>**result location**: A place in the code where an <a href="#analysis-tool">_analysis tool_</a>
 detects a <a href="#result">_result_</a>.
+
+<a id="result-management-system"></a>**result management system**: A system that consumes
+<a href="#result">_results_</a> produced by <a href="#analysis-tool">_analysis tools_</a >
+and typically performs functions such as filing bugs
+and producing reports that provide a view of system quality over time.
+
+<a id="result-matching"></a>**result matching**: The process of identifying <a href="#result">_results_</a> that have appeared, disappeared, or changed between one tool run and another.
 
 <a id="rule"></a>**rule**: A criterion for correctness verified by an <a href="#analysis-tool">_analysis tool_</a>.
 
