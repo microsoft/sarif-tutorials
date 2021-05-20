@@ -13,7 +13,7 @@ Why do we need SARIF? Where did it come from? What can it do?
 Then we'll dive into the format, exploring the most basic concepts first, then moving on to more advanced concepts.
 
 The advanced concepts usually apply to only a subset of SARIF producers and consumers,
-so you don't to read everything.
+so you don't need to read everything.
 Just read the introductory material, then pick and choose the additional topics that interest you.
 
 ## Sample files
@@ -52,7 +52,7 @@ As you will see from the "TODO" entries in the table of contents, there's much m
 But these are advanced topics that I will address when I have time.
 
 If you'd like an explanation of a SARIF feature that I haven't covered,
-please let me know by filing an issue in this repo
+please let me know by filing an issue in this repo.
 
 ## <a id="contents"></a>Table of contents
 
