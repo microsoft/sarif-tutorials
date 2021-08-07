@@ -781,7 +781,7 @@ The `codeFlow`, `threadFlow`, and `threadFlowLocation` objects all have more pro
 You can run a SARIF-producing analysis tool by hand at any time,
 examine the resulting log file in a text editor or in a SARIF viewer,
 and use the results to improve your code.
-But SARIF goes beyond "manual" usage scenarioes with features that support its usage in large teams with elaborate,
+But SARIF goes beyond "manual" usage scenarios with features that support its usage in large teams with elaborate,
 automated engineering processes.
 
 SARIF provides ways to uniquely identify a run and to describe its role in the user's
