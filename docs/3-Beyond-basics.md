@@ -649,9 +649,6 @@ The tool might produce something like this (see [bad-eval-with-code-flow.sarif](
                 {
                   "locations": [
                     {
-                      "message": {
-                        "text": "The tainted data enters the system here."
-                      },
                       "location": {
                         "physicalLocation": {
                           "artifactLocation": {
@@ -688,9 +685,6 @@ The tool might produce something like this (see [bad-eval-with-code-flow.sarif](
                       "nestingLevel": 0
                     },
                     {
-                      "message": {
-                        "text": "The tainted data is used insecurely here."
-                      },
                       "location": {
                         "physicalLocation": {
                           "artifactLocation": {
