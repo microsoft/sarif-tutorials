@@ -25,7 +25,9 @@ and might produce a `result` like this (see [bad-eval.sarif](../samples/3-Beyond
 ```json
 {
   "ruleId": "PY2335",
-  "message": "Use of tainted variable 'expr' in the insecure function 'eval'.",
+  "message": {
+    "text": "Use of tainted variable 'expr' in the insecure function 'eval'."
+  },
   "locations": [
     {
       "physicalLocation": {
