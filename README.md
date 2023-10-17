@@ -13,7 +13,7 @@ Why do we need SARIF? Where did it come from? What can it do?
 Then we'll dive into the format, exploring the most basic concepts first, then moving on to more advanced concepts.
 
 The advanced concepts usually apply to only a subset of SARIF producers and consumers,
-so you don't to read everything.
+so you don't have to read everything.
 Just read the introductory material, then pick and choose the additional topics that interest you.
 
 ## Sample files
