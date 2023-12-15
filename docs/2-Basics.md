@@ -292,7 +292,7 @@ an array of `location` objects which almost always contains exactly one element:
 }
 ```
 
-`result.locations` is optional because a location doesn't always sense.
+`result.locations` is optional because a location doesn't always make sense.
 For example, if a tool tells you that your C# program _doesn't have_ a `Main` entry point, what location
 should it mention?
 
